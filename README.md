@@ -98,7 +98,7 @@ For page-based implementations, the Document Control table is the source of trut
 | Change Summary | *Brief description of what changed in this version* |
 
 ### Templates and examples
-Templates for all five document types live in `/templates`. Refer to the `/playbooks`, `/runbooks`, `/sops` or `kb` folders for examples. 
+Templates for all five document types live in `/templates`. Refer to the `/playbooks`, `/runbooks`, `/sops` or `/kb` folders for examples. 
 
 ## Contributing to Arcana
 

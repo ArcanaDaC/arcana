@@ -1,5 +1,17 @@
 # Incident Response Plan (IRP) Template
 
+## Document Control
+
+| Attribute | Value | Date |
+| --- | --- | --- |
+| Document Name | [Enter KB title] | [Enter date] |
+| Version | [Enter version number] | [Enter date] |
+| Owner | [Enter owner/team] | [Enter date] |
+| Status | [Draft/Approved/Retired] | [Enter date] |
+| Next Review Date | [Enter next review date] | [Enter date] |
+| Approvals | [Enter approver(s)] | [Enter date] |
+| Change Summary | [Brief summary of changes] | [Enter date] |
+
 ## 1. Purpose & Scope
 
 ### Purpose

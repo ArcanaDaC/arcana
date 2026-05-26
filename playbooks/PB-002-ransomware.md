@@ -317,3 +317,12 @@ Actions:
 - PB-003 Endpoint Malware
 - PB-005 Data Exfiltration
 - PB-009 Privilege Escalation
+
+---
+
+## Contributor
+
+**Vishal Thakur**  
+GitHub: https://github.com/malienist
+
+Contributed to the Arcana Incident Response Documentation Framework.

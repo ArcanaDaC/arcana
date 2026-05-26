@@ -28,3 +28,12 @@
 ## 5. Conclusion
 
 ## 6. References
+
+---
+
+## Contributor
+
+**Firstname Lastname**  
+GitHub: https://github.com/account
+
+Contributed to the Arcana Incident Response Documentation Framework.

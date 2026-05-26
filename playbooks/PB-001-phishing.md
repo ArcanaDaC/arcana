@@ -240,3 +240,12 @@ Actions:
 - Internal KB:
   - Header analysis guide
   - Phishing detection patterns
+
+---
+
+## Contributor
+
+**Vishal Thakur**  
+GitHub: https://github.com/malienist
+
+Contributed to the Arcana Incident Response Documentation Framework.

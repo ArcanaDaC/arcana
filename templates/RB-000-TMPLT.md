@@ -39,3 +39,12 @@
 ---
 
 *This template provides a clear, repeatable structure for any IR technical task and can be customised for specific scenarios as needed.*
+
+---
+
+## Contributor
+
+**Firstname Lastname**  
+GitHub: https://github.com/account
+
+Contributed to the Arcana Incident Response Documentation Framework.

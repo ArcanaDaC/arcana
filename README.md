@@ -146,7 +146,6 @@ Templates can also be provided directly to AI tooling/assistants (such as ChatGP
 Contributors are encouraged to add attribution at the bottom of any new documents using the following format:
 
 ```md
----
 
 ## Contributor
 

@@ -109,6 +109,35 @@ Arcana is maintained and developed by a core team focused on advancing incident 
 - Pooja Somu
 - 
 ## Contributing to Arcana
+## Contributing to Arcana
+
+Arcana is a community-driven framework and contributions are encouraged from incident responders, SOC analysts, DFIR practitioners, threat hunters, detection engineers, and security teams across the industry.
+
+Contributors can submit:
+
+- Playbooks (PBs)
+- Runbooks (RBs)
+- SOPs
+- Templates
+- Knowledge Base (KB) articles
+- Tutorials and How-To guides
+- Detection and response workflows
+- Documentation improvements and fixes
+
+### How to Contribute
+
+If you would like to contribute, simply:
+
+1. Fork the repository to your own GitHub account
+2. Create or update the relevant documentation/files
+3. Commit your changes
+4. Submit a Pull Request (PR) back to the main Arcana repository
+
+A Pull Request (PR) is a GitHub feature that allows you to propose changes to a repository for review before they are merged into the main project. Once submitted, the Arcana core team will review the contribution, provide feedback if required, and merge approved changes into the framework.
+
+Contributors are also welcome to add their name/handle at the bottom of the documents they contribute to for attribution and recognition.
+
+Approved contributors will also be added to the Arcana Contributors page on both the GitHub repository and the official website.
 
 ## License
 

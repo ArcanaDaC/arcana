@@ -100,6 +100,14 @@ For page-based implementations, the Document Control table is the source of trut
 ### Templates and examples
 Templates for all five document types live in `/templates`. Refer to the `/playbooks`, `/runbooks`, `/sops` or `/kb` folders for examples. 
 
+## Core Team
+Arcana is maintained and developed by a core team focused on advancing incident response documentation, operational resilience, and documentation-as-code practices.
+- Vishal Thakur
+- Jayden Vo
+- Amit Giri
+- Kashish Srivastava
+- Pooja Somu
+- 
 ## Contributing to Arcana
 
 ## License

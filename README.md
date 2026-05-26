@@ -135,6 +135,26 @@ If you would like to contribute, simply:
 
 A Pull Request (PR) is a GitHub feature that allows you to propose changes to a repository for review before they are merged into the main project. Once submitted, the Arcana core team will review the contribution, provide feedback if required, and merge approved changes into the framework.
 
+### Documentation Templates
+
+When creating new documentation for Arcana, contributors should use the templates available in the `templates/` section of the repository wherever possible. This helps maintain consistency, structure, naming conventions, and interoperability across the framework.
+
+Templates can also be provided directly to AI tooling/assistants (such as ChatGPT, Claude, Gemini, Copilot, etc.) when generating new documentation to ensure outputs align with the Arcana format and standards.
+
+### Contributor Attribution Format
+
+Contributors are encouraged to add attribution at the bottom of any new documents using the following format:
+
+```md
+---
+
+## Contributor
+
+**Firstname Lastname**  
+GitHub: https://github.com/account
+
+Contributed to the Arcana Incident Response Documentation Framework.
+
 Contributors are also welcome to add their name/handle at the bottom of the documents they contribute to for attribution and recognition.
 
 Approved contributors will also be added to the Arcana Contributors page on both the GitHub repository and the official website.

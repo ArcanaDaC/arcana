@@ -107,8 +107,7 @@ Arcana is maintained and developed by a core team focused on advancing incident 
 - Amit Giri
 - Kashish Srivastava
 - Pooja Somu
-- 
-## Contributing to Arcana
+
 ## Contributing to Arcana
 
 Arcana is a community-driven framework and contributions are encouraged from incident responders, SOC analysts, DFIR practitioners, threat hunters, detection engineers, and security teams across the industry.

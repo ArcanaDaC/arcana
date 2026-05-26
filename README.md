@@ -155,9 +155,10 @@ GitHub: https://github.com/account
 
 Contributed to the Arcana Incident Response Documentation Framework.
 
-Contributors are also welcome to add their name/handle at the bottom of the documents they contribute to for attribution and recognition.
+```
 
 Approved contributors will also be added to the Arcana Contributors page on both the GitHub repository and the official website.
+
 
 ## License
 

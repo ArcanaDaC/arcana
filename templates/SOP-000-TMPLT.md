@@ -108,3 +108,11 @@
 - Reference runbooks for detailed technical steps.
 - Regularly review and update the SOP to reflect lessons learned and changes in systems or processes.
 - Maintain bidirectional links with related runbooks, playbooks, and KB articles for seamless navigation.
+---
+
+## Contributor
+
+**Firstname Lastname**  
+GitHub: https://github.com/account
+
+Contributed to the Arcana Incident Response Documentation Framework.

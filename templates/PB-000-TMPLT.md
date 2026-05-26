@@ -132,3 +132,12 @@ Define how severity is determined for this incident type.
 - Regularly review and update the playbook to reflect lessons learned and changes in systems or processes.
 
 *This template ensures your IR playbooks are actionable, auditable, and tightly integrated with the broader Arcana documentation structure, supporting operational excellence and continuous improvement.*
+
+---
+
+## Contributor
+
+**Firstname Lastname**  
+GitHub: https://github.com/account
+
+Contributed to the Arcana Incident Response Documentation Framework.

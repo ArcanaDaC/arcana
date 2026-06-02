@@ -3,7 +3,7 @@
 
 | Attribute | Value | Date |
 | --- | --- | --- |
-| Document Name | [Enter KB title] | [Enter date] |
+| Document Name | [Enter SOP title] | [Enter date] |
 | Version | [Enter version number] | [Enter date] |
 | Owner | [Enter owner/team] | [Enter date] |
 | Status | [Draft/Approved/Retired] | [Enter date] |

@@ -1,4 +1,4 @@
-# RB-TRIAGE-001 Email Triage & Header Analysis
+# RB-TRIAGE-001: Email Triage & Header Analysis
 ## Document Control
 | Attribute | Value | Date |
 | --- | --- | --- |

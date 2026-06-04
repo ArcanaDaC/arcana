@@ -1,15 +1,15 @@
-# RB-004.2-Authentication Log Analysis
+# RB-ANALYSIS-007: Authentication Log Analysis
 
 ## Document Control
 | Attribute | Value | Date |
 | --- | --- | --- |
-| Document Name | Authentication Log Analysis | |
+| Document Name | URL Detonation & Analysis | |
 | Version | v1.0 | |
-| Owner | Enter owner/team | |
-| Status | Draft | |
-| Next Review Date | Enter next review date | |
-| Approvals | Enter approver(s) | |
-| Change Summary | Initial draft | |
+| Owner | [Enter owner/team] | |
+| Status | [Draft/Approved/Retired] | |
+| Next Review Date | [Enter next review date] | |
+| Approvals | [Enter approver(s)] | |
+| Change Summary | [Brief summary of changes] | |
 
 ## 1. Prerequisites
 - Authentication logs access
@@ -24,120 +24,63 @@
 
 ## 2. Step-by-Step Instructions
 
-1. **Confirm Task Assignment** — Verify responsibility for authentication analysis
+1. **Build Authentication Timeline**
+   - Identify
+      - Earliest suspicious login
+      - Successful authentications
+      - Failed login attempts
+      - MFA activity
+      - Session creation events
 
-2. **Notify Stakeholders** — Alert identity and security teams of authentication review initiation
+2. **Review Source Infrastructure**
+   - Assess:
+      - Source IPs
+      - ASN/provider
+      - Geolocation
+      - Is Known malicious infrastructure
+      - VPN or anonymisation usage
 
-3. **Access Target System/Resource** — Prepare identity provider and SIEM for comprehensive log review
+3. **Analyse Device & Session Context**
+   - Review:
+      - Device identifiers
+      - Browser fingerprints
+      - Session duration
+      - User-agent strings
+      - New device registrations
 
-4. **Document Current State** — Record known suspicious login events and timeline markers
 
-5. **Preserve Evidence (if applicable)** — Capture authentication logs for forensic analysis
+4. **Review MFA Activity**
+   - Identify:
+      - MFA fatigue attempts
+      - Push bombing
+      - MFA bypass
+      - Device registration anomalies
+      - Failed MFA attempts
 
-6. **Execute Task Steps**
+5. **Assess Privileged Activity**
+   - Review:
+      - administrative logins
+      - privileged role usage
+      - sensitive application access
+      - unusual administrative actions
 
-   6.1. **Build Authentication Timeline**
-   - Identify earliest suspicious login
-   - Document successful authentications
-   - Document failed login attempts
-   - Review MFA activity
-   - Review session creation events
-
-   6.2. **Review Source Infrastructure**
-   - Assess source IPs
-   - Determine ASN/provider
-   - Determine geolocation
-   - Review known malicious infrastructure
-   - Identify VPN or anonymisation usage
-
-   6.3. **Analyse Device & Session Context**
-   - Review device identifiers
-   - Review browser fingerprints
-   - Assess session duration
-   - Review user-agent strings
-   - Identify new device registrations
-
-   6.4. **Review MFA Activity**
-   - Identify MFA fatigue attempts
-   - Identify push bombing
-   - Identify MFA bypass activity
-   - Review device registration anomalies
-   - Analyze failed MFA attempts
-
-   6.5. **Assess Privileged Activity**
-   - Determine administrative logins
-   - Review privileged role usage
-   - Review sensitive application access
-   - Document unusual administrative actions
-
-   6.6. **Correlate Additional Activity**
-   - Review endpoint telemetry
-   - Review VPN access
-   - Review SaaS access
-   - Review cloud activity
-   - Review lateral movement indicators
-
-7. **Verify Task Completion** — Confirm authentication timeline built and suspicious sessions identified
-
-8. **Update Incident Documentation** — Record authentication findings and MFA anomalies
-
-9. **Escalate if Issues Arise** — Flag MFA bypass or administrative compromise for escalation
-
-10. **Hand Off or Notify Next Responsible Party** — Pass to session revocation or containment teams
+6. **Correlate Additional Activity**
+   - Review:
+      - Endpoint telemetry
+      - VPN access
+      - SaaS access
+      - Cloud activity
+      - Lateral movement indicators
 
 ## 3. Post-Action
-- Document all steps in incident record
-- Participate in post-incident review if required
-
----
-
-## Decision Points
-
-| Condition | Action |
-|----------|--------|
-| MFA bypass identified | Escalate severity |
-| Administrative access identified | Escalate to PB-009 |
-| Multiple identities impacted | Expand hunting scope |
-
----
-
-## Output
-
-- Authentication timeline
-- Suspicious session inventory
-- Source infrastructure assessment
-- MFA findings
-
----
-
-## Common Failure Modes
-
-- Focusing only on failed logins
-- Ignoring token reuse activity
-- Missing impossible travel suppression logic
-
----
-
-## Automation Hooks
-
-- Auto-timeline generation
-- Auto-IP enrichment
-- Auto-impossible travel correlation
-- Auto-MFA anomaly detection
-
----
-
-## Related
-
-- Playbook: [PB-004 Account Takeover](../../playbooks/PB-004-account-takeover.md)
-- Previous: [RB-004.1 Identity Alert Triage](./RB-004.1-identity-alert-triage.md)
-- Next: [RB-004.3 Session & Token Revocation](./RB-004.3-session-token-revocation.md)
-
----
+- Document all investigation findings within the incident ticket
 
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
+
+**Jayden Vo**
+GitHub: https://github.com/jayden-vo
 
 Contributed to the Arcana Incident Response Documentation Framework.

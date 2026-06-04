@@ -18,32 +18,19 @@ Each runbook is linked from a parent playbook and focuses on a specific operatio
 
 ## Structure
 
-Runbooks are organised by incident category.
+Runbooks are organised by response phase.
 
 ### Current Categories
 
 | Category | Description |
 |---|---|
-| phishing | Phishing and credential theft response |
-| ransomware | Ransomware containment and recovery |
-| endpoint-malware | Endpoint malware investigation and recovery |
-| account-takeover | Identity and account compromise |
-| data-exfiltration | Data theft and exfiltration response |
-| insider-threat | Insider threat investigations |
-| cloud-compromise | Cloud infrastructure compromise |
-| web-application-attack | Web application attack response |
-| privilege-escalation | Privilege escalation investigations |
-| lateral-movement | Lateral movement investigations |
-| suspicious-execution | Suspicious process execution |
-| third-party-compromise | Vendor and supply-chain incidents |
-| ddos | Availability and DDoS incidents |
-| lost-stolen-device | Lost or stolen corporate devices |
-| active-exploitation | Active exploitation response |
-| business-email-compromise | Business email compromise investigations |
-| vulnerability-response | Vulnerability and patch response |
-| zero-day-response | Zero-day exploitation response |
-| cloud-identity-compromise | Cloud identity compromise |
-| major-incident-management | Enterprise incident coordination |
+| triage | Initial triage task |
+| analysis | Investigation and analysis tasks |
+| contain | Containment actions |
+| eradication | Eradication and removal tasks |
+| evidence | Evidence acquisition and preservation |
+| recovery | Recovery and restoration tasks |
+| post-incident | Post-incident tasks |
 
 ---
 
@@ -52,14 +39,20 @@ Runbooks are organised by incident category.
 ### Runbooks
 
 ```text
-RB-<playbook>.<runbook>-<slug>.md
+RB-<CATEGORY>-###-<slug>.md
 ```
 
-### Example
+Where:
+- `<CATEGORY>` is the response phase (e.g. `TRIAGE`, `ANALYSIS`, `CONTAIN`, `ERAD`, `EVIDENCE`, `RECOVERY`, `POST`)
+- `###` is a zero-padded sequential number within the category
+- `<slug>` is a short, human-readable description using hyphens
+
+### Examples
 
 ```text
-RB-001.1-email-triage-header-analysis.md
-RB-002.1-rapid-containment-network-segmentation.md
+RB-TRIAGE-001-email-triage-header-analysis.md
+RB-CONTAIN-002-rapid-containment-network-segmentation.md
+RB-RECOVERY-003-user-recovery-access-restoration.md
 ```
 
 ---

@@ -74,17 +74,8 @@
 
 ## 7. References & Linked Resources
 
-- **Runbooks:**
-  [Link to technical runbooks for specific steps]
-
 - **Playbooks:**
-  [Link to relevant playbooks for scenario context]
-
-- **Knowledge Base Articles:**
-  [Link to supporting KB articles, troubleshooting guides, or PIRs]
-
-- **Other SOPs:**
-  [Link to related SOPs]
+  - [PB-002: Ransomware Incident Response](../playbooks/PB-002-ransomware.md)
 
 ## 8. Appendices
 

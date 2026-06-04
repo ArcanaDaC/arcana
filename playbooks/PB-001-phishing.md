@@ -71,19 +71,19 @@
   > **Decision Point:**
   > - Credential harvesting identified (and suspicious login activity observed) → Incorporate and execute the Analysis, Containment, Eradication, and Recovery steps of [PB-004: Account Takeover](PB-004-account-takeover.md) concurrently alongside this playbook. 
   > - Malware delivery identified → Incorporate and execute the Analysis, Containment, Eradication, and Recovery steps of [PB-003: Endpoint Malware](PB-003-endpoint-malware.md) concurrently alongside this playbook. 
-- Hunt for similar phishing emails to identify additional compromised accounts. 
-  - 📘 [RB-001.5: Phishing Retro Hunt](../runbooks/analysis/RB-001.5-phishing-retro-hunt.md)
+- Conduct a phishing retro hunt to determine full campaign scope and identify additional compromised accounts 
+  - 📘 [RB-ANALYSIS-002: Phishing Retro Hunt](../runbooks/analysis/RB-ANALYSIS-002-phishing-retro-hunt.md)
 ## 6. Containment, Eradication & Recovery
 
 - **Containment Actions:**
-  - 📘 [RB-001.4: Account Lockdown (IdP/SSO)](../runbooks/contain/RB-001.4-account-lockdown.md)
+  - 📘 [RB-CONTAIN-001 Account Lockdown (IdP/SSO)](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
     - Disable or lock affected accounts 
     - Revoke active sessions and tokens of affected accounts
     - Reset password
-    - Enforce MFA re-registration → 📘 [RB-004.4: MFA Reset & Validation](../runbooks/contain/RB-004.4-mfa-reset-validation.md)
+    - Enforce MFA re-registration 
 
 - **Eradication Steps:**
-  - 📘 [RB-001.6: Email Removal & Blocking](../runbooks/contain/RB-001.6-email-removal-blocking.md)
+  - 📘 [RB-ERAD-001: Email Removal & Blocking](../runbooks/eradication/RB-ERAD-001-email-removal-blocking.md)
     - Remove phishing emails from all inboxes (tenant-wide)
     - Block sender and domain at email gateway
     - Block malicious URLs at email gateway, proxy, and DNS
@@ -100,16 +100,15 @@
   - Issue org-wide advisory if campaign scope is broad
 
 - **External Communication:**
-  - If customer impact suspected/confirmed, engage Legal/Privacy for regulatory assessment.
-    - 📘 [SOP-003:  Escalation, Legal & Executive Communications](../sops/SOP-003-escalation-legal-executive-comms.md)
-  - Notify customers, regulators, or partners if credential data or personal information is confirmed exposed
+  - If privacy impact suspected/confirmed, engage Legal/Privacy for regulatory assessment.
+  - Notify all required external parties (e.g. customers, regulators, partners) as directed by Legal
   - Coordinate with Legal before any external notification
 
 - **Escalation Criteria:**
 
   | Condition | Escalate To |
   |-----------|-------------|
-  | Credential theft confirmed | [PB-004: Account Takeover](PB-004-account-takeover.md) |
+  | Credential theft confirmed + Suspicious Login Actiity Observed | [PB-004: Account Takeover](PB-004-account-takeover.md) |
   | Malware execution confirmed | [PB-003: Endpoint Malware](PB-003-endpoint-malware.md) |
 
 
@@ -125,46 +124,22 @@
   - Update linked runbooks with any new techniques or tooling
 
 ## 9. References & Linked Resources
+- **Playbooks:**
+  - [PB-003: Endpoint Malware](PB-003-endpoint-malware.md)
+  - [PB-004: Account Takeover](PB-004-account-takeover.md)
 
 - **Runbooks:**
-  - [RB-001.1: Email Triage & Header Analysis](../runbooks/triage/RB-001.1-email-triage-header-analysis.md)
-  - [RB-001.2: URL Detonation & Analysis](../runbooks/analysis/RB-001.2-url-analysis.md)
-  - [RB-001.3: Credential Exposure Validation](../runbooks/triage/RB-001.3-credential-check.md)
-  - [RB-001.4: Account Lockdown (IdP/SSO)](../runbooks/contain/RB-001.4-account-lockdown.md)
-  - [RB-001.5: Phishing Retro Hunt](../runbooks/analysis/RB-001.5-phishing-retro-hunt.md)
-  - [RB-001.6: Email Removal & Blocking](../runbooks/contain/RB-001.6-email-removal-blocking.md)
-  - [RB-004.3: Session Token Revocation](../runbooks/contain/RB-004.3-session-token-revocation.md)
-  - [RB-004.4: MFA Reset & Validation](../runbooks/contain/RB-004.4-mfa-reset-validation.md)
+  - [RB-TRIAGE-001: Email Triage & Header Analysis](../runbooks/triage/RB-TRIAGE-001-email-triage-header-analysis.md)
+  - [RB-ANALYSIS-001: URL Detonation & Analysis](../runbooks/analysis/RB-ANALYSIS-001-url-analysis.md)
+  - [RB-ANALYSIS-002: Phishing Retro Hunt](../runbooks/analysis/RB-ANALYSIS-002-phishing-retro-hunt.md)
+  - [RB-ANALYSIS-012: Phishing Interaction Validation](../runbooks/analysis/RB-ANALYSIS-012-phishing-interaction-validation.md)
+  - [RB-CONTAIN-001: Account Lockdown (IdP/SSO)](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
+  - [RB-ERAD-001: Email Removal & Blocking](../runbooks/eradication/RB-ERAD-001-email-removal-blocking.md)
 
 - **SOPs:**
-  - [SOP-001: Paging an Engineering Team's On-Call](../sops/SOP-001-paging-engineering-oncall.md)
   - [SOP-004: User Notification](../sops/SOP-004-user-notification.md)
 
-- **Knowledge Base Articles:**
-  - [KB: Email Header Analysis Guide] ← link when available
-  - [KB: Phishing Detection Patterns] ← link when available
-
-- **MITRE ATT&CK:**
-  - [T1566 — Phishing](https://attack.mitre.org/techniques/T1566/)
-  - [T1204 — User Execution](https://attack.mitre.org/techniques/T1204/)
-
 ## 10. Appendices
-
-- **Automation Opportunities:**
-  - Auto-extract URLs and attachments from reported emails
-  - Auto-detonate links in sandbox on receipt
-  - Auto-search across tenant for matching IOCs (retro hunt)
-  - Auto-remove confirmed phishing emails from all inboxes
-  - Auto-disable accounts upon confirmed credential submission
-
-- **Key Notes:**
-  - Always assume credential reuse risk if credentials were exposed — check for reuse across other services
-  - Prioritise session/token revocation over password reset alone — password resets do not invalidate active sessions
-  - Retro hunting is critical — phishing campaigns are rarely isolated to a single user
-
-- **Contact List:**
-  - [Enter key personnel and escalation contacts]
-
 ---
 
 ## Contributor
@@ -172,4 +147,6 @@
 **Vishal Thakur**
 GitHub: https://github.com/malienist
 
+**Jayden Vo**
+GitHub: https://github.com/jayden-vo
 Contributed to the Arcana Incident Response Documentation Framework.

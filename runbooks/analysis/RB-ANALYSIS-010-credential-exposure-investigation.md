@@ -1,15 +1,15 @@
-# RB-004.7-Credential Exposure Investigation
+# RB-ANALYSIS-010: Credential Exposure Investigation
 
 ## Document Control
 | Attribute | Value | Date |
 | --- | --- | --- |
 | Document Name | Credential Exposure Investigation | |
 | Version | v1.0 | |
-| Owner | Enter owner/team | |
-| Status | Draft | |
-| Next Review Date | Enter next review date | |
-| Approvals | Enter approver(s) | |
-| Change Summary | Initial draft | |
+| Owner | [Enter owner/team] | |
+| Status | [Draft/Approved/Retired] | |
+| Next Review Date | [Enter next review date] | |
+| Approvals | [Enter approver(s)] | |
+| Change Summary | [Brief summary of changes] | |
 
 ## 1. Prerequisites
 - Authentication telemetry
@@ -26,121 +26,63 @@
 
 ## 2. Step-by-Step Instructions
 
-1. **Confirm Task Assignment** — Verify responsibility for credential exposure analysis
+1. Identify Initial Exposure Vector
+   - Determine whether exposure occurred through:
+      - Phishing
+      - Malware
+      - Credential stuffing
+      - Password reuse
+      - Browser credential theft
+      - Token theft
+      - Public credential leaks
 
-2. **Notify Stakeholders** — Alert security and user management teams of exposure investigation
+2. Review Authentication Timeline
+   - Identify:
+      - Earliest suspicious login
+      - Failed authentication attempts
+      - MFA activity
+      - Password reset activity
+      - Session creation activity
 
-3. **Access Target System/Resource** — Prepare threat intel platforms and authentication logs for review
+3. Assess Password Reuse Risk
+   - Determine:
+      - Shared password usage
+      - Corporate/personal password overlap
+      - Service account reuse
+      - Administrative credential reuse
 
-4. **Document Current State** — Record known exposure vectors and affected users
+4. Review Endpoint Exposure Indicators
 
-5. **Preserve Evidence (if applicable)** — Capture credential-related logs and threat intel data
+   - Identify:
+      - Browser credential dumping
+      - Token theft
+      - Session cookie theft
+      - Password manager compromise
+      - Infostealer activity
 
-6. **Execute Task Steps**
+5. Review External Exposure Sources
+   - Check:
+      - Credential dump repositories
+      - Threat intelligence feeds
+      - Dark web monitoring sources
+      - Known breach datasets
+6. Identify Adjacent Risk
+   - Assess:
+      - Additional affected accounts
+      - Shared devices
+      - Shared authentication infrastructure
+      - Shared API credentials
 
-   6.1. **Identify Initial Exposure Vector**
-   - Determine exposure through phishing
-   - Determine exposure through malware
-   - Determine exposure through credential stuffing
-   - Determine exposure through password reuse
-   - Determine exposure through browser credential theft
-   - Determine exposure through token theft
-   - Determine exposure through public credential leaks
-
-   6.2. **Review Authentication Timeline**
-   - Identify earliest suspicious login
-   - Identify failed authentication attempts
-   - Review MFA activity
-   - Review password reset activity
-   - Review session creation activity
-
-   6.3. **Assess Password Reuse Risk**
-   - Determine shared password usage
-   - Assess corporate/personal password overlap
-   - Assess service account reuse
-   - Assess administrative credential reuse
-
-   6.4. **Review Endpoint Exposure Indicators**
-   - Identify browser credential dumping
-   - Identify token theft activity
-   - Identify session cookie theft
-   - Identify password manager compromise
-   - Review infostealer activity
-
-   6.5. **Review External Exposure Sources**
-   - Check credential dump repositories
-   - Review threat intelligence feeds
-   - Review dark web monitoring sources
-   - Review known breach datasets
-
-   6.6. **Identify Adjacent Risk**
-   - Assess additional affected accounts
-   - Assess shared devices
-   - Assess shared authentication infrastructure
-   - Assess shared API credentials
-
-7. **Verify Task Completion** — Confirm exposure vector identified and scope determined
-
-8. **Update Incident Documentation** — Record exposure findings and adjacent risk assessment
-
-9. **Escalate if Issues Arise** — Flag malware or privilege credential exposure for escalation
-
-10. **Hand Off or Notify Next Responsible Party** — Pass to credential reset and adjacent account hunting teams
 
 ## 3. Post-Action
-- Document all steps in incident record
-- Participate in post-incident review if required
-
----
-
-## Decision Points
-
-| Condition | Action |
-|----------|--------|
-| Malware-based theft identified | Escalate to PB-003 |
-| Phishing identified | Escalate to PB-001 |
-| Password reuse identified | Expand credential reset scope |
-| Privileged credential exposure identified | Escalate to PB-009 |
-
----
-
-## Output
-
-- Credential exposure assessment
-- Exposure source determination
-- Password reuse findings
-- Adjacent risk assessment
-
----
-
-## Common Failure Modes
-
-- Resetting only one affected account
-- Ignoring browser-stored credentials
-- Missing service account reuse
-
----
-
-## Automation Hooks
-
-- Auto-password reuse detection
-- Auto-credential leak enrichment
-- Auto-token exposure hunting
-- Auto-adjacent account correlation
-
----
-
-## Related
-
-- Playbook: [PB-004 Account Takeover](../../playbooks/PB-004-account-takeover.md)
-- Previous: [RB-004.6 Privileged Access Assessment](./RB-004.6-privileged-access-assessment.md)
-- Next: [RB-004.8 Adjacent Account Hunting](./RB-004.8-adjacent-account-hunting.md)
-
----
+- Document all findings within the incident ticket
 
 ## Contributor
 
 **Vishal Thakur**  
 GitHub: https://github.com/malienist
+
+**Jayden Vo**
+GitHub: https://github.com/jayden-vo
 
 Contributed to the Arcana Incident Response Documentation Framework.

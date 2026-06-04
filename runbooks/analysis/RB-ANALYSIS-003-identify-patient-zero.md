@@ -1,123 +1,93 @@
-# RB-002.2-Identify Patient Zero
+# RB-ANALYSIS-003: Identify Patient Zero
 
 ## Document Control
 | Attribute | Value | Date |
 | --- | --- | --- |
 | Document Name | Identify Patient Zero | |
 | Version | v1.0 | |
-| Owner | Enter owner/team | |
-| Status | Draft | |
-| Next Review Date | Enter next review date | |
-| Approvals | Enter approver(s) | |
-| Change Summary | Initial draft | |
+| Owner | [Enter owner/team] | |
+| Status | [Draft/Approved/Retired] | |
+| Next Review Date | [Enter next review date] | |
+| Approvals | [Enter approver(s)] | |
+| Change Summary | [Brief summary of changes] | |
 
 ## 1. Prerequisites
-- EDR telemetry access
-- Authentication logs access
+- Log Access
+	- EDR telemetry access
+	- Authentication logs access (IdP, SSO, Active Directory, Entra ID, Okta, etc.)
+	- Active Directory / directory service logs access
+	- Email gateway / mail flow telemetry access
+	- VPN logs access
+	- Cloud audit logs access (e.g. AWS CloudTrail, Azure Activity Logs, GCP Audit Logs)
+	- SaaS application logs access (e.g. Microsoft 365, Google Workspace, Salesforce, GitHub, Okta)
+	- Network / proxy / DNS / firewall logs
 - SIEM timeline data
-- Endpoint timeline information
-- Ransomware execution timestamps
+- Endpoint timeline data (file, process, registry, autorun events)
 - SIEM platform access
 - EDR platform access
-- Active Directory logs access
-- Email telemetry access
-- VPN logs access
+- Asset and user directory data (to correlate hostnames, accounts, and owners)
 
 ## 2. Step-by-Step Instructions
 
-1. **Confirm Task Assignment** — Verify responsibility for identifying initial compromise point
+1. **Build Initial Timeline**
+	- Identify the earliest confirmed indicator of compromise (alert, user report, log anomaly, externally reported indicator)
+	- Identify the first suspicious execution, action, or transaction observed
+	- Flag first suspicious authentication event
+	- Anchor the timeline to a known-good reference point prior to the first suspicious event
 
-2. **Notify Stakeholders** — Alert incident management of timeline analysis initiation
+2. **Identify Earliest Impacted Host, Account, or Entity**
+	- Use known IOCs (hashes, IPs, domains, accounts, signatures) from step 1 as search terms to pivot into alerts and telemetry
+	- Check whether alerts fired (EDR, SIEM, IDS, DLP, cloud security tooling):
+		- **If alerts exist** - identify the earliest across all entity types (host, account, cloud tenant, SaaS app, mailbox, repository, API key/token); treat it as a starting point, not a conclusion
+		- **If no alerts fired** - pivot to raw telemetry using known IOCs: review auth logs for first unusual login; access logs for first unusual resource access; DNS/proxy logs for first suspicious outbound connection; cloud/SaaS audit logs for first unusual API call, permission grant, or data export; EDR telemetry for first suspicious execution or persistence artefact
+	- **Note**: earliest alert ≠ earliest activity - always look back further in raw telemetry to confirm nothing pre-dates it
+	- Document user reports
+	- Record the earliest confirmed timestamp of suspicious activity and the entity it is associated with
 
-3. **Access Target System/Resource** — Prepare SIEM and EDR for historical timeline review
+3. **Review Initial Access Indicators**
+	- Check for phishing activity
+	- Investigate VPN compromise indicators
+	- Assess exposed remote-access services (RDP, SSH, VPN, jump hosts, management interfaces)
+	- Review credential theft indicators
+	- Identify malicious payload delivery (drive-by, download, attachment, supply chain, third-party software)
+	- Check for vulnerability exploitation (recently disclosed CVEs, web app exploitation, public-facing service abuse)
+	- Check for valid-account abuse (purchased credentials, leaked tokens, OAuth consent abuse, session hijack)
+	- Check for trusted-relationship abuse (third party, contractor, managed service provider, supply chain)
+	- Check for physical / insider vectors (lost device, USB, insider misuse) where applicable
 
-4. **Document Current State** — Record known encryption events and timeline markers
+4. **Analyse User Activity**
+	- Review privileged account usage
+	- Identify unusual login locations, devices, or impossible travel
+	- Document non-human identity activity (service accounts, machine identities, API keys, OAuth apps)
+	- Flag MFA, conditional access, and session anomalies (prompt bombing, token theft, consent grants)
+	- Identify activity from accounts that are dormant, recently created, or recently re-enabled
 
-5. **Preserve Evidence (if applicable)** — Capture forensic snapshots of affected systems
+5. **Identify How Lateral Movement Occurred**
+	- Determine lateral movement techniques
+	- Track shared credential usage
+	- Identify administrative tooling, RMM, and dual-use tooling abused for movement
+	- Document remote execution methods
+	- Identify identity-driven propagation (token reuse, federation abuse, role assumption, cross-tenant access)
+	- Identify cloud / SaaS propagation (cross-account, cross-tenant, app-to-app)
+	- Determine how the compromise spread from the initial entity to others
 
-6. **Execute Task Steps**
-
-   6.1. **Build Initial Timeline**
-   - Determine earliest encryption event
-   - Identify first ransomware execution
-   - Flag first suspicious authentication event
-
-   6.2. **Identify Earliest Impacted Host**
-   - Review file modification timestamps
-   - Examine EDR detections
-   - Document user reports
-   - Review network telemetry
-
-   6.3. **Review Initial Access Indicators**
-   - Check for phishing activity
-   - Investigate VPN compromise indicators
-   - Assess exposed RDP exposure
-   - Review credential theft indicators
-   - Identify malware download activity
-
-   6.4. **Analyse User Activity**
-   - Review privileged account usage
-   - Identify unusual login locations
-   - Document service account activity
-   - Flag MFA anomalies
-
-   6.5. **Identify Propagation Path**
-   - Determine lateral movement techniques
-   - Track shared credential usage
-   - Identify administrative tool usage
-   - Document remote execution methods
-
-7. **Verify Task Completion** — Confirm patient zero identified and propagation path documented
-
-8. **Update Incident Documentation** — Record timeline and initial access vector in incident record
-
-9. **Escalate if Issues Arise** — Route to appropriate escalation playbooks based on findings
-
-10. **Hand Off or Notify Next Responsible Party** — Pass to encryption scope assessment team
+6. **Validate the Candidate Patient Zero**
+	- Confirm no earlier indicator exists for that host, identity, or entity
+	- Confirm the initial access vector is consistent with the proposed timeline
+	- Confirm the spread from the identified patient zero is consistent with observed compromise across other entities
+	- If any of the above fail, the candidate is not patient zero - return to 1.
 
 ## 3. Post-Action
-- Document all steps in incident record
-- Participate in post-incident review if required
+- Record timeline and initial access vector in the incident ticket
+- Document all newly identified compromised accounts, hosts, and entities discovered during the investigation
+- Record any new IOCs (hashes, IPs, domains, accounts, tokens, signatures) in the incident ticket
 
----
+## Contributor
 
-## Decision Points
+**Vishal Thakur**
+GitHub: https://github.com/malienist
 
-| Condition | Action |
-|----------|--------|
-| Phishing identified | Escalate to PB-001 |
-| Privileged account abuse | Escalate to RB-002.6 |
-| Internet-facing exposure identified | Emergency exposure review |
+**Jayden Vo**
+GitHub: https://github.com/jayden-vo
 
----
-
-## Output
-
-- Suspected patient zero
-- Initial access vector
-- Timeline of compromise
-- Propagation path summary
-
----
-
-## Common Failure Modes
-
-- Assuming first detected host is patient zero
-- Ignoring authentication telemetry
-- Missing dormant attacker activity prior to encryption
-
----
-
-## Automation Hooks
-
-- Auto-build event timeline
-- Auto-correlate authentication events
-- Auto-identify earliest detections
-
----
-
-## Related
-
-- Playbook: [PB-002 Ransomware](../../playbooks/PB-002-ransomware.md)
-- Previous: [RB-002.1 Rapid Containment & Network Segmentation](./RB-002.1-rapid-containment-network-segmentation.md)
-- Next: [RB-002.3 Encryption Scope Assessment](./RB-002.3-encryption-scope-assessment.md)
+Contributed to the Arcana Incident Response Documentation Framework.

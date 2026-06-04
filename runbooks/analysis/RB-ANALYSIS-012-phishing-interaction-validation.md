@@ -69,7 +69,6 @@
 
 ## 3. Post-Action
 - Document findings within the incident ticket
----
 
 ## Contributor
 

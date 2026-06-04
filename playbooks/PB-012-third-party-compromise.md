@@ -9,7 +9,7 @@ This playbook is intended for:
 - Vendor compromise notifications
 - Supply chain incidents
 - SaaS provider compromise
-- MSP compromise
+- Managed service provider compromise
 - Software supply chain attacks
 - Third-party credential exposure
 - Partner environment compromise
@@ -45,13 +45,13 @@ Impact assessments must be evidence-based.
 
 ## Immediate Emergency Actions
 
-1. Validate compromise notification
-2. Identify impacted vendor relationships
-3. Assess organisational exposure
-4. Preserve relevant logs and evidence
-5. Identify active integrations
-6. Review privileged third-party access
-7. Notify Incident Response leadership
+1. Validate compromise notification.
+2. Identify impacted vendor relationships.
+3. Assess organisational exposure.
+4. Preserve relevant logs and evidence.
+5. Identify active integrations.
+6. Review privileged third-party access.
+7. Notify Incident Response leadership.
 
 ---
 
@@ -59,29 +59,29 @@ Impact assessments must be evidence-based.
 
 ### Triage
 
-- RB-TRIAGE-004 Third-Party Notification Validation *(To Be Created)*
+- [RB-TRIAGE-004 Third-Party Notification Validation](../runbooks/triage/RB-TRIAGE-004-third-party-notification-validation.md)
 
 ### Analysis
 
-- RB-ANALYSIS-027 Third-Party Exposure Assessment
-- RB-ANALYSIS-028 Supply Chain Impact Analysis
-- RB-ANALYSIS-007 Authentication Log Analysis
-- RB-ANALYSIS-009 Privileged Access Assessment
-- RB-ANALYSIS-011 Identify Additional Compromised Accounts
+- [RB-ANALYSIS-027 Third-Party Exposure Assessment](../runbooks/analysis/RB-ANALYSIS-027-third-party-exposure-assessment.md)
+- [RB-ANALYSIS-028 Supply Chain Impact Analysis](../runbooks/analysis/RB-ANALYSIS-028-supply-chain-impact-analysis.md)
+- [RB-ANALYSIS-007 Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
+- [RB-ANALYSIS-009 Privileged Access Assessment](../runbooks/analysis/RB-ANALYSIS-009-privileged-access-assessment.md)
+- [RB-ANALYSIS-011 Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
 
 ### Containment
 
-- RB-CONTAIN-001 Account Lockdown
-- RB-CONTAIN-005 Session & Token Revocation
-- RB-CONTAIN-008 Third-Party Access Restriction
+- [RB-CONTAIN-001 Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
+- [RB-CONTAIN-005 Session & Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+- [RB-CONTAIN-008 Third-Party Access Restriction](../runbooks/contain/RB-CONTAIN-008-third-party-access-restriction.md)
 
 ### Recovery
 
-- RB-RECOVERY-005 Third-Party Trust Restoration
+- [RB-RECOVERY-005 Third-Party Trust Restoration](../runbooks/recovery/RB-RECOVERY-005-third-party-trust-restoration.md)
 
 ### Post-Incident
 
-- RB-POST-002 Regulatory & Legal Coordination
+- [RB-POST-002 Regulatory & Legal Coordination](../runbooks/post-incident/RB-POST-002-regulatory-legal-coordination.md)
 
 ---
 
@@ -95,8 +95,10 @@ Initiate this playbook when any of the following occur:
 - Third-party credentials exposed
 - Managed service provider compromised
 - Software dependency compromise identified
-- Partner organisation reports breach
+- Partner organisation reports a breach
 - Trusted integration abuse identified
+- Vendor security advisory indicates possible customer impact
+- Threat intelligence identifies compromise of a critical supplier
 
 ---
 
@@ -126,6 +128,8 @@ Initiate this playbook when any of the following occur:
 ## Required Inputs
 
 - Vendor notifications
+- Security advisories
+- Threat intelligence
 - Authentication logs
 - IAM logs
 - SaaS audit logs
@@ -142,7 +146,7 @@ Initiate this playbook when any of the following occur:
 
 Runbook:
 
-- RB-TRIAGE-004 Third-Party Notification Validation *(To Be Created)*
+- [RB-TRIAGE-004 Third-Party Notification Validation](../runbooks/triage/RB-TRIAGE-004-third-party-notification-validation.md)
 
 Actions:
 
@@ -173,7 +177,7 @@ If the organisation uses the affected vendor or service:
 
 Runbook:
 
-- RB-ANALYSIS-027 Third-Party Exposure Assessment
+- [RB-ANALYSIS-027 Third-Party Exposure Assessment](../runbooks/analysis/RB-ANALYSIS-027-third-party-exposure-assessment.md)
 
 Actions:
 
@@ -191,7 +195,7 @@ Actions:
 
 Runbook:
 
-- RB-ANALYSIS-028 Supply Chain Impact Analysis
+- [RB-ANALYSIS-028 Supply Chain Impact Analysis](../runbooks/analysis/RB-ANALYSIS-028-supply-chain-impact-analysis.md)
 
 Actions:
 
@@ -219,7 +223,7 @@ If vulnerable products are not deployed:
 
 Runbook:
 
-- RB-ANALYSIS-007 Authentication Log Analysis
+- [RB-ANALYSIS-007 Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
 
 Actions:
 
@@ -235,7 +239,7 @@ Actions:
 
 Runbook:
 
-- RB-ANALYSIS-009 Privileged Access Assessment
+- [RB-ANALYSIS-009 Privileged Access Assessment](../runbooks/analysis/RB-ANALYSIS-009-privileged-access-assessment.md)
 
 Actions:
 
@@ -257,7 +261,7 @@ If privileged access exposure exists:
 
 Runbook:
 
-- RB-ANALYSIS-011 Identify Additional Compromised Accounts
+- [RB-ANALYSIS-011 Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
 
 Actions:
 
@@ -272,9 +276,9 @@ Actions:
 
 Runbooks:
 
-- RB-CONTAIN-001 Account Lockdown
-- RB-CONTAIN-005 Session & Token Revocation
-- RB-CONTAIN-008 Third-Party Access Restriction
+- [RB-CONTAIN-001 Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
+- [RB-CONTAIN-005 Session & Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+- [RB-CONTAIN-008 Third-Party Access Restriction](../runbooks/contain/RB-CONTAIN-008-third-party-access-restriction.md)
 
 Actions:
 
@@ -317,13 +321,19 @@ Activate:
 
 - PB-007 Cloud Compromise
 
+If evidence of malware deployment exists:
+
+Activate:
+
+- PB-003 Endpoint Malware
+
 ---
 
 ### 9. Restore Trusted Access
 
 Runbook:
 
-- RB-RECOVERY-005 Third-Party Trust Restoration
+- [RB-RECOVERY-005 Third-Party Trust Restoration](../runbooks/recovery/RB-RECOVERY-005-third-party-trust-restoration.md)
 
 Actions:
 
@@ -340,7 +350,7 @@ Actions:
 
 Runbook:
 
-- RB-POST-002 Regulatory & Legal Coordination
+- [RB-POST-002 Regulatory & Legal Coordination](../runbooks/post-incident/RB-POST-002-regulatory-legal-coordination.md)
 
 Actions:
 
@@ -373,10 +383,10 @@ Additional playbooks should be activated when evidence supports them.
 
 When additional evidence is identified:
 
-- Continue the current playbook
-- Activate related playbooks
-- Execute playbooks concurrently where appropriate
-- Close playbooks independently
+- Continue the current playbook where relevant
+- Activate the appropriate related playbook
+- Execute playbooks concurrently where investigative activities overlap
+- Close playbooks independently once objectives have been achieved
 
 ---
 
@@ -397,6 +407,7 @@ When additional evidence is identified:
 
 - Exposure assessment
 - Impacted vendor inventory
+- Impacted asset inventory
 - Impacted account inventory
 - Containment actions
 - Recovery actions
@@ -408,10 +419,11 @@ When additional evidence is identified:
 ## Common Failure Modes
 
 - Blindly trusting vendor notifications
-- Failing to review service accounts
-- Ignoring API integrations
+- Failing to identify all affected integrations
+- Ignoring service account exposure
 - Missing delegated access relationships
-- Failing to assess downstream impact
+- Failing to assess downstream dependencies
+- Restoring trust relationships before remediation validation
 
 ---
 
@@ -422,6 +434,7 @@ When additional evidence is identified:
 - API key inventory reviews
 - Trust relationship mapping
 - Exposure assessment automation
+- SaaS integration discovery
 
 ---
 

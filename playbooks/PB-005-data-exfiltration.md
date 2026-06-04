@@ -1,334 +1,245 @@
 # PB-005: Data Exfiltration
 
-## Overview
+## Document Control
 
-This playbook outlines the response process for suspected or confirmed data exfiltration incidents involving unauthorised access, staging, transfer, or exposure of organisational data.
+| Attribute | Value | Date |
+| --- | --- | --- |
+| Document Name | PB-005: Data Exfiltration | [Enter date] |
+| Version | [Enter version number] | [Enter date] |
+| Owner | [Enter owner/team] | [Enter date] |
+| Status | [Draft/Approved/Retired] | [Enter date] |
+| Next Review Date | [Enter next review date] | [Enter date] |
+| Approvals | [Enter approver(s)] | [Enter date] |
+| Change Summary | [Brief summary of changes] | [Enter date] |
 
-This playbook is intended for:
-- Data theft incidents
-- Large outbound transfers
-- Cloud storage abuse
-- Insider-driven exfiltration
-- SaaS data extraction
-- Sensitive file exposure
-- Staged data collection activity
+## 1. Purpose & Scope
 
----
+- **Purpose:**
 
-## Status
+  This playbook outlines the end-to-end response process for suspected or confirmed data exfiltration incidents involving unauthorised access, collection, staging, transfer, theft, or exposure of organisational data. It is designed to identify impacted data, determine exposure scope, contain active exfiltration activity, preserve evidence, and coordinate legal, regulatory, and business response activities.
 
-Live
+- **Scope:**
 
----
+  Applies to all suspected or confirmed data exfiltration incidents across the organisation, including insider threats, external compromises, cloud and SaaS abuse, unauthorised file transfers, sensitive data exposure, and threat actor collection activities.
 
-## Warning
+## 2. Incident Identification & Criteria
 
-Do NOT assume exfiltration is complete or isolated until:
-- Data staging activity has been investigated
-- Adjacent systems and accounts have been reviewed
-- Cloud and SaaS access has been validated
-- Outbound transfer paths have been identified
+**Incident Type:** Data Exfiltration
 
-Attackers frequently maintain persistence after initial exfiltration.
+**Trigger Conditions:**
 
----
-
-## Immediate Emergency Actions
-
-1. Contain active exfiltration channels immediately
-2. Isolate impacted accounts or systems where required
-3. Preserve logs and volatile evidence
-4. Identify sensitive data exposure scope
-5. Protect backup and archival systems
-6. Notify Incident Response leadership
-7. Engage legal/compliance teams if regulated data involved
-
----
-
-## Linked Runbooks
-
-- [RB-005.1 Exfiltration Alert Triage](../runbooks/data-exfiltration/RB-005.1-exfiltration-alert-triage.md)
-- [RB-005.2 Outbound Traffic Analysis](../runbooks/data-exfiltration/RB-005.2-outbound-traffic-analysis.md)
-- [RB-005.3 Data Staging Investigation](../runbooks/data-exfiltration/RB-005.3-data-staging-investigation.md)
-- [RB-005.4 Cloud Storage & SaaS Review](../runbooks/data-exfiltration/RB-005.4-cloud-storage-saas-review.md)
-- [RB-005.5 Sensitive Data Impact Assessment](../runbooks/data-exfiltration/RB-005.5-sensitive-data-impact-assessment.md)
-- [RB-005.6 Account & Endpoint Containment](../runbooks/data-exfiltration/RB-005.6-account-endpoint-containment.md)
-- [RB-005.7 Exfiltration Scope Expansion Hunt](../runbooks/data-exfiltration/RB-005.7-exfiltration-scope-expansion-hunt.md)
-- [RB-005.8 Regulatory & Legal Coordination](../runbooks/data-exfiltration/RB-005.8-regulatory-legal-coordination.md)
-- [RB-005.9 Recovery & Exposure Mitigation](../runbooks/data-exfiltration/RB-005.9-recovery-exposure-mitigation.md)
-- [RB-005.10 Post-Incident Hardening](../runbooks/data-exfiltration/RB-005.10-post-incident-hardening.md)
-
----
-
-## Trigger Conditions
-
-Initiate this playbook when any of the following occur:
-
+- DLP alert generated
 - Large outbound transfer detected
 - Unusual cloud upload activity identified
-- Sensitive file access anomalies detected
-- DLP alert triggered
-- Suspicious archive creation activity observed
+- Suspicious archive creation activity detected
+- Sensitive file access anomalies observed
 - Unauthorised SaaS sharing identified
 - Insider threat indicators observed
-- Threat actor staging behaviour identified
+- Threat actor collection behaviour identified
+- Third-party notification of exposed data received
 
----
-
-## Severity Guidelines
+**Severity Levels:**
 
 | Severity | Description |
 |----------|------------|
-| Sev3 | Suspicious transfer activity with no confirmed exposure |
-| Sev2 | Confirmed exfiltration of limited data |
-| Sev1 | Sensitive or regulated data confirmed exposed |
-| Sev0 | Large-scale data theft or critical business impact |
+| Sev 3 | Suspicious transfer activity with no confirmed exposure |
+| Sev 2 | Confirmed exfiltration of limited data |
+| Sev 1 | Confirmed exfiltration of sensitive, confidential, or regulated data |
+| Sev 0 | Large-scale data theft, public exposure, or critical business impact |
 
----
+## 3. Roles & Responsibilities
 
-## Objectives
+- **Incident Commander:** Coordinates and leads the incident response effort, approves containment actions, and manages escalation decisions.
 
-- Stop ongoing exfiltration activity
-- Identify impacted data
-- Determine exposure scope
-- Identify attacker access paths
-- Preserve forensic evidence
-- Coordinate legal/regulatory response
-- Prevent repeat exposure
+- **Technical Lead:** Directs investigative activities, determines scope, and coordinates technical response actions.
 
----
+- **Communications Lead:** Coordinates internal and external communications, executive updates, and stakeholder notifications.
 
-## Required Inputs
+- **Forensic Analyst:** Conducts forensic investigation, evidence preservation, timeline reconstruction, and root cause analysis.
 
-- DLP telemetry
-- Proxy and firewall logs
-- Cloud audit logs
-- SaaS audit telemetry
-- Endpoint telemetry
-- Authentication logs
-- File access telemetry
-- Threat intelligence
+- **Other Roles:**
+  - Identity & Access Team
+  - Cloud Security Team
+  - Legal & Compliance
+  - Data Owners
+  - Business Stakeholders
 
----
+## 4. Initial Actions
 
-## Playbook Workflow
+### Immediate Steps
 
----
+- Determine whether exfiltration activity is currently ongoing
+- Preserve logs and evidence immediately
+- Identify affected systems, users, and datasets
+- Notify Incident Commander
+- Start incident documentation and timeline
+- Assign investigation and containment responsibilities
 
-### 1. Initial Exfiltration Alert Triage
+### Runbooks
 
-Runbook:
-- [RB-005.1 Exfiltration Alert Triage](../runbooks/data-exfiltration/RB-005.1-exfiltration-alert-triage.md)
+- [RB-TRIAGE-002: EDR Alert Triage](../runbooks/triage/RB-TRIAGE-002-edr-alert-triage.md)
+- [RB-TRIAGE-003: Identity Alert Triage](../runbooks/triage/RB-TRIAGE-003-identity-alert-triage.md)
 
-Actions:
-- Validate alert legitimacy
-- Identify impacted systems/accounts
-- Assess transfer characteristics
-- Review alert telemetry
-- Determine urgency
+> **Decision Point**
+>
+> - Active exfiltration identified → Proceed immediately to Containment actions
+> - Historical exfiltration only → Continue Investigation & Analysis
 
-Decision Point:
-- If false positive suspected:
-  - Validate before containment
+## 5. Investigation & Analysis
 
----
+### Determine Exfiltration Scope
 
-### 2. Outbound Traffic Analysis
+- Review outbound traffic patterns
+  - [RB-ANALYSIS-018: Outbound Traffic Analysis](../runbooks/analysis/RB-ANALYSIS-018-outbound-traffic-analysis.md)
 
-Runbook:
-- [RB-005.2 Outbound Traffic Analysis](../runbooks/data-exfiltration/RB-005.2-outbound-traffic-analysis.md)
+- Investigate data staging activity
+  - [RB-ANALYSIS-019: Data Staging Investigation](../runbooks/analysis/RB-ANALYSIS-019-data-staging-investigation.md)
 
-Actions:
-- Review outbound transfers
-- Identify external destinations
-- Assess transfer volume
-- Review transfer protocols
-- Identify encrypted transfer channels
+- Review cloud storage and SaaS activity
+  - [RB-ANALYSIS-020: Cloud Storage & SaaS Review](../runbooks/analysis/RB-ANALYSIS-020-cloud-storage-saas-review.md)
 
-Decision Point:
-- If active exfiltration ongoing:
-  - Escalate containment immediately
+- Identify impacted data and business impact
+  - [RB-ANALYSIS-021: Sensitive Data Impact Assessment](../runbooks/analysis/RB-ANALYSIS-021-sensitive-data-impact-assessment.md)
 
----
+- Hunt for additional affected systems and accounts
+  - [RB-ANALYSIS-022: Exfiltration Scope Expansion Hunt](../runbooks/analysis/RB-ANALYSIS-022-exfiltration-scope-expansion-hunt.md)
 
-### 3. Data Staging Investigation
+- Review authentication activity
+  - [RB-ANALYSIS-007: Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
 
-Runbook:
-- [RB-005.3 Data Staging Investigation](../runbooks/data-exfiltration/RB-005.3-data-staging-investigation.md)
+- Identify additional compromised accounts
+  - [RB-ANALYSIS-011: Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
 
-Actions:
-- Identify archive creation activity
-- Review staging directories
-- Assess temporary file usage
-- Review compression activity
-- Identify pre-exfiltration behaviour
+> **Decision Point**
+>
+> - Privileged account abuse identified → Execute [PB-009: Privilege Escalation](PB-009-privilege-escalation.md)
+> - Cloud tenant compromise identified → Execute [PB-007: Cloud Compromise](PB-007-cloud-compromise.md)
+> - Insider activity identified → Execute [PB-006: Insider Threat](PB-006-insider-threat.md)
 
----
+## 6. Containment, Eradication & Recovery
 
-### 4. Cloud Storage & SaaS Review
+### Containment Actions
 
-Runbook:
-- [RB-005.4 Cloud Storage & SaaS Review](../runbooks/data-exfiltration/RB-005.4-cloud-storage-saas-review.md)
+- [RB-CONTAIN-001: Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
+  - Disable compromised accounts
+  - Revoke active sessions
+  - Reset credentials
+  - Enforce MFA re-registration
 
-Actions:
-- Review cloud storage uploads
-- Assess SaaS sharing activity
-- Identify public exposure
-- Review external collaboration
-- Assess OAuth abuse
+- [RB-CONTAIN-004: Host Isolation](../runbooks/contain/RB-CONTAIN-004-host-isolation.md)
+  - Isolate impacted systems
 
-Decision Point:
-- If tenant-wide SaaS abuse identified:
-  - Expand scope investigation
+- [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+  - Revoke active tokens and sessions
 
----
+- [RB-CONTAIN-007: Outbound Transfer Blocking](../runbooks/contain/RB-CONTAIN-007-outbound-transfer-blocking.md)
+  - Block active exfiltration channels
+  - Restrict outbound communications
+  - Block identified destinations
 
-### 5. Sensitive Data Impact Assessment
+### Eradication Steps
 
-Runbook:
-- [RB-005.5 Sensitive Data Impact Assessment](../runbooks/data-exfiltration/RB-005.5-sensitive-data-impact-assessment.md)
+- Remove attacker access mechanisms
+- Remove malicious tooling used for collection or transfer
+- Remove unauthorised SaaS sharing configurations
+- Remove unauthorised cloud storage access
 
-Actions:
-- Identify impacted datasets
-- Assess regulated data exposure
-- Review intellectual property exposure
-- Determine business impact
-- Classify sensitivity levels
+### Recovery Steps
 
-Decision Point:
-- If regulated data identified:
-  - Escalate to legal/compliance immediately
+- [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
 
----
+- Restore legitimate user access
+- Validate corrective actions
+- Restore normal business operations
+- Monitor for recurring activity
 
-### 6. Account & Endpoint Containment
+## 7. Communication & Escalation
 
-Runbook:
-- [RB-005.6 Account & Endpoint Containment](../runbooks/data-exfiltration/RB-005.6-account-endpoint-containment.md)
+### Internal Communication
 
-Actions:
-- Disable compromised accounts
-- Isolate impacted endpoints
-- Revoke sessions and tokens
-- Restrict outbound access
-- Preserve forensic evidence
+- Notify leadership and affected business units
+- Provide regular incident updates
+- Engage data owners for impact assessment
 
-Decision Point:
-- If privileged access involved:
-  - Escalate to:
-    - [PB-009 Privilege Escalation](../playbooks/PB-009-privilege-escalation.md)
+### External Communication
 
----
+- Engage Legal and Compliance if regulated data is involved
+- Notify customers, regulators, or partners as directed by Legal
+- Coordinate all external communication through approved channels
 
-### 7. Exfiltration Scope Expansion Hunt
-
-Runbook:
-- [RB-005.7 Exfiltration Scope Expansion Hunt](../runbooks/data-exfiltration/RB-005.7-exfiltration-scope-expansion-hunt.md)
-
-Actions:
-- Hunt for related activity
-- Identify additional impacted systems
-- Review adjacent accounts
-- Assess historical transfer activity
-- Expand telemetry review
-
----
-
-### 8. Regulatory & Legal Coordination
-
-Runbook:
-- [RB-005.8 Regulatory & Legal Coordination](../runbooks/data-exfiltration/RB-005.8-regulatory-legal-coordination.md)
-
-Actions:
-- Assess notification obligations
-- Coordinate legal review
-- Prepare stakeholder communications
-- Review contractual obligations
-- Coordinate regulatory engagement
-
----
-
-### 9. Recovery & Exposure Mitigation
-
-Runbook:
-- [RB-005.9 Recovery & Exposure Mitigation](../runbooks/data-exfiltration/RB-005.9-recovery-exposure-mitigation.md)
-
-Actions:
-- Remove exposed access paths
-- Reset credentials
-- Harden access controls
-- Remove public exposure
-- Monitor for follow-on abuse
-
----
-
-### 10. Post-Incident Hardening
-
-Runbook:
-- [RB-005.10 Post-Incident Hardening](../runbooks/data-exfiltration/RB-005.10-post-incident-hardening.md)
-
-Actions:
-- Improve DLP coverage
-- Enhance monitoring
-- Harden SaaS sharing controls
-- Improve outbound filtering
-- Review data governance controls
-
----
-
-## Escalation Paths
+### Escalation Criteria
 
 | Condition | Escalate To |
-|----------|------------|
-| Privileged access abuse | PB-009 Privilege Escalation |
-| Insider activity identified | PB-006 Insider Threat |
-| Cloud tenant compromise | PB-007 Cloud Compromise |
-| Malware-assisted exfiltration | PB-003 Endpoint Malware |
-| Ransomware-linked exfiltration | PB-002 Ransomware |
+|-----------|-------------|
+| Insider activity identified | [PB-006: Insider Threat](PB-006-insider-threat.md) |
+| Cloud tenant compromise | [PB-007: Cloud Compromise](PB-007-cloud-compromise.md) |
+| Privileged account abuse | [PB-009: Privilege Escalation](PB-009-privilege-escalation.md) |
+| Malware-assisted exfiltration | [PB-003: Endpoint Malware](PB-003-endpoint-malware.md) |
+| Ransomware-linked exfiltration | [PB-002: Ransomware](PB-002-ransomware.md) |
 
----
+## 8. Post-Incident Activities
 
-## Outputs
+### Lessons Learned
 
-- Exfiltration timeline
-- Impacted data inventory
-- Exposure assessment
-- Containment status
-- Regulatory assessment
-- Recovery status
-- Hardening recommendations
+- Schedule and conduct a Post-Incident Review (PIR)
+- Document timeline and root cause
+- Identify detection and response gaps
+- Assess effectiveness of containment actions
+- Review data governance controls
 
----
+### Documentation Updates
 
-## Common Failure Modes
+- Update this playbook as required
+- Update associated runbooks
+- Update detection content and monitoring logic
+- Update data handling and governance procedures
 
-- Focusing only on outbound traffic
-- Ignoring staging behaviour
-- Missing SaaS exposure
-- Delayed legal escalation
-- Failing to review historical exfiltration activity
+## 9. References & Linked Resources
 
----
+### Playbooks
 
-## Automation Opportunities
+- [PB-002: Ransomware](PB-002-ransomware.md)
+- [PB-003: Endpoint Malware](PB-003-endpoint-malware.md)
+- [PB-006: Insider Threat](PB-006-insider-threat.md)
+- [PB-007: Cloud Compromise](PB-007-cloud-compromise.md)
+- [PB-009: Privilege Escalation](PB-009-privilege-escalation.md)
 
-- Automated DLP enrichment
-- Outbound transfer anomaly detection
-- SaaS exposure monitoring
-- Data classification mapping
-- Automated scope hunting
-- Regulatory notification workflows
+### Runbooks
 
----
+- [RB-TRIAGE-002: EDR Alert Triage](../runbooks/triage/RB-TRIAGE-002-edr-alert-triage.md)
+- [RB-TRIAGE-003: Identity Alert Triage](../runbooks/triage/RB-TRIAGE-003-identity-alert-triage.md)
+- [RB-ANALYSIS-007: Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
+- [RB-ANALYSIS-011: Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
+- [RB-ANALYSIS-018: Outbound Traffic Analysis](../runbooks/analysis/RB-ANALYSIS-018-outbound-traffic-analysis.md)
+- [RB-ANALYSIS-019: Data Staging Investigation](../runbooks/analysis/RB-ANALYSIS-019-data-staging-investigation.md)
+- [RB-ANALYSIS-020: Cloud Storage & SaaS Review](../runbooks/analysis/RB-ANALYSIS-020-cloud-storage-saas-review.md)
+- [RB-ANALYSIS-021: Sensitive Data Impact Assessment](../runbooks/analysis/RB-ANALYSIS-021-sensitive-data-impact-assessment.md)
+- [RB-ANALYSIS-022: Exfiltration Scope Expansion Hunt](../runbooks/analysis/RB-ANALYSIS-022-exfiltration-scope-expansion-hunt.md)
+- [RB-CONTAIN-001: Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
+- [RB-CONTAIN-004: Host Isolation](../runbooks/contain/RB-CONTAIN-004-host-isolation.md)
+- [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+- [RB-CONTAIN-007: Outbound Transfer Blocking](../runbooks/contain/RB-CONTAIN-007-outbound-transfer-blocking.md)
+- [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
 
-## Related
+## 10. Appendices
 
-- PB-002 Ransomware
-- PB-003 Endpoint Malware
-- PB-004 Account Takeover
-- PB-006 Insider Threat
-- PB-007 Cloud Compromise
-- PB-009 Privilege Escalation
+### Contact List
+
+- Incident Response Team
+- Legal & Compliance
+- Cloud Security Team
+- Identity & Access Team
+- Executive Stakeholders
+
+### Templates
+
+- Incident Timeline Template
+- Regulatory Notification Template
+- Evidence Collection Template
+
+### Process Flowchart
+
+Data Exfiltration Detection → Investigation & Analysis → Containment → Eradication → Recovery → Post-Incident Review
 
 ---
 
@@ -337,4 +248,8 @@ Actions:
 **Vishal Thakur**  
 GitHub: https://github.com/malienist
 
+**Jayden Vo**  
+GitHub: https://github.com/jayden-vo
+
 Contributed to the Arcana Incident Response Documentation Framework.
+

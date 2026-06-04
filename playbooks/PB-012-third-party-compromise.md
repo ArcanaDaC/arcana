@@ -59,26 +59,29 @@ Impact assessments must be evidence-based.
 
 ### Triage
 
-- [RB-TRIAGE-001 Email Triage & Header Analysis](../runbooks/triage/RB-TRIAGE-001-email-triage-header-analysis.md)
+- RB-TRIAGE-004 Third-Party Notification Validation *(To Be Created)*
 
 ### Analysis
 
-- [RB-ANALYSIS-007 Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
-- [RB-ANALYSIS-009 Privileged Access Assessment](../runbooks/analysis/RB-ANALYSIS-009-privileged-access-assessment.md)
-- [RB-ANALYSIS-011 Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
+- RB-ANALYSIS-027 Third-Party Exposure Assessment
+- RB-ANALYSIS-028 Supply Chain Impact Analysis
+- RB-ANALYSIS-007 Authentication Log Analysis
+- RB-ANALYSIS-009 Privileged Access Assessment
+- RB-ANALYSIS-011 Identify Additional Compromised Accounts
 
 ### Containment
 
-- [RB-CONTAIN-001 Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
-- [RB-CONTAIN-005 Session & Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+- RB-CONTAIN-001 Account Lockdown
+- RB-CONTAIN-005 Session & Token Revocation
+- RB-CONTAIN-008 Third-Party Access Restriction
 
 ### Recovery
 
-- [RB-RECOVERY-003 User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
+- RB-RECOVERY-005 Third-Party Trust Restoration
 
 ### Post-Incident
 
-- [RB-POST-002 Regulatory & Legal Coordination](../runbooks/post-incident/RB-POST-002-regulatory-legal-coordination.md)
+- RB-POST-002 Regulatory & Legal Coordination
 
 ---
 
@@ -135,57 +138,126 @@ Initiate this playbook when any of the following occur:
 
 ## Playbook Workflow
 
-### 1. Validate Third-Party Compromise
+### 1. Validate Third-Party Compromise Notification
 
 Runbook:
 
-- [RB-TRIAGE-001 Email Triage & Header Analysis](../runbooks/triage/RB-TRIAGE-001-email-triage-header-analysis.md)
+- RB-TRIAGE-004 Third-Party Notification Validation *(To Be Created)*
 
 Actions:
 
 - Validate notification legitimacy
 - Verify reporting source
-- Collect incident details
-- Identify affected products and services
+- Identify affected vendor, supplier, or service provider
+- Determine whether the organisation uses the affected product or service
+- Collect vendor advisories, CVEs, and technical references
+- Determine whether compromise is confirmed, suspected, or under investigation
+- Identify affected products, versions, and services
+- Identify internal business owners
+- Establish communication channels with the vendor
+
+Decision Point:
+
+If the organisation does not use the affected vendor or service:
+
+- Document findings
+- Downgrade severity or close investigation
+
+If the organisation uses the affected vendor or service:
+
+- Proceed to Exposure Assessment
 
 ---
 
-### 2. Assess Organisational Exposure
+### 2. Assess Third-Party Exposure
 
 Runbook:
 
-- [RB-ANALYSIS-009 Privileged Access Assessment](../runbooks/analysis/RB-ANALYSIS-009-privileged-access-assessment.md)
+- RB-ANALYSIS-027 Third-Party Exposure Assessment
 
 Actions:
 
 - Review vendor access
-- Review privileged access
 - Review service accounts
 - Review API integrations
+- Review SaaS integrations
+- Review federated identity relationships
 - Review trust relationships
+- Review data access
 
 ---
 
-### 3. Authentication & Access Review
+### 3. Perform Supply Chain Impact Analysis
 
 Runbook:
 
-- [RB-ANALYSIS-007 Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
+- RB-ANALYSIS-028 Supply Chain Impact Analysis
+
+Actions:
+
+- Identify affected products and versions
+- Identify impacted assets
+- Review deployment footprint
+- Review vulnerable dependencies
+- Review downstream dependencies
+- Assess potential attack paths
+
+Decision Point:
+
+If vulnerable products are deployed:
+
+- Continue investigation
+
+If vulnerable products are not deployed:
+
+- Document findings
+- Reduce severity as appropriate
+
+---
+
+### 4. Review Authentication Activity
+
+Runbook:
+
+- RB-ANALYSIS-007 Authentication Log Analysis
 
 Actions:
 
 - Review vendor account activity
-- Review authentication anomalies
-- Review session activity
-- Review API access
+- Review privileged logins
+- Review service account usage
+- Review API authentication
+- Review federated authentication activity
 
 ---
 
-### 4. Identify Additional Exposure
+### 5. Assess Privileged Access
 
 Runbook:
 
-- [RB-ANALYSIS-011 Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
+- RB-ANALYSIS-009 Privileged Access Assessment
+
+Actions:
+
+- Review privileged vendor access
+- Review administrative permissions
+- Review privileged service accounts
+- Review delegated administration
+
+Decision Point:
+
+If privileged access exposure exists:
+
+- Escalate severity
+- Accelerate containment activities
+
+---
+
+### 6. Identify Additional Exposure
+
+Runbook:
+
+- RB-ANALYSIS-011 Identify Additional Compromised Accounts
 
 Actions:
 
@@ -196,31 +268,33 @@ Actions:
 
 ---
 
-### 5. Contain Third-Party Access
+### 7. Restrict Third-Party Access
 
 Runbooks:
 
-- [RB-CONTAIN-001 Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
-- [RB-CONTAIN-005 Session & Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+- RB-CONTAIN-001 Account Lockdown
+- RB-CONTAIN-005 Session & Token Revocation
+- RB-CONTAIN-008 Third-Party Access Restriction
 
 Actions:
 
-- Disable accounts where required
+- Disable vendor accounts
 - Revoke sessions
 - Revoke tokens
-- Restrict integrations
+- Disable integrations
+- Restrict trust relationships
 - Restrict privileged access
 
 ---
 
-### 6. Assess Potential Data Exposure
+### 8. Assess Data Exposure & Secondary Impact
 
 Actions:
 
 - Review accessed resources
+- Review file access
 - Review SaaS activity
 - Review cloud activity
-- Review file access
 - Review audit logs
 
 Decision Point:
@@ -231,50 +305,34 @@ Activate:
 
 - PB-005 Data Exfiltration
 
----
-
-### 7. Assess Credential Exposure
-
-Actions:
-
-- Review exposed credentials
-- Review service accounts
-- Review API keys
-- Review certificates
-
-Decision Point:
-
-If credential compromise exists:
+If evidence of credential compromise exists:
 
 Activate:
 
 - PB-004 Account Takeover
 
----
+If evidence of cloud compromise exists:
 
-### 8. Scope Expansion Investigation
+Activate:
 
-Actions:
-
-- Identify additional vendors
-- Review related integrations
-- Review trust relationships
-- Assess downstream impact
+- PB-007 Cloud Compromise
 
 ---
 
-### 9. Recovery & Restoration
+### 9. Restore Trusted Access
 
 Runbook:
 
-- [RB-RECOVERY-003 User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
+- RB-RECOVERY-005 Third-Party Trust Restoration
 
 Actions:
 
-- Restore approved access
+- Validate vendor remediation
 - Rotate credentials
-- Re-enable services
-- Validate security controls
+- Restore approved integrations
+- Restore trust relationships
+- Validate monitoring controls
+- Validate business functionality
 
 ---
 
@@ -282,14 +340,15 @@ Actions:
 
 Runbook:
 
-- [RB-POST-002 Regulatory & Legal Coordination](../runbooks/post-incident/RB-POST-002-regulatory-legal-coordination.md)
+- RB-POST-002 Regulatory & Legal Coordination
 
 Actions:
 
-- Assess notification requirements
+- Assess notification obligations
 - Coordinate legal review
 - Coordinate executive communications
 - Document lessons learned
+- Review vendor risk posture
 
 ---
 

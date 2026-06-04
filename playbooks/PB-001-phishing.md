@@ -1,251 +1,152 @@
 # PB-001: Phishing & Credential Theft
 
-## Overview
-This playbook outlines the end-to-end response process for phishing incidents, including credential harvesting, malicious attachments, and business email compromise (BEC).
+## Document Control
 
-It is designed to:
-- Rapidly determine if an email is malicious
-- Contain impacted users and accounts
-- Identify scope across the organisation
-- Prevent follow-on compromise (ATO, malware, data exfil)
+| Attribute | Value | Date |
+| --- | --- | --- |
+| Document Name | PB-001: Phishing & Credential Theft | [Enter date] |
+| Version | [Enter version number] | [Enter date] |
+| Owner | [Enter owner/team] | [Enter date] |
+| Status | [Draft/Approved/Retired] | [Enter date] |
+| Next Review Date | [Enter next review date] | [Enter date] |
+| Approvals | [Enter approver(s)] | [Enter date] |
+| Change Summary | [Brief summary of changes] | [Enter date] |
 
----
+## 1. Purpose & Scope
 
-## Trigger Conditions
+- **Purpose:**
+  
+  This playbook outlines the end-to-end response process for phishing incidents, including credential harvesting, malicious attachments, and business email compromise (BEC). It is designed to rapidly determine if an email is malicious, contain impacted users and accounts, identify scope across the organisation, and prevent follow-on compromise (account takeover, malware, data exfiltration).
 
-Initiate this playbook when any of the following occur:
+- **Scope:**
+  
+  Applies to all phishing incidents reported or detected across the organisation, including user-reported emails, email security tooling alerts, and downstream indicators of phishing-driven compromise. Covers all users, endpoints, and identity systems within the organisation.
 
-- User reports suspicious email
+## 2. Incident Identification & Criteria
+
+**Incident Type:** Phishing & Credential Theft
+
+**Trigger Conditions:**
+- User reports a suspicious email
 - Email security tooling alert (SEG, Defender, Proofpoint, etc.)
 - Detection of known phishing indicators (IOCs)
 - Reports of credential harvesting pages
-- Suspicious inbox rules or login activity post-email
+- Suspicious inbox rules or login activity following an email
 
----
-
-## Severity Guidelines
+**Severity Levels:**
 
 | Severity | Description |
 |----------|------------|
-| Sev3 | Single user report, no interaction |
-| Sev2 | User clicked link or opened attachment |
-| Sev1 | Credentials submitted or malware executed |
-| Sev0 | Widespread phishing campaign or confirmed org-wide compromise |
+| Sev 3 | Single user report, no interaction confirmed |
+| Sev 2 | User clicked link or opened attachment |
+| Sev 1 | Credentials submitted or malware executed |
+| Sev 0 | Widespread phishing campaign or confirmed org-wide compromise |
+
+## 3. Roles & Responsibilities
+- **Incident Commander:** Coordinates and leads the response to the security incident; drives decisions and timelines; ensures communications, containment, and remediation actions are executed.
+- **Incident Response Analyst:** Performs deep analysis of email artifacts, URLs, attachments, and endpoint telemetry where interaction is confirmed.
+- **Communications Lead:** Manages internal and external communications, user notifications, and stakeholder updates.
+- **Other Roles:**
+  - **Identity & Access Team:** Supports account lockdown, session revocation, and MFA re-registration.
+  - **Email Platform Team:** Assists with tenant-wide email removal and gateway rule deployment.
+
+## 4. Initial Actions
+#### Immediate Steps:
+- Perform Email Header Analysis & extract urls and attachments:
+  - 📘 [RB-TRIAGE-001: Email Triage & Header Analysis](../runbooks/triage/RB-TRIAGE-001-email-triage-header-analysis.md)
+  >**Decision Point**
+    > - If benign → close with documentation
+    > - If suspicious/malicious → continue
+- Analyse extracted URLs and attachments to determine intent and capability.
+  - 📘 [RB-ANALYSIS-001: URL Detonation & Analysis](../runbooks/analysis/RB-ANALYSIS-001-url-analysis.md)
+
+
+## 5. Investigation & Analysis
+- Determine if any users had clicked the phishing link
+  - 📘 [RB-ANALYSIS-012: Phishing Interaction Validation](../runbooks/analysis/RB-ANALYSIS-012-phishing-interaction-validation.md)
+  - If so, did any users:
+    - Submit credentials? 
+      - If yes, check for any suspicious login activity immediately following the email delivery or credential submission.
+    - Download and execute a malicious file?
+  > **Decision Point:**
+  > - Credential harvesting identified (and suspicious login activity observed) → Incorporate and execute the Analysis, Containment, Eradication, and Recovery steps of [PB-004: Account Takeover](PB-004-account-takeover.md) concurrently alongside this playbook. 
+  > - Malware delivery identified → Incorporate and execute the Analysis, Containment, Eradication, and Recovery steps of [PB-003: Endpoint Malware](PB-003-endpoint-malware.md) concurrently alongside this playbook. 
+- Conduct a phishing retro hunt to determine full campaign scope and identify additional compromised accounts 
+  - 📘 [RB-ANALYSIS-002: Phishing Retro Hunt](../runbooks/analysis/RB-ANALYSIS-002-phishing-retro-hunt.md)
+## 6. Containment, Eradication & Recovery
+
+- **Containment Actions:**
+  - 📘 [RB-CONTAIN-001 Account Lockdown (IdP/SSO)](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
+    - Disable or lock affected accounts 
+    - Revoke active sessions and tokens of affected accounts
+    - Reset password
+    - Enforce MFA re-registration 
+
+- **Eradication Steps:**
+  - 📘 [RB-ERAD-001: Email Removal & Blocking](../runbooks/eradication/RB-ERAD-001-email-removal-blocking.md)
+    - Remove phishing emails from all inboxes (tenant-wide)
+    - Block sender and domain at email gateway
+    - Block malicious URLs at email gateway, proxy, and DNS
+    - Deploy detection rules to identify future variants
+
+- **Recovery Steps:**
+  - Restore account access for affected users once containment is confirmed
+  
+## 7. Communication & Escalation
+
+- **Internal Communication:**
+  - Notify affected users 
+    - 📘 [SOP-004: User Notification](../sops/SOP-004-user-notification.md)
+  - Issue org-wide advisory if campaign scope is broad
+
+- **External Communication:**
+  - If privacy impact suspected/confirmed, engage Legal/Privacy for regulatory assessment.
+  - Notify all required external parties (e.g. customers, regulators, partners) as directed by Legal
+  - Coordinate with Legal before any external notification
+
+- **Escalation Criteria:**
+
+  | Condition | Escalate To |
+  |-----------|-------------|
+  | Credential theft confirmed + Suspicious Login Actiity Observed | [PB-004: Account Takeover](PB-004-account-takeover.md) |
+  | Malware execution confirmed | [PB-003: Endpoint Malware](PB-003-endpoint-malware.md) |
+
+
+## 8. Post-Incident Activitie
+- **Lessons Learned:**
+  - Schedule and conduct a Post-Incident Review (PIR)
+  - Document what went well and what needs improvement
+  - Identify detection gaps (email filtering, proxy rules, IdP alerts)
+  - Review user awareness training effectiveness
+
+- **Documentation Updates:**
+  - Update this playbook if response steps need revision
+  - Update linked runbooks with any new techniques or tooling
+
+## 9. References & Linked Resources
+- **Playbooks:**
+  - [PB-003: Endpoint Malware](PB-003-endpoint-malware.md)
+  - [PB-004: Account Takeover](PB-004-account-takeover.md)
+
+- **Runbooks:**
+  - [RB-TRIAGE-001: Email Triage & Header Analysis](../runbooks/triage/RB-TRIAGE-001-email-triage-header-analysis.md)
+  - [RB-ANALYSIS-001: URL Detonation & Analysis](../runbooks/analysis/RB-ANALYSIS-001-url-analysis.md)
+  - [RB-ANALYSIS-002: Phishing Retro Hunt](../runbooks/analysis/RB-ANALYSIS-002-phishing-retro-hunt.md)
+  - [RB-ANALYSIS-012: Phishing Interaction Validation](../runbooks/analysis/RB-ANALYSIS-012-phishing-interaction-validation.md)
+  - [RB-CONTAIN-001: Account Lockdown (IdP/SSO)](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
+  - [RB-ERAD-001: Email Removal & Blocking](../runbooks/eradication/RB-ERAD-001-email-removal-blocking.md)
+
+- **SOPs:**
+  - [SOP-004: User Notification](../sops/SOP-004-user-notification.md)
 
----
-
-## Objectives
-
-- Identify whether the email is malicious
-- Determine if users interacted (click, submit creds, execute payload)
-- Contain compromised accounts or endpoints
-- Identify scope across users and systems
-- Remove phishing artifacts from environment
-- Prevent recurrence
-
----
-
-## Required Inputs
-
-- Email headers (full)
-- Email body (raw + rendered)
-- URLs and attachments
-- Affected user(s)
-- Email logs (O365 / Google Workspace)
-- Endpoint telemetry (if interaction occurred)
-
----
-
-## Playbook Workflow
-
----
-
-### 1. Initial Triage
-
-📘 Runbook: [RB-001.1 Email Triage & Header Analysis](../runbooks/phishing/RB-001.1-email-triage-header-analysis.md)
-
-- Extract and analyse email headers
-- Validate sender authenticity (SPF/DKIM/DMARC)
-- Identify spoofing or domain impersonation
-- Extract URLs and attachments
-
-**Decision Point:**
-- If benign → close with documentation
-- If suspicious/malicious → continue
-
----
-
-### 2. URL & Attachment Analysis
-
-📘 Runbook: [RB-001.2 URL Detonation & Analysis](../runbooks/phishing/RB-001.2-url-analysis.md)
-
-- Detonate URLs in sandbox
-- Analyse redirect chains
-- Identify credential harvesting pages
-- Check attachment hashes and behaviour
-
-**Decision Point:**
-- Credential harvesting → go to Step 3
-- Malware delivery → escalate to:
-  - [PB-003 Endpoint Malware Infection](../playbooks/PB-003-malware.md)
-
----
-
-### 3. User Interaction Verification
-
-📘 Runbook: [RB-001.3 Credential Exposure Validation](../runbooks/phishing/RB-001.3-credential-check.md)
-
-- Determine if user:
-  - Clicked link
-  - Submitted credentials
-  - Downloaded or executed file
-
-Sources:
-- Email click logs
-- Proxy logs
-- IdP logs
-- User confirmation
-
-**Decision Point:**
-- No interaction → go to Step 5 (containment-lite)
-- Interaction confirmed → continue
-
----
-
-### 4. Account Containment
-
-📘 Runbook: [RB-001.4 Account Lockdown (IdP/SSO)](../runbooks/phishing/RB-001.4-account-lockdown.md)
-
-- Disable or lock affected account
-- Revoke active sessions and tokens
-- Reset password
-- Enforce MFA re-registration
-
-If suspicious login activity observed:
-
-➡ Escalate to:
-- [PB-002 Account Takeover](../playbooks/PB-002-ato.md)
-
----
-
-### 5. Environment-Wide Hunting
-
-📘 Runbook: [RB-001.5 Phishing Retro Hunt](../runbooks/phishing/RB-001.5-retrohunt.md)
-
-- Search for:
-  - Same sender
-  - Same subject
-  - Same URLs
-  - Same attachment hash
-
-Across:
-- Email logs
-- EDR telemetry
-- Proxy logs
-
-**Output:**
-- List of all impacted users
-- Campaign scope
-
----
-
-### 6. Email Remediation
-
-📘 Runbook: [RB-001.6 Email Removal & Blocking](../runbooks/phishing/RB-001.6-remediation.md)
-
-- Remove emails from inboxes (tenant-wide)
-- Block sender/domain
-- Block URLs at:
-  - Email gateway
-  - Proxy / DNS
-- Add detection rules
-
----
-
-### 7. User Communication
-
-📘 Runbook: [RB-001.7 User Notification](../runbooks/phishing/RB-001.7-user-comms.md)
-
-- Notify affected users
-- Provide:
-  - What happened
-  - Actions taken
-  - Required next steps
-
-Optional:
-- Org-wide advisory (if campaign is broad)
-
----
-
-### 8. Post-Incident Activities
-
-📘 Related:
-- PIR Template: [templates/pir-template.md](../templates/pir-template.md)
-- CAN Report: [templates/can-report.md](../templates/can-report.md)
-
-Actions:
-- Document timeline
-- Identify detection gaps
-- Improve controls:
-  - Email filtering
-  - User awareness
-  - Detection rules
-
----
-
-## Escalation Paths
-
-| Condition | Escalate To |
-|----------|------------|
-| Credential theft confirmed | PB-002 Account Takeover |
-| Malware execution | PB-003 Endpoint Malware |
-| Data access suspected | PB-005 Data Exfiltration |
-| Privileged account involved | PB-009 Privilege Escalation |
-
----
-
-## Outputs
-
-- Incident ticket (completed)
-- List of affected users
-- Indicators of compromise (IOCs)
-- Actions taken (CAN format)
-- PIR (if Sev1+)
-
----
-
-## Automation Opportunities
-
-- Auto-extract URLs and attachments
-- Auto-detonate links in sandbox
-- Auto-search across tenant (retro hunt)
-- Auto-remove phishing emails
-- Auto-disable compromised accounts
-
----
-
-## Notes
-
-- Always assume credential reuse risk if credentials exposed
-- Prioritise token/session revocation over password reset alone
-- Retro hunting is critical — phishing is rarely isolated
-
----
-
-## References
-
-- MITRE ATT&CK:
-  - T1566 (Phishing)
-  - T1204 (User Execution)
-- Internal KB:
-  - Header analysis guide
-  - Phishing detection patterns
-
+## 10. Appendices
 ---
 
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
+**Jayden Vo**
+GitHub: https://github.com/jayden-vo
 Contributed to the Arcana Incident Response Documentation Framework.

@@ -225,39 +225,7 @@ Initiate this playbook when any of the following occur:
 
 ## 10. Appendices
 
-- **Contact List:**
-  -  Incident Response leadership, on-call engineers, Legal/Privacy, Executive sponsors, cyber insurance, law enforcement liaison
 
-- **Templates:**
-  -  Incident log, executive update template, customer/regulator notification templates, evidence collection forms
-
-- **Process Flowchart:**
-  -  Visual diagram of the ransomware playbook workflow (containment → analysis → eradication → recovery → hardening)
-
-- **Outputs:**
-  - Containment status
-  - Impacted system inventory
-  - Timeline of compromise
-  - Recovery status
-  - Indicators of compromise (IOCs)
-  - Executive reporting
-  - PIR documentation
-
-- **Common Failure Modes:**
-  - Restoring systems before containment validation
-  - Leaving privileged sessions active
-  - Failing to isolate backup infrastructure
-  - Ignoring persistence mechanisms
-  - Reconnecting systems too early
-
-- **Automation Opportunities:**
-  - Automated host isolation
-  - Network segmentation workflows
-  - IOC-based detection sweeps
-  - Session revocation
-  - Backup integrity validation checks
-
----
 
 ## Contributor
 

@@ -112,7 +112,7 @@
   | Malware execution confirmed | [PB-003: Endpoint Malware](PB-003-endpoint-malware.md) |
 
 
-## 8. Post-Incident Activitie
+## 8. Post-Incident Activities
 - **Lessons Learned:**
   - Schedule and conduct a Post-Incident Review (PIR)
   - Document what went well and what needs improvement
@@ -149,4 +149,5 @@ GitHub: https://github.com/malienist
 
 **Jayden Vo**
 GitHub: https://github.com/jayden-vo
+
 Contributed to the Arcana Incident Response Documentation Framework.

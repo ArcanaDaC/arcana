@@ -57,7 +57,7 @@ Initiate this playbook when any of the following occur:
 
 - **Incident Commander:** Coordinates and leads the response to the ransomware incident; drives decisions and timelines; ensures containment, communications, and remediation actions are executed.
 - **Communications Lead:** Manages internal and external communications, executive updates, customer/regulator notifications, and stakeholder messaging.
-- **Forensic Analyst:** Performs forensic analysis of impacted hosts, ransomware payload analysis, identifies patient zero, maps the attack timeline, and preserves evidence.
+- **Incident Responder/Forensic Analyst:** Performs forensic analysis of impacted hosts, ransomware payload analysis, identifies patient zero, maps the attack timeline, and preserves evidence.
 - **Other Roles:**
   - **Identity & Access Team:** Supports Active Directory containment, privileged account review, session revocation, and credential resets.
   - **Network/Infrastructure Team:** Executes network segmentation, host isolation, and protects critical infrastructure.
@@ -68,7 +68,7 @@ Initiate this playbook when any of the following occur:
 ## 4. Initial Actions
 
 - **Immediate Steps:**
-  - Perform rapid containment & segmentation — isolate affected systems and disable lateral movement pathways (restrict SMB, remote admin protocols)
+  - Perform rapid containment & segmentation - isolate affected systems and disable lateral movement pathways (restrict SMB, remote admin protocols)
     - 📘 [RB-CONTAIN-002: Rapid Containment & Network Segmentation](../runbooks/contain/RB-CONTAIN-002-rapid-containment-network-segmentation.md)
   -  Notify Incident Response leadership and assign roles
   - Preserve volatile evidence where feasible (avoid additional system shutdowns or reboots unless required)
@@ -81,38 +81,37 @@ Initiate this playbook when any of the following occur:
 
 ## 5. Investigation & Analysis
 
-- **Required Inputs:**
-  - EDR telemetry
-  - SIEM logs
-  - Network telemetry
-  - User reports
-  - Ransom notes
-  - File hashes
-  - Active Directory logs
-  - Backup platform logs
-
 - **Evidence Collection:**
-  - [ ] Gather relevant logs, alerts, ransom notes, and forensic artifacts
-  - [ ] Preserve evidence (chain of custody) including memory captures from impacted hosts
-    - 📘 [RB-EVIDENCE-001: Memory Acquisition](../runbooks/evidence/RB-EVIDENCE-001-memory-acquisition.md)
-    - 📘 [RB-ANALYSIS-016: Memory Analysis](../runbooks/analysis/RB-ANALYSIS-016-memory-analysis.md)
-
+  - For all newly identified infected hosts:
+      - collect the following host telemetry over the incident window:
+        - Process execution - focus on encryption binaries, backup/shadow-copy deletion and unexpected use of admin/archive tools (e.g tar, zip, WinRar)
+        - File system events - mass writes/renames, ransom note creation, backup/shadow deletion
+        - Script & interpreter activity - encoded/obfuscated PowerShell, bash, zsh, python; LOLBins
+        - Authentication / logon - lateral movement over RDP, SSH, SMB
+        - Persistence - scheduled tasks, cron, services/daemons, launch agents, autoruns
+        - 📘 [RB-EVIDENCE-002: Host-Based Log Acquisition](../runbooks/evidence/RB-EVIDENCE-002-host-log-acquisition.md) 
+      - capture a full memory snapshot to preserve volatile artefacts before any reboot, reimage, or shutdown
+        - 📘 [RB-EVIDENCE-001: Memory Acquisition](../runbooks/evidence/RB-EVIDENCE-001-memory-acquisition.md)
 - **Analysis Steps:**
-  - [ ] Identify patient zero, initial access vector, propagation path, and dwell time
-    - 📘 [RB-ANALYSIS-003: Identify Patient Zero](../runbooks/analysis/RB-ANALYSIS-003-identify-patient-zero.md)
-    > **Decision Point:**
-    > - If phishing identified as the initial access vector → incorporate and execute [PB-001: Phishing & Credential Theft](PB-001-phishing.md) concurrently alongside this playbook.
-  - [ ] Assess encryption scope, impacted systems, encrypted file shares, business impact, and backup exposure
-    - 📘 [RB-ANALYSIS-004: Encryption Scope Assessment](../runbooks/analysis/RB-ANALYSIS-004-encryption-scope-assessment.md)
+  -  Identify patient zero, initial access vector, propagation path, and dwell time
+      - 📘 [RB-ANALYSIS-003: Identify Patient Zero](../runbooks/analysis/RB-ANALYSIS-003-identify-patient-zero.md)
+  > **Decision Point:**
+  > For each identified initial access vector, run the post-detection phases (Analysis → Recovery) of the relevant playbook concurrently alongside this one:
+	> - Phishing → [PB-001: Phishing & Credential Theft](PB-001-phishing.md)
+	> - Account takeover → [PB-004: Account Takeover](PB-004-account-takeover.md)
+	> - Zero-day exploitation → [PB-018: Zero-Day Response](PB-018-zero-day-response.md)
+	> - Known/patched vulnerability exploited → [PB-017: Vulnerability Response](PB-017-vulnerability-response.md)
+	-  Assess encryption scope, impacted systems, encrypted file shares, business impact, and backup exposure
+		- 📘 [RB-ANALYSIS-004: Ransomware Encryption Scope Assessment](../runbooks/analysis/RB-ANALYSIS-004-ransomware-encryption-scope-assessment.md)
     > **Decision Point:**
     > - If backup compromise identified → immediate executive escalation.
-  - [ ] Analyse ransomware payload and behaviour (family, encryption behaviour, persistence, capabilities, exfiltration)
-    - 📘 [RB-ANALYSIS-013: Ransomware Payload Analysis](../runbooks/analysis/RB-ANALYSIS-013-ransomware-payload-analysis.md)
-    > **Decision Point:**
-    > - If data exfiltration identified → escalate to [PB-005: Data Exfiltration](PB-005-data-exfiltration.md).
-  - [ ] Map threat actor TTPs, correlate with known ransomware groups, and update detections/threat intelligence
-    - 📘 [RB-ANALYSIS-005: Threat Actor TTP Mapping](../runbooks/analysis/RB-ANALYSIS-005-threat-actor-ttp-mapping.md)
-  - [ ] Document findings, timeline of compromise, and indicators of compromise (IOCs)
+	-  Analyse ransomware payload and behaviour (family, encryption behaviour, persistence, capabilities, exfiltration)
+		- 📘 [RB-ANALYSIS-013: Ransomware Payload Analysis](../runbooks/analysis/RB-ANALYSIS-013-ransomware-payload-analysis.md)
+	> **Decision Point:**
+	> - If data exfiltration identified → run the post-detection phases (Analysis → Recovery) of [PB-005: Data Exfiltration](PB-005-data-exfiltration.md).
+	-  Map threat actor TTPs, correlate with known ransomware groups, and update detections/threat intelligence
+		- 📘 [RB-ANALYSIS-005: Threat Actor TTP Mapping](../runbooks/analysis/RB-ANALYSIS-005-threat-actor-ttp-mapping.md)
+		-  Document findings, timeline of compromise, and indicators of compromise (IOCs)
 
 ## 6. Containment, Eradication & Recovery
 
@@ -127,123 +126,113 @@ Initiate this playbook when any of the following occur:
 
 - **Containment Actions:**
   - **Short-term (immediate) containment:**
-    - [ ] Isolate impacted hosts and segment impacted networks
-      - 📘 [RB-CONTAIN-002: Rapid Containment & Network Segmentation](../runbooks/contain/RB-CONTAIN-002-rapid-containment-network-segmentation.md)
-      - 📘 [RB-CONTAIN-004: Host Isolation](../runbooks/contain/RB-CONTAIN-004-host-isolation.md)
-    - [ ] Restrict SMB and remote admin protocols, prevent additional propagation, protect critical infrastructure
+    -  Isolate impacted hosts and segment impacted networks. Restrict SMB and remote admin protocols, prevent additional propagation, protect critical infrastructure
+		- 📘 [RB-CONTAIN-002: Rapid Containment & Network Segmentation](../runbooks/contain/RB-CONTAIN-002-rapid-containment-network-segmentation.md)
   - **Long-term (identity & directory) containment:**
-    - [ ] Review privileged account activity, disable compromised accounts, protect identity infrastructure
-      - 📘 [RB-CONTAIN-003: Active Directory Containment](../runbooks/contain/RB-CONTAIN-003-active-directory-containment.md)
-      - 📘 [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+    -  Review privileged account activity, disable compromised accounts, protect identity infrastructure
+		- 📘 [RB-CONTAIN-003: Active Directory Containment](../runbooks/contain/RB-CONTAIN-003-active-directory-containment.md)
+		- 📘 [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
     > **Decision Point:**
     > - If Domain Admin compromise confirmed → immediate enterprise-wide escalation.
 
-- **Eradication Steps:**
-  - [ ] Remove malicious artifacts and ransomware payloads from impacted systems
-    - 📘 [RB-ANALYSIS-013: Ransomware Payload Analysis](../runbooks/analysis/RB-ANALYSIS-013-ransomware-payload-analysis.md)
-  - [ ] Hunt for and remove persistence mechanisms
-    - 📘 [RB-ANALYSIS-014: Persistence Mechanism Hunt](../runbooks/analysis/RB-ANALYSIS-014-persistence-mechanism-hunt.md)
-  - [ ] Patch vulnerabilities exploited during the intrusion
-
-- **Recovery Steps:**
-  - [ ] Validate backup integrity, isolation, immutable storage integrity, and recovery viability
-    - 📘 [RB-ANALYSIS-017: Backup Integrity & Recovery Viability Assessment](../runbooks/analysis/RB-ANALYSIS-017-backup-integrity-recovery-viability-assessment.md)
+- **Eradication and Recovery Steps:**
+	- Validate backup integrity, isolation, immutable storage integrity, and recovery viability
+    	- 📘 [RB-ANALYSIS-017: Backup Integrity & Recovery Viability Assessment](../runbooks/analysis/RB-ANALYSIS-017-backup-integrity-recovery-viability-assessment.md)
     > **Decision Point:**
     > - If backups unavailable or compromised → escalate severity immediately.
-  - [ ] Prioritise and coordinate phased system restoration; validate restored systems
-    - 📘 [RB-RECOVERY-001: Recovery & Restoration Coordination](../runbooks/recovery/RB-RECOVERY-001-recovery-restoration-coordination.md)
-    - 📘 [RB-RECOVERY-002: Clean System Rebuild](../runbooks/recovery/RB-RECOVERY-002-clean-system-rebuild.md)
-  - [ ] Restore user access in a controlled manner
-    - 📘 [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
-  - [ ] Monitor for reinfection and reintroduce systems gradually
+	- Prioritise and coordinate phased system restoration
+		- 📘 [RB-RECOVERY-001: Recovery & Restoration Coordination](../runbooks/recovery/RB-RECOVERY-001-recovery-restoration-coordination.md) - for sequencing, prioritisation, and cross-team coordination
+	- Rebuild impacted hosts from known-good images and validate before reconnection
+		- 📘 [RB-RECOVERY-002: Clean System Rebuild](../runbooks/recovery/RB-RECOVERY-002-clean-system-rebuild.md) - for per-host rebuild, hardening, and validation
+	- Restore user access in a controlled manner
+		- 📘 [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
+	- Monitor for reinfection and reintroduce systems gradually
     > **Decision Point:**
     > - If reinfection activity observed → halt restoration activities immediately and return to containment.
+
 
 ## 7. Communication & Escalation
 
 - **Internal Communication:**
-  - [ ] Notify executive leadership and affected business units
-  - [ ] Provide regular incident updates to leadership and impacted teams
-  - [ ] Issue org-wide advisory if propagation is broad or critical services are impacted
+	-  Notify executive leadership and affected business units
+	-  Provide regular incident updates to leadership and impacted teams
+	-  Issue org-wide advisory if propagation is broad or critical services are impacted
 
 - **External Communication:**
-  - [ ] Engage Legal/Privacy to assess regulatory and breach notification obligations
-  - [ ] Notify customers, regulators, partners, cyber insurance, and law enforcement (if required) as directed by Legal
-  - [ ] Coordinate all external messaging with Communications Lead and Legal
-    - 📘 [SOP-003: Escalation, Legal & Executive Communications](../sops/SOP-003-escalation-legal-executive-comms.md)
-    - 📘 [SOP-004: User Notification](../sops/SOP-004-user-notification.md)
+	-  Engage Legal/Privacy to assess regulatory and breach notification obligations
+	-  Notify customers, regulators, partners, cyber insurance, and law enforcement (if required) as directed by Legal
+	-  Coordinate all external messaging with Communications Lead and Legal
+		- 📘 [SOP-003: Escalation, Legal & Executive Communications](../sops/SOP-003-escalation-legal-executive-comms.md)
+		- 📘 [SOP-004: User Notification](../sops/SOP-004-user-notification.md)
 
 - **Escalation Criteria:**
 
-  | Condition | Escalate To |
+| Condition | Escalate To |
   |-----------|-------------|
   | Phishing identified as initial access vector | [PB-001: Phishing & Credential Theft](PB-001-phishing.md) |
+  | Account takeover identified as initial access vector | [PB-004: Account Takeover](PB-004-account-takeover.md) |
+  | Zero-day vulnerability exploited as initial access vector | [PB-018: Zero-Day Response](PB-018-zero-day-response.md) |
+  | Known/patched vulnerability exploited as initial access vector | [PB-017: Vulnerability Response](PB-017-vulnerability-response.md) |
   | Data exfiltration confirmed | [PB-005: Data Exfiltration](PB-005-data-exfiltration.md) |
-  | Privileged account compromise | [PB-009: Privilege Escalation](PB-009-privilege-escalation.md) |
-  | Lateral movement observed across the estate | [PB-010: Lateral Movement](PB-010-lateral-movement.md) |
   | Enterprise-wide propagation, hypervisor or backup compromise | [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md) / Executive escalation |
 
 ## 8. Post-Incident Activities
 
 - **Lessons Learned:**
-  - [ ] Schedule and conduct a Post-Incident Review (PIR)
-  - [ ] Document what went well and what needs improvement
-  - [ ] Review control failures (detection, segmentation, privileged access, backup protection)
-  - [ ] Identify and close detection gaps
+  -  Schedule and conduct a Post-Incident Review (PIR)
+  -  Document what went well and what needs improvement
+  -  Review control failures (detection, segmentation, privileged access, backup protection)
+  -  Identify and close detection gaps
 
 - **Documentation Updates:**
-  - [ ] Update this playbook, linked runbooks, and KB articles to reflect lessons learned
-  - [ ] Update detections and threat intelligence based on observed TTPs
-  - [ ] Harden segmentation, privileged access, and backup protections
-    - 📘 [RB-POST-001: Post-Incident Hardening](../runbooks/post-incident/RB-POST-001-post-incident-hardening.md)
+  -  Update this playbook, linked runbooks, and KB articles to reflect lessons learned
+  -  Update detections and threat intelligence based on observed TTPs
+  -  Harden segmentation, privileged access, and backup protections
+		- 📘 [RB-POST-001: Ransomware Post-Incident Hardening](../runbooks/post-incident/RB-POST-001-ransomware-post-incident-hardening.md)
 
 ## 9. References & Linked Resources
 
 - **Playbooks:**
   - [PB-001: Phishing & Credential Theft](PB-001-phishing.md)
-  - [PB-003: Endpoint Malware](PB-003-endpoint-malware.md)
+  - [PB-004: Account Takeover](PB-004-account-takeover.md)
   - [PB-005: Data Exfiltration](PB-005-data-exfiltration.md)
-  - [PB-009: Privilege Escalation](PB-009-privilege-escalation.md)
-  - [PB-010: Lateral Movement](PB-010-lateral-movement.md)
+  - [PB-017: Vulnerability Response](PB-017-vulnerability-response.md)
+  - [PB-018: Zero-Day Response](PB-018-zero-day-response.md)
   - [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md)
 
 - **Runbooks:**
   - [RB-CONTAIN-002: Rapid Containment & Network Segmentation](../runbooks/contain/RB-CONTAIN-002-rapid-containment-network-segmentation.md)
   - [RB-CONTAIN-003: Active Directory Containment](../runbooks/contain/RB-CONTAIN-003-active-directory-containment.md)
-  - [RB-CONTAIN-004: Host Isolation](../runbooks/contain/RB-CONTAIN-004-host-isolation.md)
   - [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
   - [RB-ANALYSIS-003: Identify Patient Zero](../runbooks/analysis/RB-ANALYSIS-003-identify-patient-zero.md)
-  - [RB-ANALYSIS-004: Encryption Scope Assessment](../runbooks/analysis/RB-ANALYSIS-004-encryption-scope-assessment.md)
+  - [RB-ANALYSIS-004: Ransomware Encryption Scope Assessment](../runbooks/analysis/RB-ANALYSIS-004-ransomware-encryption-scope-assessment.md)
   - [RB-ANALYSIS-005: Threat Actor TTP Mapping](../runbooks/analysis/RB-ANALYSIS-005-threat-actor-ttp-mapping.md)
   - [RB-ANALYSIS-013: Ransomware Payload Analysis](../runbooks/analysis/RB-ANALYSIS-013-ransomware-payload-analysis.md)
-  - [RB-ANALYSIS-014: Persistence Mechanism Hunt](../runbooks/analysis/RB-ANALYSIS-014-persistence-mechanism-hunt.md)
-  - [RB-POST-001: Post-Incident Hardening](../runbooks/post-incident/RB-POST-001-post-incident-hardening.md)
-  - [RB-ANALYSIS-016: Memory Analysis](../runbooks/analysis/RB-ANALYSIS-016-memory-analysis.md)
-  - [RB-EVIDENCE-001: Memory Acquisition](../runbooks/evidence/RB-EVIDENCE-001-memory-acquisition.md)
   - [RB-ANALYSIS-017: Backup Integrity & Recovery Viability Assessment](../runbooks/analysis/RB-ANALYSIS-017-backup-integrity-recovery-viability-assessment.md)
+  - [RB-EVIDENCE-001: Memory Acquisition](../runbooks/evidence/RB-EVIDENCE-001-memory-acquisition.md)
+  - [RB-EVIDENCE-002: Host-Based Log Acquisition](../runbooks/evidence/RB-EVIDENCE-002-host-log-acquisition.md)
   - [RB-RECOVERY-001: Recovery & Restoration Coordination](../runbooks/recovery/RB-RECOVERY-001-recovery-restoration-coordination.md)
   - [RB-RECOVERY-002: Clean System Rebuild](../runbooks/recovery/RB-RECOVERY-002-clean-system-rebuild.md)
   - [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
+  - [RB-POST-001: Ransomware Post-Incident Hardening](../runbooks/post-incident/RB-POST-001-ransomware-post-incident-hardening.md)
 
 - **SOPs:**
-  - [SOP-001: Paging Engineering On-Call](../sops/SOP-001-paging-engineering-oncall.md)
-  - [SOP-002: Incident Handoff Between Geos](../sops/SOP-002-incident-handoff-between-geos.md)
   - [SOP-003: Escalation, Legal & Executive Communications](../sops/SOP-003-escalation-legal-executive-comms.md)
   - [SOP-004: User Notification](../sops/SOP-004-user-notification.md)
 
 - **Knowledge Base Articles:**
-  - [ ] Link to ransomware-specific KB articles (e.g., known ransomware family write-ups, decryptor references, PIRs)
+  -  Link to ransomware-specific KB articles (e.g., known ransomware family write-ups, decryptor references, PIRs)
 
 ## 10. Appendices
 
 - **Contact List:**
-  - [ ] Incident Response leadership, on-call engineers, Legal/Privacy, Executive sponsors, cyber insurance, law enforcement liaison
+  -  Incident Response leadership, on-call engineers, Legal/Privacy, Executive sponsors, cyber insurance, law enforcement liaison
 
 - **Templates:**
-  - [ ] Incident log, executive update template, customer/regulator notification templates, evidence collection forms
+  -  Incident log, executive update template, customer/regulator notification templates, evidence collection forms
 
 - **Process Flowchart:**
-  - [ ] Visual diagram of the ransomware playbook workflow (containment → analysis → eradication → recovery → hardening)
+  -  Visual diagram of the ransomware playbook workflow (containment → analysis → eradication → recovery → hardening)
 
 - **Outputs:**
   - Containment status
@@ -272,7 +261,10 @@ Initiate this playbook when any of the following occur:
 
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
+
+**Jayden Vo**
+GitHub: https://github.com/jayden-vo
 
 Contributed to the Arcana Incident Response Documentation Framework.

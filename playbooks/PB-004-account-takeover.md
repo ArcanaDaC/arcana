@@ -1,345 +1,283 @@
 # PB-004: Account Takeover
 
-## Overview
+## Document Control
 
-This playbook outlines the response process for account takeover (ATO) incidents involving compromised identities, session hijacking, credential abuse, MFA compromise, and unauthorised account activity.
+| Attribute | Value | Date |
+| --- | --- | --- |
+| Document Name | PB-004: Account Takeover | [Enter date] |
+| Version | [Enter version number] | [Enter date] |
+| Owner | [Enter owner/team] | [Enter date] |
+| Status | [Draft/Approved/Retired] | [Enter date] |
+| Next Review Date | [Enter next review date] | [Enter date] |
+| Approvals | [Enter approver(s)] | [Enter date] |
+| Change Summary | [Brief summary of changes] | [Enter date] |
 
-This playbook is intended for:
-- User account compromise
-- Privileged account compromise
-- Session hijacking
-- MFA bypass or fatigue attacks
-- OAuth token abuse
-- Cloud identity abuse
-- Credential stuffing activity
 
----
+## 1. Purpose & Scope
 
-## Status
+- **Purpose:**
 
-Live
+  This playbook outlines the end-to-end response process for account takeover (ATO) incidents involving compromised identities, session hijacking, credential abuse, MFA compromise, and unauthorised account activity. It is designed to rapidly revoke attacker access, assess the scope of identity compromise, identify privilege exposure and adjacent compromise, and restore secure user access while hardening identity controls against repeat compromise.
 
----
+- **Scope:**
 
-## Warning
+  Applies to all identity-compromise incidents across the organisation, including:
+  - Standard user account compromise
+  - Privileged / administrative account compromise
+  - Session hijacking and token theft
+  - MFA bypass, MFA fatigue, and SIM-swap attacks
+  - OAuth / consent-phishing abuse
+  - Cloud identity (IdP, federated identity, workload identity) abuse
+  - Credential stuffing and password spray
+  - Service account and non-human identity abuse
 
-Do NOT assume account compromise is limited to a single identity until:
-- Session activity has been reviewed
-- OAuth access has been validated
-- Adjacent accounts have been investigated
-- Lateral movement activity has been assessed
+## 2. Incident Identification & Criteria
 
-Identity compromise frequently results in broader environment access.
+**Incident Type:** Account Takeover
 
----
-
-## Immediate Emergency Actions
-
-1. Disable or restrict compromised accounts immediately
-2. Revoke active sessions and tokens
-3. Review privileged access exposure
-4. Preserve authentication and session telemetry
-5. Identify adjacent account compromise
-6. Protect identity infrastructure
-7. Notify Incident Response leadership if privileged access involved
-
----
-
-## Linked Runbooks
-
-- [RB-004.1 Identity Alert Triage](../runbooks/account-takeover/RB-004.1-identity-alert-triage.md)
-- [RB-004.2 Authentication Log Analysis](../runbooks/account-takeover/RB-004.2-authentication-log-analysis.md)
-- [RB-004.3 Session & Token Revocation](../runbooks/account-takeover/RB-004.3-session-token-revocation.md)
-- [RB-004.4 MFA Reset & Validation](../runbooks/account-takeover/RB-004.4-mfa-reset-validation.md)
-- [RB-004.5 OAuth & Application Consent Review](../runbooks/account-takeover/RB-004.5-oauth-application-consent-review.md)
-- [RB-004.6 Privileged Access Assessment](../runbooks/account-takeover/RB-004.6-privileged-access-assessment.md)
-- [RB-004.7 Credential Exposure Investigation](../runbooks/account-takeover/RB-004.7-credential-exposure-investigation.md)
-- [RB-004.8 Adjacent Account Hunting](../runbooks/account-takeover/RB-004.8-adjacent-account-hunting.md)
-- [RB-004.9 User Recovery & Access Restoration](../runbooks/account-takeover/RB-004.9-user-recovery-access-restoration.md)
-- [RB-004.10 Post-Incident Identity Hardening](../runbooks/account-takeover/RB-004.10-post-incident-identity-hardening.md)
-
----
-
-## Trigger Conditions
+**Trigger Conditions:**
 
 Initiate this playbook when any of the following occur:
+- Suspicious login alert from the IdP or SIEM
+- Impossible travel or anomalous geo/ASN alert
+- MFA fatigue, MFA bypass, or unauthorised MFA enrolment alert
+- Suspicious OAuth grant or consent prompt observed
+- User reports unrecognised activity (sent items, mailbox rules, MFA prompts they didn't initiate)
+- Credential stuffing / password spray detected against the IdP
+- Privileged account anomalies identified (off-hours admin, new role assignments, unusual admin actions)
+- Session hijacking / token theft indicators observed (cookie/refresh token reuse from unexpected location)
+- Credential exposure identified externally (breach dumps, paste sites, threat intelligence feed)
 
-- Suspicious login detected
-- Impossible travel alert
-- MFA fatigue or bypass alert
-- OAuth abuse identified
-- User reports suspicious account activity
-- Session hijacking indicators observed
-- Credential stuffing activity detected
-- Privileged account anomalies identified
-
----
-
-## Severity Guidelines
+**Severity Levels:**
 
 | Severity | Description |
 |----------|------------|
-| Sev3 | Suspicious login with no confirmed compromise |
-| Sev2 | Confirmed compromise of standard user account |
-| Sev1 | Privileged account compromise or lateral movement |
-| Sev0 | Widespread identity compromise or IAM infrastructure impact |
-
----
-
-## Objectives
-
-- Contain compromised identities rapidly
-- Revoke attacker access
-- Identify persistence mechanisms
-- Assess privilege exposure
-- Determine compromise scope
-- Restore secure user access
-- Harden identity controls
-
----
-
-## Required Inputs
-
-- Authentication telemetry
-- Identity provider logs
-- MFA logs
-- Session telemetry
-- OAuth audit logs
-- VPN telemetry
-- EDR telemetry
-- User reports
-
----
-
-## Playbook Workflow
-
----
-
-### 1. Initial Identity Alert Triage
-
-Runbook:
-- [RB-004.1 Identity Alert Triage](../runbooks/account-takeover/RB-004.1-identity-alert-triage.md)
-
-Actions:
-- Validate suspicious activity
-- Identify impacted account
-- Assess privilege level
-- Review authentication anomalies
-- Determine urgency
-
-Decision Point:
-- If false positive suspected:
-  - Validate before containment
-
----
-
-### 2. Authentication Log Analysis
-
-Runbook:
-- [RB-004.2 Authentication Log Analysis](../runbooks/account-takeover/RB-004.2-authentication-log-analysis.md)
-
-Actions:
-- Review login activity
-- Identify suspicious IPs/devices
-- Assess impossible travel
-- Review MFA activity
-- Build compromise timeline
-
-Decision Point:
-- If credential stuffing identified:
-  - Expand scope investigation
-
----
-
-### 3. Session & Token Revocation
-
-Runbook:
-- [RB-004.3 Session & Token Revocation](../runbooks/account-takeover/RB-004.3-session-token-revocation.md)
-
-Actions:
-- Revoke active sessions
-- Revoke refresh tokens
-- Invalidate OAuth tokens
-- Terminate suspicious sessions
-- Prevent continued attacker access
-
-Decision Point:
-- If attacker activity persists:
-  - Escalate containment
-
----
-
-### 4. MFA Reset & Validation
-
-Runbook:
-- [RB-004.4 MFA Reset & Validation](../runbooks/account-takeover/RB-004.4-mfa-reset-validation.md)
-
-Actions:
-- Reset MFA factors
-- Remove rogue devices
-- Validate secure MFA enrollment
-- Review MFA bypass indicators
-- Enforce MFA re-registration
-
----
-
-### 5. OAuth & Application Consent Review
-
-Runbook:
-- [RB-004.5 OAuth & Application Consent Review](../runbooks/account-takeover/RB-004.5-oauth-application-consent-review.md)
-
-Actions:
-- Review OAuth grants
-- Remove malicious applications
-- Assess token abuse
-- Review delegated permissions
-- Validate third-party integrations
-
-Decision Point:
-- If malicious OAuth app identified:
-  - Expand tenant-wide hunting
-
----
-
-### 6. Privileged Access Assessment
-
-Runbook:
-- [RB-004.6 Privileged Access Assessment](../runbooks/account-takeover/RB-004.6-privileged-access-assessment.md)
-
-Actions:
-- Assess privilege exposure
-- Review admin actions
-- Identify privilege escalation
-- Review lateral movement activity
-- Validate IAM integrity
-
-Decision Point:
-- If privileged compromise identified:
-  - Escalate to:
-    - [PB-009 Privilege Escalation](../playbooks/PB-009-privilege-escalation.md)
-
----
-
-### 7. Credential Exposure Investigation
-
-Runbook:
-- [RB-004.7 Credential Exposure Investigation](../runbooks/account-takeover/RB-004.7-credential-exposure-investigation.md)
-
-Actions:
-- Identify exposure source
-- Review phishing activity
-- Assess password reuse
-- Review credential dumps
-- Assess browser/token theft
-
-Decision Point:
-- If phishing identified:
-  - Escalate to:
-    - [PB-001 Phishing](../playbooks/PB-001-phishing.md)
-
----
-
-### 8. Adjacent Account Hunting
-
-Runbook:
-- [RB-004.8 Adjacent Account Hunting](../runbooks/account-takeover/RB-004.8-adjacent-account-hunting.md)
-
-Actions:
-- Hunt for additional compromised accounts
-- Review shared devices
-- Assess token reuse
-- Identify suspicious administrative activity
-- Expand telemetry review
-
----
-
-### 9. User Recovery & Access Restoration
-
-Runbook:
-- [RB-004.9 User Recovery & Access Restoration](../runbooks/account-takeover/RB-004.9-user-recovery-access-restoration.md)
-
-Actions:
-- Restore secure user access
-- Validate account integrity
-- Re-enable services
-- Review user devices
-- Monitor for reinfection or reuse
-
----
-
-### 10. Post-Incident Identity Hardening
-
-Runbook:
-- [RB-004.10 Post-Incident Identity Hardening](../runbooks/account-takeover/RB-004.10-post-incident-identity-hardening.md)
-
-Actions:
-- Improve IAM detections
-- Review MFA enforcement
-- Reduce standing privilege
-- Harden session policies
-- Review OAuth governance
-- Improve conditional access policies
-
----
-
-## Escalation Paths
-
-| Condition | Escalate To |
-|----------|------------|
-| Privileged account compromise | PB-009 Privilege Escalation |
-| OAuth abuse identified | PB-019 Cloud Identity Compromise |
-| Data exfiltration identified | PB-005 Data Exfiltration |
-| Lateral movement identified | PB-010 Lateral Movement |
-| Phishing identified | PB-001 Phishing |
-
----
-
-## Outputs
-
-- Impacted account inventory
-- Authentication timeline
-- Session revocation status
-- Privilege exposure assessment
-- OAuth review findings
-- Recovery status
-- Hardening recommendations
-
----
-
-## Common Failure Modes
-
-- Resetting passwords without revoking sessions
-- Ignoring OAuth persistence
-- Failing to assess adjacent account compromise
-- Re-enabling compromised accounts too early
-- Ignoring MFA fatigue indicators
-
----
-
-## Automation Opportunities
-
-- Automated session revocation
-- OAuth risk scoring
-- Identity anomaly detection
-- Adjacent account hunting
-- MFA reset workflows
-- Conditional access enforcement
-
----
-
-## Related
-
-- PB-001 Phishing
-- PB-005 Data Exfiltration
-- PB-009 Privilege Escalation
-- PB-010 Lateral Movement
-- PB-019 Cloud Identity Compromise
+| Sev 3 | Suspicious login with no confirmed compromise |
+| Sev 2 | Confirmed compromise of a standard user account |
+| Sev 1 | Privileged account compromise, multiple accounts impacted, or lateral movement observed |
+| Sev 0 | Widespread identity compromise, IdP / IAM infrastructure impact, or compromise of identity-critical service accounts |
+
+## 3. Roles & Responsibilities
+
+- **Incident Commander:** Coordinates and leads the response; owns decisions on containment timing, privilege escalation, and external communications.
+- **Communications Lead:** Manages internal updates, executive briefings, and user / customer notification messaging.
+- **Identity & Access (IAM) Team:** Owns account lockdown, session/token revocation, MFA reset, OAuth grant remediation, and IdP-side hardening; acts as technical lead for identity actions.
+- **Incident Responder / Forensic Analyst:** Performs authentication log analysis, OAuth consent review, credential exposure investigation, and adjacent account hunting; preserves identity telemetry as evidence.
+- **Other Roles:**
+  - **Endpoint / EDR Team:** Investigates endpoints used by the compromised account for credential-theft malware, browser token theft, and persistence; isolates impacted devices.
+  - **Email / Productivity Suite Admins:** Reviews mailbox rules, delegate access, and forwarding for affected accounts; remediates malicious inbox rules.
+  - **Cloud / Platform Team:** Reviews and remediates compromise impact on cloud workloads, service accounts, and federated identity.
+  - **HR / People Team:** Required where the impacted user must be contacted out-of-band, where account recovery requires identity proofing, or where insider threat is suspected.
+  - **Legal / Privacy:** Assesses regulatory and breach notification obligations where personal data, regulated data, or financial activity is affected.
+
+## 4. Initial Actions
+
+- **Immediate Steps:**
+  - Perform identity alert triage to validate the alert and assess immediate risk
+    - 📘 [RB-TRIAGE-003: Identity Alert Triage](../runbooks/triage/RB-TRIAGE-003-identity-alert-triage.md)
+    > **Decision Point:**
+    > - If false positive → close with documentation
+    > - If true positive → continue
+  - Lock down the impacted account(s) to prevent continued attacker access (disable sign-in, block at IdP, or apply conditional access block as appropriate)
+    - 📘 [RB-CONTAIN-001: Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
+  - Revoke all active sessions and refresh tokens for the impacted account(s) — password reset alone does not terminate existing sessions
+    - 📘 [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+  - Notify Incident Response leadership and assign roles
+  - Contact the impacted user **out-of-band** (phone, in-person, or alternate channel) to confirm the activity is unauthorised and to coordinate recovery — never via the potentially compromised channel
+
+  > **Warning:** Do NOT assume compromise is limited to a single identity until session activity, OAuth grants, adjacent accounts, and lateral movement have all been assessed. Identity compromise frequently leads to broader environment access via stolen tokens, malicious OAuth grants, and trust chains.
+
+## 5. Investigation & Analysis
+
+- **Evidence Collection:**
+  - Preserve identity-side telemetry for the impacted account(s) over the incident window:
+    - IdP sign-in logs (successful, failed, risk-scored, conditional-access decisions)
+    - MFA logs (factor used, factor changes, factor enrolments)
+    - Session and token issuance / refresh / revocation events
+    - OAuth consent grants and application access events
+    - Directory audit logs (group membership changes, role assignments, password resets, privileged actions taken by the account)
+    - Mailbox / productivity suite audit (sent items, inbox rules, delegate access, forwarding rules, file sharing)
+    - 📘 [RB-EVIDENCE-002: Host-Based Log Acquisition](../runbooks/evidence/RB-EVIDENCE-002-host-log-acquisition.md) — for endpoint-side telemetry if a specific device is implicated
+  - Record source IPs, ASNs, user-agents, and device IDs observed during the suspected compromise window for use in adjacent-account hunting
+
+- **Analysis Steps:**
+  - Analyse authentication logs to build the compromise timeline (first suspicious sign-in, source IP/geo/ASN/device, MFA outcomes) and identify all sessions issued post-compromise
+    - 📘 [RB-ANALYSIS-007: Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
+  - Investigate credential exposure to identify the **initial access vector** (phishing, infostealer/credential-theft malware, password reuse from a public breach, brute force / spray, OAuth consent phishing, token theft from endpoint/browser)
+    - 📘 [RB-ANALYSIS-010: Credential Exposure Investigation](../runbooks/analysis/RB-ANALYSIS-010-credential-exposure-investigation.md)
+  > **Decision Point:**
+  > For each identified initial access vector, run the post-detection phases (Analysis → Recovery) of the relevant playbook concurrently alongside this one:
+  > - Phishing → [PB-001: Phishing & Credential Theft](PB-001-phishing.md)
+  > - Endpoint credential-theft malware (e.g. infostealer) → [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md)
+  > - Business email compromise pattern observed → [PB-016: Business Email Compromise](PB-016-business-email-compromise.md)
+  - Review OAuth grants and third-party application access — attackers frequently establish persistent access through malicious OAuth applications that survives a password reset
+    - 📘 [RB-ANALYSIS-008: OAuth Application Consent Review](../runbooks/analysis/RB-ANALYSIS-008-oauth-application-consent-review.md)
+  - Assess privileged access exposure — review privileged actions taken by the account, role assignments granted, group memberships modified, and admin consent provided during the compromise window
+    - 📘 [RB-ANALYSIS-009: Privileged Access Assessment](../runbooks/analysis/RB-ANALYSIS-009-privileged-access-assessment.md)
+  > **Decision Point:**
+  > - If privileged account compromise confirmed → escalate severity to Sev 1+ and engage IAM leadership immediately; assess IdP-wide integrity (federation trust, sync accounts, break-glass accounts, custom roles).
+  - Hunt for adjacent compromised accounts using shared indicators from the initial compromise (source IPs, user-agents, device IDs, OAuth application IDs, MFA factor metadata)
+    - 📘 [RB-ANALYSIS-011: Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
+  - Where the compromised account interacted with hosts, review endpoint activity for credential-theft tooling, browser token theft, and persistence
+  - Document findings, attack timeline, scope of compromise, and indicators of compromise (IOCs)
+
+## 6. Containment, Eradication & Recovery
+
+  > **Warning:** Do NOT restore user access until:
+  > - All sessions and tokens have been revoked
+  > - MFA factors have been reset and re-enrolled by the genuine user
+  > - Malicious OAuth grants have been removed
+  > - The initial access vector has been identified and remediated
+  > - Adjacent account compromise has been ruled out
+  >
+  > Premature recovery commonly results in immediate re-compromise via residual tokens, OAuth persistence, or unaddressed root cause.
+
+- **Containment Actions:**
+  - **Short-term (immediate) containment:**
+    - Account lockdown and session/token revocation (see Initial Actions)
+    - Revoke or restrict any malicious OAuth grants identified during analysis
+      - 📘 [RB-ANALYSIS-008: OAuth Application Consent Review](../runbooks/analysis/RB-ANALYSIS-008-oauth-application-consent-review.md)
+    - Reset MFA factors and remove rogue / attacker-enrolled MFA devices
+      - 📘 [RB-CONTAIN-006: MFA Reset & Validation](../runbooks/contain/RB-CONTAIN-006-mfa-reset-validation.md)
+    - Remove malicious mailbox rules, forwarding rules, and delegate access on email accounts
+  - **Long-term (directory) containment:**
+    - Where on-premises Active Directory accounts are compromised, perform AD-side containment (reset, KRBTGT rotation if Tier-0 compromise, group membership review)
+      - 📘 [RB-CONTAIN-003: Active Directory Containment](../runbooks/contain/RB-CONTAIN-003-active-directory-containment.md)
+    > **Decision Point:**
+    > - If privileged / Tier-0 account compromise confirmed → escalate to enterprise-wide identity response and treat as Sev 1+ identity infrastructure incident.
+
+- **Eradication Steps:**
+  - Reset the account password and any associated app passwords / API keys / programmatic credentials
+  - Remove all malicious OAuth grants, mailbox rules, forwarding rules, and delegate access
+  - Revoke any persistence established by the attacker during the compromise window (new role assignments, new group memberships, new federated identity grants, new service principal credentials)
+  - Where credential-theft malware is suspected on an associated endpoint, follow [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md) for endpoint eradication
+  > **Note:** Where the compromise cannot be reliably remediated in place (e.g. extensive persistence, unknown root cause), eradicate by re-issuing identity — new account, new MFA enrolment, fresh provisioning — and rebuild any associated endpoint via [RB-RECOVERY-002: Clean System Rebuild](../runbooks/recovery/RB-RECOVERY-002-clean-system-rebuild.md).
+
+- **Recovery Steps:**
+  - Verify the genuine user's identity out-of-band before restoring access
+  - Restore user access in a controlled, validated manner with fresh MFA enrolment and a forced password change at first sign-in
+    - 📘 [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
+  - Monitor the restored account closely for reuse of the prior attack pattern (same source IPs, user-agents, OAuth applications, MFA factors) for an extended window post-recovery
+    > **Decision Point:**
+    > - If recompromise activity observed → halt recovery immediately, return to containment, and reassess for missed persistence.
+
+## 7. Communication & Escalation
+
+- **Internal Communication:**
+  - Notify the impacted user out-of-band and brief them on what occurred and the recovery process
+    - 📘 [SOP-004: User Notification](../sops/SOP-004-user-notification.md)
+  - Notify the user's manager and affected business unit
+  - Provide regular incident updates to leadership; brief IAM leadership immediately if privileged or service account compromise is confirmed
+  - Issue org-wide identity advisory if a campaign-style attack is observed (e.g. OAuth consent phishing targeting multiple users)
+
+- **External Communication:**
+  - Engage Legal/Privacy to assess regulatory and breach notification obligations where personal data, regulated data, or financial activity was accessed
+  - Notify customers, regulators, and partners as directed by Legal
+  - Coordinate all external messaging with Communications Lead and Legal
+    - 📘 [SOP-003: Escalation, Legal & Executive Communications](../sops/SOP-003-escalation-legal-executive-comms.md)
+
+- **Escalation Criteria:**
+
+  | Condition | Escalate To |
+  |-----------|-------------|
+  | Phishing identified as initial access vector | [PB-001: Phishing & Credential Theft](PB-001-phishing.md) |
+  | Endpoint credential-theft malware identified as initial access vector | [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md) |
+  | Business email compromise pattern observed | [PB-016: Business Email Compromise](PB-016-business-email-compromise.md) |
+  | Cloud identity / IdP infrastructure compromise | [PB-019: Cloud Identity Compromise](PB-019-cloud-identity-compromise.md) |
+  | Data exfiltration confirmed | [PB-005: Data Exfiltration](PB-005-data-exfiltration.md) |
+  | Widespread identity compromise or IdP/IAM infrastructure impact | [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md) / Executive escalation |
+
+## 8. Post-Incident Activities
+
+- **Lessons Learned:**
+  - Schedule and conduct a Post-Incident Review (PIR)
+  - Document what went well and what needs improvement
+  - Review control failures (MFA enforcement, conditional access, OAuth governance, privileged access controls, detection coverage)
+  - Identify and close detection gaps for the initial access vector and the compromise behaviour observed
+
+- **Identity Hardening:**
+  - Strengthen MFA posture (phishing-resistant factors such as FIDO2/passkeys for privileged users; remove SMS for high-risk roles)
+  - Tighten conditional access (block legacy authentication, geo/risk-based policies, device compliance requirements)
+  - Reduce standing privilege (just-in-time access, time-bound role assignments, privileged access workstations)
+  - Improve OAuth governance (admin consent workflows, restrict user consent for unverified publishers, periodic OAuth grant reviews)
+  - Strengthen session policies (shorter session lifetimes for privileged roles, sign-in frequency requirements)
+
+- **Documentation Updates:**
+  - Update this playbook, linked runbooks, and KB articles to reflect lessons learned
+  - Update detections and threat intelligence based on observed TTPs (source infrastructure, OAuth app IDs, attack patterns)
+
+## 9. References & Linked Resources
+
+- **Playbooks:**
+  - [PB-001: Phishing & Credential Theft](PB-001-phishing.md)
+  - [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md)
+  - [PB-005: Data Exfiltration](PB-005-data-exfiltration.md)
+  - [PB-016: Business Email Compromise](PB-016-business-email-compromise.md)
+  - [PB-019: Cloud Identity Compromise](PB-019-cloud-identity-compromise.md)
+  - [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md)
+
+- **Runbooks:**
+  - [RB-TRIAGE-003: Identity Alert Triage](../runbooks/triage/RB-TRIAGE-003-identity-alert-triage.md)
+  - [RB-CONTAIN-001: Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
+  - [RB-CONTAIN-003: Active Directory Containment](../runbooks/contain/RB-CONTAIN-003-active-directory-containment.md)
+  - [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+  - [RB-CONTAIN-006: MFA Reset & Validation](../runbooks/contain/RB-CONTAIN-006-mfa-reset-validation.md)
+  - [RB-ANALYSIS-007: Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
+  - [RB-ANALYSIS-008: OAuth Application Consent Review](../runbooks/analysis/RB-ANALYSIS-008-oauth-application-consent-review.md)
+  - [RB-ANALYSIS-009: Privileged Access Assessment](../runbooks/analysis/RB-ANALYSIS-009-privileged-access-assessment.md)
+  - [RB-ANALYSIS-010: Credential Exposure Investigation](../runbooks/analysis/RB-ANALYSIS-010-credential-exposure-investigation.md)
+  - [RB-ANALYSIS-011: Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
+  - [RB-EVIDENCE-002: Host-Based Log Acquisition](../runbooks/evidence/RB-EVIDENCE-002-host-log-acquisition.md)
+  - [RB-RECOVERY-002: Clean System Rebuild](../runbooks/recovery/RB-RECOVERY-002-clean-system-rebuild.md)
+  - [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
+
+- **SOPs:**
+  - [SOP-003: Escalation, Legal & Executive Communications](../sops/SOP-003-escalation-legal-executive-comms.md)
+  - [SOP-004: User Notification](../sops/SOP-004-user-notification.md)
+
+## 10. Appendices
+
+- **Contact List:**
+  - Incident Response leadership, IAM on-call, IdP vendor support contact, Legal/Privacy, Executive sponsors
+
+- **Templates:**
+  - Out-of-band user contact script, executive update template, user notification templates, evidence collection forms
+
+- **Process Flowchart:**
+  - Visual diagram of the account takeover playbook workflow (triage → lockdown/revoke → analysis → eradication → recovery → hardening)
+
+- **Outputs:**
+  - Impacted account inventory (and adjacent accounts)
+  - Authentication and OAuth timeline
+  - Initial access vector
+  - Privilege exposure assessment
+  - Containment status (sessions revoked, MFA reset, OAuth grants removed)
+  - Recovery status
+  - Indicators of compromise (IOCs)
+  - PIR documentation
+
+- **Common Failure Modes:**
+  - Resetting the password without revoking active sessions and refresh tokens
+  - Missing OAuth-based persistence (survives password reset)
+  - Failing to identify the initial access vector (leads to re-compromise)
+  - Re-enabling accounts before MFA is re-enrolled by the genuine user
+  - Ignoring adjacent account compromise indicators
+  - Trusting in-channel communication with the user instead of going out-of-band
+  - Ignoring MFA fatigue / unauthorised MFA enrolment signals
+
+- **Automation Opportunities:**
+  - Automated session and token revocation on identity alert
+  - Automated OAuth grant scoring and revocation for high-risk applications
+  - Identity anomaly detection (impossible travel, new device, new ASN, abnormal sign-in patterns)
+  - Adjacent-account hunting by shared IOCs
+  - MFA reset workflow with out-of-band identity proofing
+  - Conditional access enforcement based on risk score
 
 ---
 
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

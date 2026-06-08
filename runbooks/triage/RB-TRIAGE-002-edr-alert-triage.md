@@ -3,12 +3,12 @@
 | Attribute | Value | Date |
 | --- | --- | --- |
 | Document Name | EDR Alert Triage | |
-| Version | v1.0 | |
-| Owner | [Enter owner/team] | |
-| Status | [Draft/Approved/Retired] | |
-| Next Review Date | [Enter next review date] | |
-| Approvals | [Enter approver(s)] | |
-| Change Summary | [Brief summary of changes] | |
+| Version | [Enter version number] | [Enter date] |
+| Owner | [Enter owner/team] | [Enter date] |
+| Status | [Draft/Approved/Retired] | [Enter date] |
+| Next Review Date | [Enter next review date] | [Enter date] |
+| Approvals | [Enter approver(s)] | [Enter date] |
+| Change Summary | Initial creation | [Enter date] |
 
 ## 1. Prerequisites
 - EDR alerts

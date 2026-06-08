@@ -4,11 +4,14 @@
 
 | Attribute | Value | Date |
 |------------|------------|------------|
+| Version | [Enter version number] | [Enter date] |
+| Owner | [Enter owner/team] | [Enter date] |
+| Status | [Draft/Approved/Retired] | [Enter date] |
+| Next Review Date | [Enter next review date] | [Enter date] |
+| Approvals | [Enter approver(s)] | [Enter date] |
+| Change Summary | Initial creation | [Enter date] |
 | Runbook ID | RB-TRIAGE-004 | 2026-06-04 |
 | Runbook Name | Third-Party Notification Validation | 2026-06-04 |
-| Owner | Arcana Framework | 2026-06-04 |
-| Version | 1.0 | 2026-06-04 |
-| Status | Live | 2026-06-04 |
 
 ---
 

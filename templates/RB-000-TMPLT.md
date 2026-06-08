@@ -8,7 +8,7 @@
 | Status | [Draft/Approved/Retired] | [Enter date] |
 | Next Review Date | [Enter next review date] | [Enter date] |
 | Approvals | [Enter approver(s)] | [Enter date] |
-| Change Summary | [Brief summary of changes] | [Enter date] |
+| Change Summary | Initial creation | [Enter date] |
 ## 1. Prerequisites
 - List required access, permissions, or tools needed to perform the task.
 ## 2. Step-by-Step Instructions

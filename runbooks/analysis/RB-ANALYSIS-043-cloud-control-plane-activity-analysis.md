@@ -4,12 +4,12 @@
 | Attribute | Value | Date |
 | --- | --- | --- |
 | Document Name | Cloud Control Plane Activity Analysis | [Enter date] |
-| Version | v1.0 | [Enter date] |
+| Version | [Enter version number] | [Enter date] |
 | Owner | [Enter owner/team] | [Enter date] |
-| Status | Draft | [Enter date] |
+| Status | [Draft/Approved/Retired] | [Enter date] |
 | Next Review Date | [Enter next review date] | [Enter date] |
 | Approvals | [Enter approver(s)] | [Enter date] |
-| Change Summary | Initial version | [Enter date] |
+| Change Summary | Initial creation | [Enter date] |
 
 ## 1. Prerequisites
 - The incident time window 

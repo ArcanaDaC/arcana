@@ -48,7 +48,7 @@ PB-001-phishing.md
 | PB-005 | Data Exfiltration | Placeholder |
 | PB-006 | Insider Threat | Placeholder |
 | PB-007 | Cloud Compromise | Placeholder |
-| PB-008 | Web Application Attack | Placeholder |
+| PB-008 | Web Application Attack | Operational |
 | PB-009 | Privilege Escalation | Placeholder |
 | PB-010 | Lateral Movement | Placeholder |
 | PB-011 | Suspicious Execution | Placeholder |

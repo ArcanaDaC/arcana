@@ -9,7 +9,7 @@
 | Status | [Draft/Approved/Retired] | [Enter date] |
 | Next Review Date | [Enter next review date] | [Enter date] |
 | Approvals | [Enter approver(s)] | [Enter date] |
-| Change Summary | [Brief summary of changes] | [Enter date] |
+| Change Summary | Initial creation | [Enter date] |
 
 ## 1. Prerequisites
 - Access to EDR platform

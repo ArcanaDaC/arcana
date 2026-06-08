@@ -151,7 +151,7 @@
 
 ## Contributor
 
-**Vishal Thakur**
-GitHub: https://github.com/malienist
+**Jayden Vo**
+GitHub: https://github.com/jayden-vo
 
 Contributed to the Arcana Incident Response Documentation Framework.

@@ -80,7 +80,7 @@ PB-014-lost-stolen-device.md
 | PB-016 | Business Email Compromise | Operational |
 | PB-017 | Vulnerability Response | Operational |
 | PB-018 | Zero-Day Response | Operational |
-| PB-019 | Major Security Incident Management | Placeholder |
+| PB-019 | Major Security Incident Management | Operational |
 
 ---
 

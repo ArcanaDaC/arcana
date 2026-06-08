@@ -168,8 +168,8 @@ Initiate this playbook when any of the following occur:
 ## 8. Post-Incident Activities
 
 - **Lessons Learned:**
-    - Conduct a PIR covering root cause, privilege path, affected identities/assets, containment timing, and recovery decisions.
-    - Identify detection gaps for privileged role changes, MFA changes, token abuse, administrative tool use, and security control tampering.
+    - Conduct a Post-Incident Review (PIR)
+    - Document what worked, what didn't, and what needs improvement
     - Review least privilege, just-in-time access, service account scope, and administrative segmentation.
 
 - **Documentation Updates:**

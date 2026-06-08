@@ -4,14 +4,13 @@
 
 | Attribute | Value | Date |
 |------------|------------|------------|
+| Document Name | Script Execution Analysis | |
 | Version | [Enter version number] | [Enter date] |
 | Owner | [Enter owner/team] | [Enter date] |
 | Status | [Draft/Approved/Retired] | [Enter date] |
 | Next Review Date | [Enter next review date] | [Enter date] |
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
-| Runbook ID | RB-ANALYSIS-025 | 2026-06-04 |
-| Runbook Name | Script Execution Analysis | 2026-06-04 |
 
 
 ## 1. Prerequisites

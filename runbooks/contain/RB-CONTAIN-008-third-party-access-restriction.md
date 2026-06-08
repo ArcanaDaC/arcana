@@ -1,21 +1,18 @@
-# RB-CONTAIN-008 Third-Party Access Restriction
+# RB-CONTAIN-008: Third-Party Access Restriction
 
 ## Document Control
 
 | Attribute | Value | Date |
 |------------|------------|------------|
+| Document Name | Third-Party Access Restriction | |
 | Version | [Enter version number] | [Enter date] |
 | Owner | [Enter owner/team] | [Enter date] |
 | Status | [Draft/Approved/Retired] | [Enter date] |
 | Next Review Date | [Enter next review date] | [Enter date] |
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
-| Runbook ID | RB-CONTAIN-008 | 2026-06-04 |
-| Runbook Name | Third-Party Access Restriction | 2026-06-04 |
 
----
-
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -28,189 +25,167 @@ Before starting this runbook, ensure the following:
 - IAM administration access is available
 - Change management approvals have been obtained where required
 
----
+## 2. Step-by-Step Instructions
 
-# 2. Step-by-Step Instructions
+1. **Identify Third-Party Access Paths**
 
-### Step 1 – Identify Third-Party Access Paths
+    Review and document all active third-party access mechanisms, including:
 
-Review and document all active third-party access mechanisms, including:
+    - User accounts
+    - Privileged accounts
+    - Service accounts
+    - API integrations
+    - OAuth applications
+    - Federated identity relationships
+    - VPN access
+    - Remote administration platforms
+    - Cloud cross-account access
+    - Managed service provider access
+    - Shared credentials
 
-- User accounts
-- Privileged accounts
-- Service accounts
-- API integrations
-- OAuth applications
-- Federated identity relationships
-- VPN access
-- Remote administration platforms
-- Cloud cross-account access
-- Managed service provider access
-- Shared credentials
+    Create a complete inventory of active access paths.
 
-Create a complete inventory of active access paths.
+2. **Assess Business Impact**
 
----
+    Determine:
 
-### Step 2 – Assess Business Impact
+    - Business dependency on the third party
+    - Operational impact of access removal
+    - Critical systems affected
+    - Potential service disruption
+    - Alternative support arrangements
 
-Determine:
+    Document impact and obtain approval where required.
 
-- Business dependency on the third party
-- Operational impact of access removal
-- Critical systems affected
-- Potential service disruption
-- Alternative support arrangements
+3. **Restrict Third-Party User Accounts**
 
-Document impact and obtain approval where required.
+    Review all third-party user accounts.
 
----
+    Perform one or more of the following:
 
-### Step 3 – Restrict Third-Party User Accounts
+    - Disable accounts
+    - Suspend accounts
+    - Remove privileged roles
+    - Restrict authentication methods
+    - Restrict access locations
+    - Restrict access times
 
-Review all third-party user accounts.
+    Document all actions taken.
 
-Perform one or more of the following:
+4. **Revoke Active Sessions**
 
-- Disable accounts
-- Suspend accounts
-- Remove privileged roles
-- Restrict authentication methods
-- Restrict access locations
-- Restrict access times
+    Identify and revoke:
 
-Document all actions taken.
+    - Active cloud sessions
+    - SaaS sessions
+    - VPN sessions
+    - Federated identity sessions
+    - Administrative sessions
 
----
+    Verify successful session termination.
 
-### Step 4 – Revoke Active Sessions
+    Document findings.
 
-Identify and revoke:
+5. **Restrict Service Accounts**
 
-- Active cloud sessions
-- SaaS sessions
-- VPN sessions
-- Federated identity sessions
-- Administrative sessions
+    Review all service accounts associated with the third party.
 
-Verify successful session termination.
+    Where appropriate:
 
-Document findings.
+    - Disable service accounts
+    - Remove permissions
+    - Rotate credentials
+    - Restrict scope of access
+    - Remove privileged roles
 
----
+    Validate that access has been removed successfully.
 
-### Step 5 – Restrict Service Accounts
+6. **Disable Integrations**
 
-Review all service accounts associated with the third party.
+    Review and restrict:
 
-Where appropriate:
+    - API keys
+    - OAuth applications
+    - Service integrations
+    - SaaS integrations
+    - Webhooks
+    - Automation platforms
+    - Synchronisation services
 
-- Disable service accounts
-- Remove permissions
-- Rotate credentials
-- Restrict scope of access
-- Remove privileged roles
+    Where appropriate:
 
-Validate that access has been removed successfully.
+    - Disable integrations
+    - Revoke API keys
+    - Remove OAuth consent
+    - Remove delegated access
 
----
+    Document all actions.
 
-### Step 6 – Disable Integrations
+7. **Restrict Trust Relationships**
 
-Review and restrict:
+    Review and restrict:
 
-- API keys
-- OAuth applications
-- Service integrations
-- SaaS integrations
-- Webhooks
-- Automation platforms
-- Synchronisation services
+    - SAML trust relationships
+    - OIDC trust relationships
+    - Federation configurations
+    - Cross-tenant trust
+    - Cross-account cloud access
+    - Partner connectivity
 
-Where appropriate:
+    Validate removal or restriction of access.
 
-- Disable integrations
-- Revoke API keys
-- Remove OAuth consent
-- Remove delegated access
+    Document findings.
 
-Document all actions.
+8. **Validate Containment**
 
----
+    Confirm:
 
-### Step 7 – Restrict Trust Relationships
+    - Accounts are disabled
+    - Sessions are revoked
+    - Tokens are invalidated
+    - Integrations are disabled
+    - Trust relationships are restricted
 
-Review and restrict:
+    Review logs to ensure access is no longer active.
 
-- SAML trust relationships
-- OIDC trust relationships
-- Federation configurations
-- Cross-tenant trust
-- Cross-account cloud access
-- Partner connectivity
+    Investigate any continued activity.
 
-Validate removal or restriction of access.
+9. **Notify Stakeholders**
 
-Document findings.
+    Notify:
 
----
+    - Business owner
+    - Vendor management team
+    - Identity team
+    - Cloud team
+    - Security leadership
+    - Incident commander
 
-### Step 8 – Validate Containment
+    Communicate:
 
-Confirm:
+    - Restrictions implemented
+    - Business impact
+    - Expected duration
+    - Recovery requirements
 
-- Accounts are disabled
-- Sessions are revoked
-- Tokens are invalidated
-- Integrations are disabled
-- Trust relationships are restricted
+    Document notifications.
 
-Review logs to ensure access is no longer active.
+10. **Update Incident Record**
 
-Investigate any continued activity.
+    Record:
 
----
+    - Access paths reviewed
+    - Accounts disabled
+    - Sessions revoked
+    - Service accounts restricted
+    - Integrations disabled
+    - Trust relationships restricted
+    - Business impacts
+    - Stakeholder notifications
 
-### Step 9 – Notify Stakeholders
+    Attach supporting evidence.
 
-Notify:
-
-- Business owner
-- Vendor management team
-- Identity team
-- Cloud team
-- Security leadership
-- Incident commander
-
-Communicate:
-
-- Restrictions implemented
-- Business impact
-- Expected duration
-- Recovery requirements
-
-Document notifications.
-
----
-
-### Step 10 – Update Incident Record
-
-Record:
-
-- Access paths reviewed
-- Accounts disabled
-- Sessions revoked
-- Service accounts restricted
-- Integrations disabled
-- Trust relationships restricted
-- Business impacts
-- Stakeholder notifications
-
-Attach supporting evidence.
-
----
-
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -221,11 +196,9 @@ Upon completion:
 - Ensure supporting evidence is attached
 - Ensure incident ticket is updated
 
----
-
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

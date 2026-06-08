@@ -164,7 +164,7 @@
 - Conduct a PIR covering root cause, exploit path, affected endpoints/data, containment decisions, recovery timeline, and customer/service impact.
 - Review detection gaps across WAF/CDN, application, API gateway, authentication, database, workload, and cloud telemetry.
 - Complete web application hardening.
-  - 📘 [RB-POST-005: Web Application Security Hardening](../runbooks/post-incident/RB-POST-005-web-application-security-hardening.md)
+  - 📘 [RB-POST-004: Web Application Security Hardening](../runbooks/post-incident/RB-POST-004-web-application-security-hardening.md)
 - Update detections, WAF rules, test cases, threat models, and this playbook where required.
 
 ## 9. References & Linked Resources
@@ -186,7 +186,7 @@
   - [RB-CONTAIN-012: Exploitation Surface Containment](../runbooks/contain/RB-CONTAIN-012-exploitation-surface-containment.md)
   - [RB-CONTAIN-014: Vulnerability Exposure Reduction](../runbooks/contain/RB-CONTAIN-014-vulnerability-exposure-reduction.md)
   - [RB-RECOVERY-007: Vulnerability Remediation Validation](../runbooks/recovery/RB-RECOVERY-007-vulnerability-remediation-validation.md)
-  - [RB-POST-005: Web Application Security Hardening](../runbooks/post-incident/RB-POST-005-web-application-security-hardening.md)
+  - [RB-POST-004: Web Application Security Hardening](../runbooks/post-incident/RB-POST-004-web-application-security-hardening.md)
 
 - **SOPs:**
   - [SOP-001: Paging an Engineering Team's On-Call](../sops/SOP-001-paging-engineering-oncall.md)

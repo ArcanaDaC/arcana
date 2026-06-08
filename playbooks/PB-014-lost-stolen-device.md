@@ -76,7 +76,7 @@
 
 ### Runbooks
 
-- [RB-TRIAGE-004: Lost & Stolen Device Validation](../runbooks/triage/RB-TRIAGE-004-lost-stolen-device-validation.md)
+- [RB-TRIAGE-006: Lost & Stolen Device Validation](../runbooks/triage/RB-TRIAGE-006-lost-stolen-device-validation.md)
 
 > **Decision Point**
 >
@@ -88,10 +88,10 @@
 ### Determine Risk and Exposure
 
 - Validate device management status
-  - [RB-ANALYSIS-023: Device Security Posture Assessment](../runbooks/analysis/RB-ANALYSIS-023-device-security-posture-assessment.md)
+  - [RB-ANALYSIS-032: Device Security Posture Assessment](../runbooks/analysis/RB-ANALYSIS-032-device-security-posture-assessment.md)
 
 - Determine data exposure risk
-  - [RB-ANALYSIS-024: Device Data Exposure Assessment](../runbooks/analysis/RB-ANALYSIS-024-device-data-exposure-assessment.md)
+  - [RB-ANALYSIS-033: Device Data Exposure Assessment](../runbooks/analysis/RB-ANALYSIS-033-device-data-exposure-assessment.md)
 
 - Review authentication activity
   - [RB-ANALYSIS-007: Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
@@ -117,7 +117,7 @@
 - [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
   - Revoke active sessions and tokens
 
-- [RB-CONTAIN-008: Remote Device Lock & Wipe](../runbooks/contain/RB-CONTAIN-008-remote-device-lock-wipe.md)
+- [RB-CONTAIN-011: Remote Device Lock & Wipe](../runbooks/contain/RB-CONTAIN-011-remote-device-lock-wipe.md)
   - Lock device remotely
   - Wipe device where appropriate
   - Remove corporate access
@@ -189,14 +189,14 @@
 
 ### Runbooks
 
-- [RB-TRIAGE-004: Lost & Stolen Device Validation](../runbooks/triage/RB-TRIAGE-004-lost-stolen-device-validation.md)
+- [RB-TRIAGE-006: Lost & Stolen Device Validation](../runbooks/triage/RB-TRIAGE-006-lost-stolen-device-validation.md)
 - [RB-ANALYSIS-007: Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
 - [RB-ANALYSIS-011: Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
-- [RB-ANALYSIS-023: Device Security Posture Assessment](../runbooks/analysis/RB-ANALYSIS-023-device-security-posture-assessment.md)
-- [RB-ANALYSIS-024: Device Data Exposure Assessment](../runbooks/analysis/RB-ANALYSIS-024-device-data-exposure-assessment.md)
+- [RB-ANALYSIS-032: Device Security Posture Assessment](../runbooks/analysis/RB-ANALYSIS-032-device-security-posture-assessment.md)
+- [RB-ANALYSIS-033: Device Data Exposure Assessment](../runbooks/analysis/RB-ANALYSIS-033-device-data-exposure-assessment.md)
 - [RB-CONTAIN-001: Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
 - [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
-- [RB-CONTAIN-008: Remote Device Lock & Wipe](../runbooks/contain/RB-CONTAIN-008-remote-device-lock-wipe.md)
+- [RB-CONTAIN-011: Remote Device Lock & Wipe](../runbooks/contain/RB-CONTAIN-011-remote-device-lock-wipe.md)
 - [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
 
 ## 10. Appendices

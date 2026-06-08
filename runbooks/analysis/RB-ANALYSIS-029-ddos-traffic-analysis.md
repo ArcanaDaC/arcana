@@ -4,14 +4,13 @@
 
 | Attribute | Value | Date |
 |------------|------------|------------|
+| Document Name | DDoS Traffic Analysis | |
 | Version | [Enter version number] | [Enter date] |
 | Owner | [Enter owner/team] | [Enter date] |
 | Status | [Draft/Approved/Retired] | [Enter date] |
 | Next Review Date | [Enter next review date] | [Enter date] |
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
-| Runbook ID | RB-ANALYSIS-029 | 2026-06-04 |
-| Runbook Name | DDoS Traffic Analysis | 2026-06-04 |
 
 ---
 

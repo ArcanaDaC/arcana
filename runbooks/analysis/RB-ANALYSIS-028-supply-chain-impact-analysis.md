@@ -1,21 +1,18 @@
-# RB-ANALYSIS-028 Supply Chain Impact Analysis
+# RB-ANALYSIS-028: Supply Chain Impact Analysis
 
 ## Document Control
 
 | Attribute | Value | Date |
 |------------|------------|------------|
+| Document Name | Supply Chain Impact Analysis | |
 | Version | [Enter version number] | [Enter date] |
 | Owner | [Enter owner/team] | [Enter date] |
 | Status | [Draft/Approved/Retired] | [Enter date] |
 | Next Review Date | [Enter next review date] | [Enter date] |
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
-| Runbook ID | RB-ANALYSIS-028 | 2026-06-04 |
-| Runbook Name | Supply Chain Impact Analysis | 2026-06-04 |
 
----
-
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -27,206 +24,184 @@ Before starting this runbook, ensure the following:
 - Cloud and SaaS inventories available
 - Business owner identified
 
----
+## 2. Step-by-Step Instructions
 
-# 2. Step-by-Step Instructions
+1. **Identify the Affected Supply Chain Component**
 
-### Step 1 – Identify the Affected Supply Chain Component
+    Determine:
 
-Determine:
+    - Vendor name
+    - Product name
+    - Product version
+    - Dependency name
+    - Integration type
+    - Deployment model
 
-- Vendor name
-- Product name
-- Product version
-- Dependency name
-- Integration type
-- Deployment model
+    Identify whether the issue involves:
 
-Identify whether the issue involves:
+    - Software supplier
+    - SaaS provider
+    - Cloud provider
+    - Managed service provider
+    - Open-source dependency
+    - Hardware supplier
 
-- Software supplier
-- SaaS provider
-- Cloud provider
-- Managed service provider
-- Open-source dependency
-- Hardware supplier
+    Document findings.
 
-Document findings.
+2. **Collect Publicly Available Details**
 
----
+    Gather:
 
-### Step 2 – Collect Publicly Available Details
+    - Vendor advisory
+    - Security bulletin
+    - CVE references
+    - Vendor communications
+    - Threat intelligence reporting
+    - Known indicators of compromise
 
-Gather:
+    Determine:
 
-- Vendor advisory
-- Security bulletin
-- CVE references
-- Vendor communications
-- Threat intelligence reporting
-- Known indicators of compromise
+    - Nature of compromise
+    - Attack vector
+    - Known attacker activity
+    - Published impact guidance
 
-Determine:
+    Document findings.
 
-- Nature of compromise
-- Attack vector
-- Known attacker activity
-- Published impact guidance
+3. **Identify Organisational Exposure**
 
-Document findings.
+    Review:
 
----
+    - Asset inventory
+    - Endpoint inventory
+    - Server inventory
+    - Cloud inventory
+    - SaaS inventory
+    - Development environments
 
-### Step 3 – Identify Organisational Exposure
+    Identify:
 
-Review:
+    - Affected systems
+    - Affected business units
+    - Affected users
+    - Affected environments
 
-- Asset inventory
-- Endpoint inventory
-- Server inventory
-- Cloud inventory
-- SaaS inventory
-- Development environments
+    Document all impacted assets.
 
-Identify:
+4. **Determine Version Exposure**
 
-- Affected systems
-- Affected business units
-- Affected users
-- Affected environments
+    Review:
 
-Document all impacted assets.
+    - Installed versions
+    - Running versions
+    - Deployment dates
+    - Update history
+    - Configuration details
 
----
+    Determine:
 
-### Step 4 – Determine Version Exposure
+    - Vulnerable versions
+    - Supported versions
+    - Patched versions
+    - Unsupported versions
 
-Review:
+    Document findings.
 
-- Installed versions
-- Running versions
-- Deployment dates
-- Update history
-- Configuration details
+5. **Review Trust Relationships**
 
-Determine:
+    Assess:
 
-- Vulnerable versions
-- Supported versions
-- Patched versions
-- Unsupported versions
+    - API integrations
+    - Service accounts
+    - Federation relationships
+    - OAuth integrations
+    - Vendor access paths
+    - Administrative access
 
-Document findings.
+    Identify:
 
----
+    - Direct trust relationships
+    - Indirect trust relationships
+    - Privileged access paths
 
-### Step 5 – Review Trust Relationships
+    Document findings.
 
-Assess:
+6. **Assess Potential Impact**
 
-- API integrations
-- Service accounts
-- Federation relationships
-- OAuth integrations
-- Vendor access paths
-- Administrative access
+    Determine whether compromise could result in:
 
-Identify:
+    - Remote code execution
+    - Credential theft
+    - Data exposure
+    - Privilege escalation
+    - Malware deployment
+    - Supply chain malware propagation
+    - Administrative access abuse
 
-- Direct trust relationships
-- Indirect trust relationships
-- Privileged access paths
+    Assign impact rating.
 
-Document findings.
+7. **Review Available Telemetry**
 
----
+    Review:
 
-### Step 6 – Assess Potential Impact
+    - Authentication logs
+    - EDR telemetry
+    - Cloud audit logs
+    - SaaS audit logs
+    - Administrative activity
+    - Network activity
 
-Determine whether compromise could result in:
+    Look for:
 
-- Remote code execution
-- Credential theft
-- Data exposure
-- Privilege escalation
-- Malware deployment
-- Supply chain malware propagation
-- Administrative access abuse
+    - Indicators of compromise
+    - Suspicious access
+    - Unexpected changes
+    - Suspicious execution
 
-Assign impact rating.
+    Document findings.
 
----
+8. **Determine Scope Expansion Requirements**
 
-### Step 7 – Review Available Telemetry
+    Assess whether additional investigation is required for:
 
-Review:
+    - Downstream dependencies
+    - Connected vendors
+    - Partner environments
+    - Shared infrastructure
+    - Shared credentials
+    - Shared integrations
 
-- Authentication logs
-- EDR telemetry
-- Cloud audit logs
-- SaaS audit logs
-- Administrative activity
-- Network activity
+    Expand investigation scope where necessary.
 
-Look for:
+9. **Recommend Response Actions**
 
-- Indicators of compromise
-- Suspicious access
-- Unexpected changes
-- Suspicious execution
+    Determine whether to:
 
-Document findings.
+    - Disable integrations
+    - Restrict vendor access
+    - Patch affected systems
+    - Rotate credentials
+    - Revoke tokens
+    - Isolate systems
+    - Activate additional playbooks
 
----
+    Document recommendations.
 
-### Step 8 – Determine Scope Expansion Requirements
+10. **Update Incident Record**
 
-Assess whether additional investigation is required for:
+    Record:
 
-- Downstream dependencies
-- Connected vendors
-- Partner environments
-- Shared infrastructure
-- Shared credentials
-- Shared integrations
+    - Affected products
+    - Impacted assets
+    - Exposure assessment
+    - Trust relationship review
+    - Telemetry findings
+    - Recommended actions
+    - Escalation decisions
 
-Expand investigation scope where necessary.
+    Attach supporting evidence.
 
----
-
-### Step 9 – Recommend Response Actions
-
-Determine whether to:
-
-- Disable integrations
-- Restrict vendor access
-- Patch affected systems
-- Rotate credentials
-- Revoke tokens
-- Isolate systems
-- Activate additional playbooks
-
-Document recommendations.
-
----
-
-### Step 10 – Update Incident Record
-
-Record:
-
-- Affected products
-- Impacted assets
-- Exposure assessment
-- Trust relationship review
-- Telemetry findings
-- Recommended actions
-- Escalation decisions
-
-Attach supporting evidence.
-
----
-
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -237,11 +212,9 @@ Upon completion:
 - Ensure response recommendations are documented
 - Ensure incident ticket is updated
 
----
-
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

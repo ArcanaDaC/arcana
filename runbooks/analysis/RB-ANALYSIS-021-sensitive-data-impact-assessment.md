@@ -114,7 +114,7 @@
       - Data Owners
       - Executive Stakeholders (if required)
     - Escalate to:
-      - Regulatory & Legal Coordination
+      - Escalation, Legal & Executive Communications
       - Recovery and Exposure Mitigation activities
     - Update the incident record with all findings.
 

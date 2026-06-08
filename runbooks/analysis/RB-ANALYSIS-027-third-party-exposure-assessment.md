@@ -1,21 +1,18 @@
-# RB-ANALYSIS-027 Third-Party Exposure Assessment
+# RB-ANALYSIS-027: Third-Party Exposure Assessment
 
 ## Document Control
 
 | Attribute | Value | Date |
 |------------|------------|------------|
+| Document Name | Third-Party Exposure Assessment | |
 | Version | [Enter version number] | [Enter date] |
 | Owner | [Enter owner/team] | [Enter date] |
 | Status | [Draft/Approved/Retired] | [Enter date] |
 | Next Review Date | [Enter next review date] | [Enter date] |
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
-| Runbook ID | RB-ANALYSIS-027 | 2026-06-04 |
-| Runbook Name | Third-Party Exposure Assessment | 2026-06-04 |
 
----
-
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -27,189 +24,152 @@ Before starting this runbook, ensure the following:
 - Access to cloud and SaaS audit logs
 - Access to asset inventory
 
----
+## 2. Step-by-Step Instructions
 
-# 2. Step-by-Step Instructions
+1. **Validate Third-Party Relationship**
 
-### Step 1 – Validate Third-Party Relationship
+    Identify:
 
-Identify:
+    - Vendor name
+    - Service provided
+    - Business owner
+    - Criticality rating
+    - Contractual relationship
+    - Data handling responsibilities
 
-- Vendor name
-- Service provided
-- Business owner
-- Criticality rating
-- Contractual relationship
-- Data handling responsibilities
+    Determine:
 
-Determine:
+    - Whether the organisation actively uses the vendor
+    - Whether services remain operational
+    - Whether the relationship is current
 
-- Whether the organisation actively uses the vendor
-- Whether services remain operational
-- Whether the relationship is current
+    Document findings.
 
-Document findings.
+2. **Identify Organisational Dependencies**
 
----
+    Review:
 
-### Step 2 – Identify Organisational Dependencies
+    - SaaS platforms
+    - Cloud services
+    - Managed service providers
+    - Software suppliers
+    - Development dependencies
+    - Security tooling
+    - Infrastructure providers
 
-Review:
+    Determine:
 
-- SaaS platforms
-- Cloud services
-- Managed service providers
-- Software suppliers
-- Development dependencies
-- Security tooling
-- Infrastructure providers
+    - Which systems rely on the third party
+    - Which business processes are affected
 
-Determine:
+    Document impacted services.
 
-- Which systems rely on the third party
-- Which business processes are affected
+3. **Assess Third-Party Access**
 
-Document impacted services.
+    Review:
 
----
+    - User accounts
+    - Service accounts
+    - API integrations
+    - OAuth applications
+    - Federated identity relationships
+    - Privileged access
+    - Administrative access
 
-### Step 3 – Assess Third-Party Access
+    Identify:
 
-Review:
+    - Active access paths
+    - High-risk access
+    - Excessive permissions
 
-- User accounts
-- Service accounts
-- API integrations
-- OAuth applications
-- Federated identity relationships
-- Privileged access
-- Administrative access
+    Document findings.
 
-Identify:
+4. **Assess Data Exposure**
 
-- Active access paths
-- High-risk access
-- Excessive permissions
+    Determine whether the third party has access to:
 
-Document findings.
+    - Customer data
+    - Employee data
+    - Financial data
+    - Intellectual property
+    - Source code
+    - Security telemetry
+    - Authentication systems
 
----
+    Document:
 
-### Step 4 – Assess Data Exposure
+    - Data types
+    - Data classification levels
+    - Exposure risk
 
-Determine whether the third party has access to:
+5. **Review Authentication Activity**
 
-- Customer data
-- Employee data
-- Financial data
-- Intellectual property
-- Source code
-- Security telemetry
-- Authentication systems
+    Review:
 
-Document:
+    - Recent authentications
+    - Failed authentication attempts
+    - Administrative logins
+    - API activity
+    - Federated access activity
+    - Unusual login patterns
 
-- Data types
-- Data classification levels
-- Exposure risk
+    Identify suspicious activity associated with the third party.
 
----
+6. **Review Audit Logs**
 
-### Step 5 – Review Authentication Activity
+    Review:
 
-Review:
+    - Cloud audit logs
+    - SaaS audit logs
+    - Administrative activity logs
+    - Configuration changes
+    - Permission changes
+    - Service account activity
 
-- Recent authentications
-- Failed authentication attempts
-- Administrative logins
-- API activity
-- Federated access activity
-- Unusual login patterns
+    Identify evidence of:
 
-Identify suspicious activity associated with the third party.
+    - Unauthorised access
+    - Suspicious changes
+    - Unexpected activity
 
----
+7. **Assess Organisational Impact**
 
-### Step 6 – Review Audit Logs
+    Determine:
 
-Review:
+    - Systems impacted
+    - Users impacted
+    - Business functions impacted
+    - Regulatory implications
+    - Operational risk
+    - Recovery complexity
 
-- Cloud audit logs
-- SaaS audit logs
-- Administrative activity logs
-- Configuration changes
-- Permission changes
-- Service account activity
+    Assign an impact rating.
 
-Identify evidence of:
+8. **Determine Containment Requirements**
 
-- Unauthorised access
-- Suspicious changes
-- Unexpected activity
+    Assess whether:
 
----
+    - Third-party access should be suspended
+    - Service accounts should be disabled
+    - Tokens should be revoked
+    - API keys should be rotated
+    - Integrations should be disabled
 
-### Step 7 – Assess Organisational Impact
+    Document recommendations.
 
-Determine:
+9. **Update Incident Record**
 
-- Systems impacted
-- Users impacted
-- Business functions impacted
-- Regulatory implications
-- Operational risk
-- Recovery complexity
+    Record:
 
-Assign an impact rating.
+    - Third-party details
+    - Exposure assessment
+    - Access review findings
+    - Impact assessment
+    - Containment recommendations
 
----
+    Attach supporting evidence.
 
-### Step 8 – Determine Containment Requirements
-
-Assess whether:
-
-- Third-party access should be suspended
-- Service accounts should be disabled
-- Tokens should be revoked
-- API keys should be rotated
-- Integrations should be disabled
-
-Document recommendations.
-
----
-
-### Step 9 – Identify Escalation Requirements
-
-If evidence supports another incident type:
-
-Activate:
-
-- PB-004 Account Takeover
-- PB-005 Data Exfiltration
-- PB-007 Cloud Compromise
-- PB-009 Privilege Escalation
-- PB-010 Lateral Movement
-
-Continue executing current playbook concurrently.
-
----
-
-### Step 10 – Update Incident Record
-
-Record:
-
-- Third-party details
-- Exposure assessment
-- Access review findings
-- Impact assessment
-- Containment recommendations
-- Escalation decisions
-
-Attach supporting evidence.
-
----
-
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -217,14 +177,11 @@ Upon completion:
 - Ensure impacted systems have been identified
 - Ensure access relationships have been reviewed
 - Ensure containment recommendations are recorded
-- Ensure escalation decisions are documented
 - Ensure incident ticket is updated
-
----
 
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

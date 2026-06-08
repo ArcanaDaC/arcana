@@ -1,21 +1,18 @@
-# RB-RECOVERY-005 Third-Party Trust Restoration
+# RB-RECOVERY-005: Third-Party Trust Restoration
 
 ## Document Control
 
 | Attribute | Value | Date |
 |------------|------------|------------|
+| Document Name | Third-Party Trust Restoration | |
 | Version | [Enter version number] | [Enter date] |
 | Owner | [Enter owner/team] | [Enter date] |
 | Status | [Draft/Approved/Retired] | [Enter date] |
 | Next Review Date | [Enter next review date] | [Enter date] |
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
-| Runbook ID | RB-RECOVERY-005 | 2026-06-04 |
-| Runbook Name | Third-Party Trust Restoration | 2026-06-04 |
 
----
-
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -28,216 +25,194 @@ Before starting this runbook, ensure the following:
 - Business owner approval has been obtained
 - Incident ticket remains active
 
----
+## 2. Step-by-Step Instructions
 
-# 2. Step-by-Step Instructions
+1. **Verify Third-Party Remediation**
 
-### Step 1 – Verify Third-Party Remediation
+    Obtain evidence that the third party has:
 
-Obtain evidence that the third party has:
+    - Completed investigation activities
+    - Contained the incident
+    - Removed attacker access
+    - Eliminated persistence mechanisms
+    - Implemented corrective actions
+    - Completed recovery activities
 
-- Completed investigation activities
-- Contained the incident
-- Removed attacker access
-- Eliminated persistence mechanisms
-- Implemented corrective actions
-- Completed recovery activities
+    Review:
 
-Review:
+    - Vendor incident reports
+    - Security advisories
+    - Remediation statements
+    - Attestation documents
+    - Executive communications
 
-- Vendor incident reports
-- Security advisories
-- Remediation statements
-- Attestation documents
-- Executive communications
+    Document findings.
 
-Document findings.
+2. **Validate Residual Risk**
 
----
+    Review:
 
-### Step 2 – Validate Residual Risk
+    - Exposure assessment
+    - Impact assessment
+    - Vendor remediation activities
+    - Business requirements
+    - Compensating controls
 
-Review:
+    Determine:
 
-- Exposure assessment
-- Impact assessment
-- Vendor remediation activities
-- Business requirements
-- Compensating controls
+    - Residual risk level
+    - Additional safeguards required
+    - Monitoring requirements
 
-Determine:
+    Document risk acceptance decisions where applicable.
 
-- Residual risk level
-- Additional safeguards required
-- Monitoring requirements
+3. **Review Previously Restricted Access**
 
-Document risk acceptance decisions where applicable.
+    Identify all access that was disabled or restricted during containment:
 
----
+    - User accounts
+    - Service accounts
+    - Administrative accounts
+    - API integrations
+    - OAuth applications
+    - SaaS integrations
+    - SAML trust relationships
+    - OIDC trust relationships
+    - Cloud cross-account access
+    - Vendor remote access solutions
 
-### Step 3 – Review Previously Restricted Access
+    Create a restoration inventory.
 
-Identify all access that was disabled or restricted during containment:
+4. **Rotate Credentials and Secrets**
 
-- User accounts
-- Service accounts
-- Administrative accounts
-- API integrations
-- OAuth applications
-- SaaS integrations
-- SAML trust relationships
-- OIDC trust relationships
-- Cloud cross-account access
-- Vendor remote access solutions
+    Where applicable:
 
-Create a restoration inventory.
+    - Rotate passwords
+    - Rotate service account credentials
+    - Rotate API keys
+    - Rotate OAuth secrets
+    - Rotate certificates
+    - Rotate access tokens
+    - Reissue authentication secrets
 
----
+    Validate successful rotation.
 
-### Step 4 – Rotate Credentials and Secrets
+    Document actions performed.
 
-Where applicable:
+5. **Restore Access in Phases**
 
-- Rotate passwords
-- Rotate service account credentials
-- Rotate API keys
-- Rotate OAuth secrets
-- Rotate certificates
-- Rotate access tokens
-- Reissue authentication secrets
+    Restore access using a phased approach.
 
-Validate successful rotation.
+    Phase 1:
 
-Document actions performed.
+    - Low-risk integrations
+    - Read-only access
+    - Non-privileged access
 
----
+    Phase 2:
 
-### Step 5 – Restore Access in Phases
+    - Operational services
+    - Standard business access
+    - Application integrations
 
-Restore access using a phased approach.
+    Phase 3:
 
-Phase 1:
+    - Administrative access
+    - Privileged functionality
+    - High-impact integrations
 
-- Low-risk integrations
-- Read-only access
-- Non-privileged access
+    Validate each phase before proceeding.
 
-Phase 2:
+6. **Re-Establish Trust Relationships**
 
-- Operational services
-- Standard business access
-- Application integrations
+    Restore approved trust relationships including:
 
-Phase 3:
+    - SAML federation
+    - OIDC federation
+    - OAuth applications
+    - API integrations
+    - SaaS integrations
+    - Cloud trust relationships
+    - Vendor remote access connectivity
 
-- Administrative access
-- Privileged functionality
-- High-impact integrations
+    Verify:
 
-Validate each phase before proceeding.
+    - Authentication functionality
+    - Authorisation controls
+    - Least privilege configuration
+    - Logging coverage
 
----
+    Document validation results.
 
-### Step 6 – Re-Establish Trust Relationships
+7. **Validate Security Controls**
 
-Restore approved trust relationships including:
+    Confirm:
 
-- SAML federation
-- OIDC federation
-- OAuth applications
-- API integrations
-- SaaS integrations
-- Cloud trust relationships
-- Vendor remote access connectivity
+    - Audit logging is enabled
+    - Monitoring is operational
+    - Alerting is operational
+    - Detection rules are functioning
+    - Access controls are functioning
+    - Conditional access policies are enforced
 
-Verify:
+    Review:
 
-- Authentication functionality
-- Authorisation controls
-- Least privilege configuration
-- Logging coverage
+    - Authentication logs
+    - Audit logs
+    - Administrative activity logs
 
-Document validation results.
+    Document findings.
 
----
+8. **Monitor Restored Access**
 
-### Step 7 – Validate Security Controls
+    Monitor for:
 
-Confirm:
+    - Unusual authentication activity
+    - Excessive privilege usage
+    - Unexpected API activity
+    - Unauthorised access attempts
+    - Suspicious administrative actions
+    - Unexpected configuration changes
 
-- Audit logging is enabled
-- Monitoring is operational
-- Alerting is operational
-- Detection rules are functioning
-- Access controls are functioning
-- Conditional access policies are enforced
+    Investigate anomalies immediately.
 
-Review:
+    Document monitoring outcomes.
 
-- Authentication logs
-- Audit logs
-- Administrative activity logs
+9. **Obtain Stakeholder Approval**
 
-Document findings.
+    Obtain approval from:
 
----
+    - Business owner
+    - Vendor management team
+    - Security leadership
+    - Service owner
+    - Identity team where applicable
 
-### Step 8 – Monitor Restored Access
+    Document:
 
-Monitor for:
+    - Approval decisions
+    - Remaining risks
+    - Monitoring requirements
+    - Outstanding actions
 
-- Unusual authentication activity
-- Excessive privilege usage
-- Unexpected API activity
-- Unauthorised access attempts
-- Suspicious administrative actions
-- Unexpected configuration changes
+    Record sign-off.
 
-Investigate anomalies immediately.
+10. **Update Incident Record**
 
-Document monitoring outcomes.
+    Record:
 
----
+    - Restored services
+    - Restored integrations
+    - Restored trust relationships
+    - Credential rotations completed
+    - Validation results
+    - Monitoring requirements
+    - Stakeholder approvals
+    - Residual risks
 
-### Step 9 – Obtain Stakeholder Approval
+    Attach supporting evidence.
 
-Obtain approval from:
-
-- Business owner
-- Vendor management team
-- Security leadership
-- Service owner
-- Identity team where applicable
-
-Document:
-
-- Approval decisions
-- Remaining risks
-- Monitoring requirements
-- Outstanding actions
-
-Record sign-off.
-
----
-
-### Step 10 – Update Incident Record
-
-Record:
-
-- Restored services
-- Restored integrations
-- Restored trust relationships
-- Credential rotations completed
-- Validation results
-- Monitoring requirements
-- Stakeholder approvals
-- Residual risks
-
-Attach supporting evidence.
-
----
-
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -249,11 +224,9 @@ Upon completion:
 - Ensure supporting evidence is attached
 - Ensure incident ticket is updated
 
----
-
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

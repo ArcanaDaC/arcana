@@ -1,21 +1,18 @@
-# RB-TRIAGE-004 Third-Party Notification Validation
+# RB-TRIAGE-004: Third-Party Notification Validation
 
 ## Document Control
 
 | Attribute | Value | Date |
 |------------|------------|------------|
+| Document Name | Third-Party Notification Validation | |
 | Version | [Enter version number] | [Enter date] |
 | Owner | [Enter owner/team] | [Enter date] |
 | Status | [Draft/Approved/Retired] | [Enter date] |
 | Next Review Date | [Enter next review date] | [Enter date] |
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
-| Runbook ID | RB-TRIAGE-004 | 2026-06-04 |
-| Runbook Name | Third-Party Notification Validation | 2026-06-04 |
 
----
-
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -27,200 +24,142 @@ Before starting this runbook, ensure the following:
 - Access to vendor management contacts
 - Access to security advisories and public reporting
 
----
+## 2. Step-by-Step Instructions
 
-# 2. Step-by-Step Instructions
+1. **Identify Notification Source**
 
-### Step 1 – Identify Notification Source
+    Determine the source of the notification.
 
-Determine the source of the notification.
+    Common sources include:
 
-Common sources include:
+    - Vendor security notification
+    - Vendor trust centre advisory
+    - Security mailing list
+    - Threat intelligence provider
+    - Government advisory
+    - Regulatory notification
+    - Public disclosure
+    - Social media disclosure
+    - News reporting
+    - Customer notification
+    - Internal security team
 
-- Vendor security notification
-- Vendor trust centre advisory
-- Security mailing list
-- Threat intelligence provider
-- Government advisory
-- Regulatory notification
-- Public disclosure
-- Social media disclosure
-- News reporting
-- Customer notification
-- Internal security team
+    Document the source.
 
-Document the source.
+2. **Validate Notification Authenticity**
 
----
+    Verify:
 
-### Step 2 – Validate Notification Authenticity
+    - Notification sender
+    - Vendor domain ownership
+    - Advisory authenticity
+    - Security bulletin legitimacy
+    - Supporting references
 
-Verify:
+    Review:
 
-- Notification sender
-- Vendor domain ownership
-- Advisory authenticity
-- Security bulletin legitimacy
-- Supporting references
+    - Vendor trust centre
+    - Official advisories
+    - Public statements
+    - Security bulletins
 
-Review:
+    Identify potential phishing, spoofing, or misinformation attempts.
 
-- Vendor trust centre
-- Official advisories
-- Public statements
-- Security bulletins
+    Document findings.
 
-Identify potential phishing, spoofing, or misinformation attempts.
+3. **Identify Affected Third Party**
 
-Document findings.
+    Determine:
 
----
+    - Vendor name
+    - Product name
+    - Service name
+    - Business owner
+    - Vendor criticality
 
-### Step 3 – Identify Affected Third Party
+    Identify:
 
-Determine:
+    - Whether the vendor is actively used
+    - Whether the relationship is current
+    - Whether the service remains operational
 
-- Vendor name
-- Product name
-- Service name
-- Business owner
-- Vendor criticality
+    Document findings.
 
-Identify:
+4. **Gather Incident Details**
 
-- Whether the vendor is actively used
-- Whether the relationship is current
-- Whether the service remains operational
+    Collect:
 
-Document findings.
+    - Incident summary
+    - Date of compromise
+    - Discovery date
+    - Attack vector
+    - Impact statement
+    - Scope of compromise
+    - Known affected products
+    - Known affected versions
 
----
+    Document all available details.
 
-### Step 4 – Gather Incident Details
+5. **Collect Technical Information**
 
-Collect:
+    Gather:
 
-- Incident summary
-- Date of compromise
-- Discovery date
-- Attack vector
-- Impact statement
-- Scope of compromise
-- Known affected products
-- Known affected versions
+    - CVEs
+    - Indicators of Compromise (IOCs)
+    - Vendor mitigation guidance
+    - Vendor remediation guidance
+    - Detection recommendations
+    - Published attacker techniques
 
-Document all available details.
+    Store references within the incident record.
 
----
+6. **Determine Organisational Exposure**
 
-### Step 5 – Collect Technical Information
+    Identify:
 
-Gather:
+    - Use of affected products
+    - Use of affected services
+    - Use of affected versions
+    - Existing integrations
+    - Existing trust relationships
 
-- CVEs
-- Indicators of Compromise (IOCs)
-- Vendor mitigation guidance
-- Vendor remediation guidance
-- Detection recommendations
-- Published attacker techniques
+    Determine:
 
-Store references within the incident record.
+    - Whether the organisation is potentially exposed
+    - Whether exposure can be immediately ruled out
 
----
+    Document findings.
 
-### Step 6 – Determine Organisational Exposure
+7. **Assess Severity**
 
-Identify:
+    Determine whether the event represents:
 
-- Use of affected products
-- Use of affected services
-- Use of affected versions
-- Existing integrations
-- Existing trust relationships
+    - Advisory only
+    - Vulnerability disclosure
+    - Suspected compromise
+    - Confirmed compromise
+    - Active exploitation
+    - Confirmed organisational exposure
 
-Determine:
+    Assign an initial severity rating.
 
-- Whether the organisation is potentially exposed
-- Whether exposure can be immediately ruled out
+    Document rationale.
 
-Document findings.
+. **Update Incident Record**
 
----
+    Record:
 
-### Step 7 – Assess Severity
+    - Notification source
+    - Validation results
+    - Vendor details
+    - Product details
+    - Exposure assessment
+    - Severity assessment
+    - Stakeholder notifications
 
-Determine whether the event represents:
+    Attach supporting evidence and references.
 
-- Advisory only
-- Vulnerability disclosure
-- Suspected compromise
-- Confirmed compromise
-- Active exploitation
-- Confirmed organisational exposure
-
-Assign an initial severity rating.
-
-Document rationale.
-
----
-
-### Step 8 – Identify Internal Stakeholders
-
-Identify:
-
-- Business owner
-- Vendor management team
-- Service owner
-- Identity team
-- Cloud team
-- Security leadership
-
-Notify relevant stakeholders as required.
-
-Document notifications.
-
----
-
-### Step 9 – Determine Escalation Requirements
-
-If organisational exposure exists:
-
-Initiate:
-
-- PB-012 Third-Party Compromise
-
-If additional evidence exists:
-
-Consider activating:
-
-- PB-004 Account Takeover
-- PB-005 Data Exfiltration
-- PB-007 Cloud Compromise
-- PB-009 Privilege Escalation
-- PB-010 Lateral Movement
-
-Document escalation decisions.
-
----
-
-### Step 10 – Update Incident Record
-
-Record:
-
-- Notification source
-- Validation results
-- Vendor details
-- Product details
-- Exposure assessment
-- Severity assessment
-- Stakeholder notifications
-- Escalation decisions
-
-Attach supporting evidence and references.
-
----
-
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -228,15 +167,11 @@ Upon completion:
 - Ensure affected vendor and products have been identified
 - Ensure exposure assessment has been completed
 - Ensure severity assessment is documented
-- Ensure stakeholder notifications are recorded
-- Ensure escalation decisions are documented
 - Ensure incident ticket is updated
-
----
 
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

@@ -78,7 +78,7 @@ Investigations should consider secondary attacker objectives.
 
 ### Post-Incident
 
-- [RB-POST-004 DDoS Resilience Improvement](../runbooks/post-incident/RB-POST-004-ddos-resilience-improvement.md)
+- [RB-POST-003: DDoS Resilience Improvement](../runbooks/post-incident/RB-POST-003-ddos-resilience-improvement.md)
 
 ---
 
@@ -286,7 +286,7 @@ Actions:
 
 Runbook:
 
-- [RB-POST-004 DDoS Resilience Improvement](../runbooks/post-incident/RB-POST-004-ddos-resilience-improvement.md)
+- [RB-POST-003: DDoS Resilience Improvement](../runbooks/post-incident/RB-POST-003-ddos-resilience-improvement.md)
 
 Actions:
 

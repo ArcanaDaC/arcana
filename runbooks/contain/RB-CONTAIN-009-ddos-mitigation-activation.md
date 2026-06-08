@@ -4,14 +4,13 @@
 
 | Attribute | Value | Date |
 |------------|------------|------------|
+| Document Name | DDoS Mitigation Activation | |
 | Version | [Enter version number] | [Enter date] |
 | Owner | [Enter owner/team] | [Enter date] |
 | Status | [Draft/Approved/Retired] | [Enter date] |
 | Next Review Date | [Enter next review date] | [Enter date] |
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
-| Runbook ID | RB-CONTAIN-009 | 2026-06-04 |
-| Runbook Name | DDoS Mitigation Activation | 2026-06-04 |
 
 ---
 

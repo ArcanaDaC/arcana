@@ -271,7 +271,7 @@ Initiate this playbook when any of the following occur:
 
 ## Contributor
 
-**Firstname Lastname**
-GitHub: https://github.com/account
+**Jayden Vo**
+GitHub: https://github.com/jayden-vo
 
 Contributed to the Arcana Incident Response Documentation Framework.

@@ -29,40 +29,40 @@
 >   - Missing OAuth persistence
 
 1. Identify Active Sessions
-   - Review:
-      - Browser sessions
-      - Mobile sessions
-      - OAuth sessions
-      - API sessions
-      - VPN sessions
+    - Review:
+        - Browser sessions
+        - Mobile sessions
+        - OAuth sessions
+        - API sessions
+        - VPN sessions
 
 2. Revoke Session
-   - Perform:
-      - Global sign-out
-      - Browser session invalidation
-      - VPN session termination
-      - SaaS session revocation
+    - Perform:
+        - Global sign-out
+        - Browser session invalidation
+        - VPN session termination
+        - SaaS session revocation
 
 3. Revoke Tokens
-   - Invalidate:
-      - Refresh tokens
-      - OAuth access tokens
-      - API tokens
-      - Persistent sessions
+    - Invalidate:
+        - Refresh tokens
+        - OAuth access tokens
+        - API tokens
+        - Persistent sessions
 
 4. Remove Unauthorised Access
-   - Review and remove:
-      - Rogue devices
-      - Suspicious browser sessions
-      - Unknown API integrations
-      - Persistent login approvals
+    - Review and remove:
+        - Rogue devices
+        - Suspicious browser sessions
+        - Unknown API integrations
+        - Persistent login approvals
 
 5. Validate Revocation Success
-   - Confirm:
-      - Sessions terminated successfully
-      - Tokens invalidated
-      - No continued attacker activity
-      - New authentication required
+    - Confirm:
+        - Sessions terminated successfully
+        - Tokens invalidated
+        - No continued attacker activity
+        - New authentication required
 
 ## 3. Post-Action
 - Document all containment steps taken in the incident ticket, along with the time each action was taken

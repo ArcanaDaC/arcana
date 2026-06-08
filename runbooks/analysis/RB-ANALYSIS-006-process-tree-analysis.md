@@ -23,53 +23,52 @@
 
 ## 2. Step-by-Step Instructions
 
-
 1. **Identify Initial Execution Process**
-	- Determine:
-		- Initial executable
-		- Launch source
-		- User context
-		- Execution timestamp
+    - Determine:
+        - Initial executable
+        - Launch source
+        - User context
+        - Execution timestamp
 
 2. **Review Parent-Child Relationships**
-	- Identify:
-		- Suspicious ancestry
-		- Office application spawning scripts
-		- LOLBin usage
-		- Script interpreter execution
+    - Identify:
+        - Suspicious ancestry
+        - Office application spawning scripts
+        - LOLBin usage
+        - Script interpreter execution
 
 3. **Analyse Command-Line Arguments**
-	- Review for:
-		- Encoded commands
-		- PowerShell abuse
-		- Download cradles
-		- Obfuscation
-		- Suspicious parameters
-
+    - Review for:
+        - Encoded commands
+        - PowerShell abuse
+        - Download cradles
+        - Obfuscation
+        - Suspicious parameters
 
 4. **Identify Secondary Payload Execution**
-	- Look for:
-		- Additional binaries
-		- Script downloads
-		- DLL execution
-		- Injection behaviour
+    - Look for:
+        - Additional binaries
+        - Script downloads
+        - DLL execution
+        - Injection behaviour
 
 5. **Review Network Activity**
-	- Identify:
-		- External connections
-		- C2 behaviour
-		- DNS activity
-		- Beaconing intervals
-
+    - Identify:
+        - External connections
+        - C2 behaviour
+        - DNS activity
+        - Beaconing intervals
 
 6. **Correlate with User Activity**
-	- Determine:
-		- Was execution user initiated?
-		- Was phishing involved?
-		- Was remote execution involved?
- 
+    - Determine:
+        - Was execution user initiated?
+        - Was phishing involved?
+        - Was remote execution involved?
+
 ## 3. Post-Action
 - Ensure all analysis steps and findings are fully documented in the incident ticket
+
+---
 
 ## Contributor
 

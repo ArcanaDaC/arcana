@@ -1,386 +1,230 @@
 # PB-011: Suspicious Execution
 
-## Overview
+## Document Control
 
-This playbook outlines the response process for suspicious process execution activity that may indicate malware execution, attacker activity, script abuse, privilege escalation attempts, credential theft, or other malicious activity on an endpoint.
+| Attribute | Value | Date |
+| --- | --- | --- |
+| Document Name | PB-011: Suspicious Execution | [Enter date] |
+| Version | [Enter version number] | [Enter date] |
+| Owner | [Enter owner/team] | [Enter date] |
+| Status | [Draft/Approved/Retired] | [Enter date] |
+| Next Review Date | [Enter next review date] | [Enter date] |
+| Approvals | [Enter approver(s)] | [Enter date] |
+| Change Summary | Initial creation | [Enter date] |
 
-This playbook is frequently used as an initial investigative workflow before a specific incident type has been confirmed.
+## 1. Purpose & Scope
 
-This playbook is intended for:
+- **Purpose:**
 
-- Suspicious process execution
-- PowerShell abuse
-- LOLBin abuse
-- Encoded command execution
-- Script execution alerts
-- Suspicious parent-child process relationships
-- Unknown binary execution
-- EDR behavioural detections
-- Suspicious command-line activity
+    This playbook defines the response workflow for suspicious process, command-line, script, binary, or interpreter execution. It helps responders validate whether activity is authorised, malicious, or part of a broader incident such as malware, privilege escalation, lateral movement, account takeover, cloud compromise, or data exfiltration.
 
----
+- **Scope:**
 
-## Status
+    Applies to suspicious execution on endpoints, servers, cloud workloads, containers, virtual machines, administrative hosts, and user workstations. Includes LOLBin abuse, encoded or obfuscated commands, script execution, suspicious parent-child processes, unknown binaries, EDR behavioural detections, and unauthorised administrative tooling.
 
-Live
+## 2. Incident Identification & Criteria
 
----
+**Incident Type:** Suspicious Execution
 
-## Warning
-
-Do NOT assume suspicious execution represents malware until sufficient evidence exists.
-
-Many modern attacks leverage legitimate tools and operating system binaries.
-
-Likewise, do NOT assume activity is benign because:
-
-- The process is signed
-- The process completed successfully
-- The user initiated execution
-- Antivirus did not detect malware
-
-Suspicious execution should be treated as a potential precursor to compromise until validated.
-
----
-
-## Immediate Emergency Actions
-
-1. Validate execution activity
-2. Identify impacted endpoint and user
-3. Preserve execution telemetry
-4. Determine whether activity is ongoing
-5. Review command-line activity
-6. Assess attacker objectives
-7. Escalate to related playbooks if compromise indicators are identified
-
----
-
-## Linked Runbooks
-
-### Triage
-
-- [RB-TRIAGE-002 EDR Alert Triage](../runbooks/triage/RB-TRIAGE-002-edr-alert-triage.md)
-
-### Analysis
-
-- [RB-ANALYSIS-006 Process Tree Analysis](../runbooks/analysis/RB-ANALYSIS-006-process-tree-analysis.md)
-- [RB-ANALYSIS-014 Malware Persistence Mechanism Hunt](../runbooks/analysis/RB-ANALYSIS-014-malware-persistence-mechanism-hunt.md)
-- [RB-ANALYSIS-023 Command-Line Analysis](../runbooks/analysis/RB-ANALYSIS-023-command-line-analysis.md)
-- [RB-ANALYSIS-024 LOLBin Abuse Investigation](../runbooks/analysis/RB-ANALYSIS-024-lolbin-abuse-investigation.md)
-- [RB-ANALYSIS-025 Script Execution Analysis](../runbooks/analysis/RB-ANALYSIS-025-script-execution-analysis.md)
-- [RB-ANALYSIS-026 User Activity Validation](../runbooks/analysis/RB-ANALYSIS-026-user-activity-validation.md)
-- [RB-ANALYSIS-022 Exfiltration Scoping Hunt](../runbooks/analysis/RB-ANALYSIS-022-exfiltration-scoping-hunt.md)
-
-### Containment
-
-- [RB-CONTAIN-004 Host Isolation](../runbooks/contain/RB-CONTAIN-004-host-isolation.md)
-
-### Post-Incident
-
-- [RB-POST-001 Ransomware Post-Incident Hardening](../runbooks/post-incident/RB-POST-001-ransomware-post-incident-hardening.md)
-
----
-
-## Trigger Conditions
+**Trigger Conditions:**
 
 Initiate this playbook when any of the following occur:
+- Suspicious process execution or EDR behavioural alert
+- Encoded, obfuscated, or high-risk command-line activity
+- PowerShell, bash, Python, JavaScript, VBScript, HTA, or batch execution from unusual context
+- LOLBin abuse such as suspicious PowerShell, rundll32, regsvr32, mshta, wmic, certutil, bitsadmin, schtasks, cscript, or wscript activity
+- Office, browser, email client, archive utility, or PDF reader spawning a shell, interpreter, or downloader
+- Unknown, unsigned, or newly dropped binary execution
+- Execution from temporary directories, user profile paths, network shares, removable media, or cloud sync folders
+- Process behaviour indicating persistence, credential theft, lateral movement, discovery, staging, or exfiltration
 
-- Suspicious process execution detected
-- Encoded PowerShell execution observed
-- LOLBin abuse detected
-- Suspicious script execution identified
-- Unusual command-line arguments detected
-- EDR behavioural alert triggered
-- Suspicious binary execution identified
-- Unsanctioned administrative tooling observed
-
----
-
-## Severity Guidelines
+**Severity Levels:**
 
 | Severity | Description |
-|----------|------------|
-| Sev3 | Suspicious execution requiring validation |
-| Sev2 | Confirmed malicious or unauthorised execution on a single endpoint |
-| Sev1 | Execution linked to attacker activity, persistence, or credential theft |
-| Sev0 | Widespread malicious execution across multiple systems |
-
----
-
-## Objectives
-
-- Validate execution activity
-- Identify execution source
-- Determine attacker intent
-- Assess compromise scope
-- Preserve evidence
-- Contain malicious activity
-- Escalate appropriately
-
----
-
-## Required Inputs
-
-- EDR telemetry
-- Process telemetry
-- Command-line logs
-- Endpoint logs
-- Authentication logs
-- Threat intelligence
-- User activity records
-
----
-
-## Playbook Workflow
-
-### 1. Initial Alert Triage
-
-Runbook:
-
-- [RB-TRIAGE-002 EDR Alert Triage](../runbooks/triage/RB-TRIAGE-002-edr-alert-triage.md)
-
-Actions:
-
-- Validate detection
-- Assess severity
-- Identify endpoint
-- Identify user context
-- Determine urgency
-
----
-
-### 2. Process Tree Analysis
-
-Runbook:
-
-- [RB-ANALYSIS-006 Process Tree Analysis](../runbooks/analysis/RB-ANALYSIS-006-process-tree-analysis.md)
-
-Actions:
-
-- Review process ancestry
-- Review child processes
-- Identify execution chain
-- Assess suspicious relationships
-
----
-
-### 3. Command-Line Analysis
-
-Runbook:
-
-- [RB-ANALYSIS-023 Command-Line Analysis](../runbooks/analysis/RB-ANALYSIS-023-command-line-analysis.md)
-
-Actions:
-
-- Review arguments
-- Decode encoded commands
-- Identify obfuscation
-- Identify download cradles
-- Identify suspicious switches
-
----
-
-### 4. LOLBin Abuse Investigation
-
-Runbook:
-
-- [RB-ANALYSIS-024 LOLBin Abuse Investigation](../runbooks/analysis/RB-ANALYSIS-024-lolbin-abuse-investigation.md)
-
-Actions:
-
-- Review PowerShell usage
-- Review Rundll32 activity
-- Review Regsvr32 activity
-- Review Mshta activity
-- Review WMI execution
-
----
-
-### 5. Script Execution Analysis
-
-Runbook:
-
-- [RB-ANALYSIS-025 Script Execution Analysis](../runbooks/analysis/RB-ANALYSIS-025-script-execution-analysis.md)
-
-Actions:
-
-- Review PowerShell scripts
-- Review Python execution
-- Review batch files
-- Review VBS and JS execution
-- Identify script origin
-
----
-
-### 6. Persistence Investigation
-
-Runbook:
-
-- [RB-ANALYSIS-014 Malware Persistence Mechanism Hunt](../runbooks/analysis/RB-ANALYSIS-014-malware-persistence-mechanism-hunt.md)
-
-Actions:
-
-- Review startup locations
-- Review scheduled tasks
-- Review services
-- Review registry persistence
-- Review WMI persistence
-
----
-
-### 7. User Activity Validation
-
-Runbook:
-
-- [RB-ANALYSIS-026 User Activity Validation](../runbooks/analysis/RB-ANALYSIS-026-user-activity-validation.md)
-
-Actions:
-
-- Determine whether activity was authorised
-- Review change records
-- Validate business purpose
-- Assess administrative activity
-
----
-
-### 8. Exfiltration Scoping Hunt
-
-Runbook:
-
-- [RB-ANALYSIS-022 Exfiltration Scoping Hunt](../runbooks/analysis/RB-ANALYSIS-022-exfiltration-scoping-hunt.md)
-
-Actions:
-
-- Hunt for identical binaries
-- Hunt for identical command-lines
-- Hunt for identical hashes
-- Hunt for similar execution activity
-
----
-
-### 9. Endpoint Containment
-
-Runbook:
-
-- [RB-CONTAIN-004 Host Isolation](../runbooks/contain/RB-CONTAIN-004-host-isolation.md)
-
-Actions:
-
-- Isolate host
-- Restrict execution
-- Preserve evidence
-- Prevent additional activity
-
----
-
-### 10. Post-Incident Hardening
-
-Runbook:
-
-- [RB-POST-001 Ransomware Post-Incident Hardening](../runbooks/post-incident/RB-POST-001-ransomware-post-incident-hardening.md)
-
-Actions:
-
-- Improve detections
-- Improve logging
-- Improve application controls
-- Improve monitoring coverage
-
----
-
-## Playbook Relationships
-
-This playbook is commonly used as an entry point into broader investigations.
-
-Execution of this playbook does not replace execution of other playbooks.
-
-When evidence of another incident type is identified, the corresponding playbook should be activated and executed concurrently.
-
-### Common Escalations
-
-| Evidence Identified | Activate Playbook |
-|---|---|
-| Malware identified | PB-003 Endpoint Malware |
-| Ransomware behaviour identified | PB-002 Ransomware |
-| Credential theft identified | PB-004 Account Takeover |
-| Data staging or exfiltration identified | PB-005 Data Exfiltration |
-| Privilege escalation identified | PB-009 Privilege Escalation |
-| Lateral movement identified | PB-010 Lateral Movement |
-| Cloud abuse identified | PB-007 Cloud Compromise |
-
-### Operational Guidance
-
-When a related incident type is identified:
-
-- Continue the current playbook where applicable
-- Activate the related playbook
-- Execute playbooks concurrently where investigative activities overlap
-- Close playbooks independently once objectives are met
-
----
-
-## Escalation Paths
-
-| Condition | Escalate To |
-|----------|------------|
-| Malware identified | PB-003 Endpoint Malware |
-| Ransomware identified | PB-002 Ransomware |
-| Credential theft identified | PB-004 Account Takeover |
-| Data staging identified | PB-005 Data Exfiltration |
-| Privilege escalation identified | PB-009 Privilege Escalation |
-| Lateral movement identified | PB-010 Lateral Movement |
-| Cloud abuse identified | PB-007 Cloud Compromise |
-
----
-
-## Outputs
-
-- Execution timeline
-- Process analysis findings
-- Command-line analysis findings
-- Scope assessment
-- Containment status
-- Escalation decisions
-- Hardening recommendations
-
----
-
-## Common Failure Modes
-
-- Assuming suspicious execution equals malware
-- Ignoring legitimate tool abuse
-- Missing persistence mechanisms
-- Failing to assess execution scope
-- Delaying escalation to related playbooks
-
----
-
-## Automation Opportunities
-
-- Process tree enrichment
-- Command-line analysis
-- LOLBin detection
-- Execution anomaly detection
-- Scope expansion hunting
-- Automated containment
-
----
-
-## Related
-
-- PB-002 Ransomware
-- PB-003 Endpoint Malware
-- PB-004 Account Takeover
-- PB-005 Data Exfiltration
-- PB-007 Cloud Compromise
-- PB-009 Privilege Escalation
-- PB-010 Lateral Movement
-
----
+|----------|-------------|
+| Sev 3 | Suspicious execution requiring validation; no confirmed malicious outcome |
+| Sev 2 | Confirmed unauthorised or malicious execution on a single non-critical endpoint with limited impact |
+| Sev 1 | Execution linked to credential theft, persistence, privilege escalation, lateral movement, data staging, or a critical asset |
+| Sev 0 | Widespread malicious execution, active propagation, ransomware behaviour, or enterprise-wide compromise |
+
+## 3. Roles & Responsibilities
+
+- **Incident Commander:** Coordinates response, sets severity, approves containment, and manages escalation.
+- **Incident Responder / Forensic Analyst:** Validates execution activity, analyses command lines and process trees, scopes affected assets, and preserves evidence.
+- **Communications Lead:** Coordinates internal updates and affected-user communications.
+- **Other Roles:**
+    - **Endpoint / Platform Team:** Supports host isolation, log collection, rebuild, and endpoint control validation.
+    - **Identity & Access Team:** Supports account containment if execution indicates credential or token theft.
+    - **Network Team:** Supports outbound blocking or segmentation when C2, download, exfiltration, or lateral movement is identified.
+    - **Cloud Security / Platform Team:** Supports cloud workload evidence collection and isolation when suspicious execution occurs in cloud-hosted infrastructure.
+    - **Application / Service Owners:** Validate business purpose and support recovery where execution occurred in production systems.
+
+## 4. Initial Actions
+
+- **Immediate Steps:**
+    - Triage the alert, affected host, user context, process, parent process, command line, file hash, and detection source.
+        - 📘 [RB-TRIAGE-002: EDR Alert Triage](../runbooks/triage/RB-TRIAGE-002-edr-alert-triage.md)
+    - Determine whether the process is still running, whether child processes exist, and whether network activity is active.
+
+    > **Decision Point:**
+    > - If execution is approved and expected → document rationale and close.
+    > - If malicious, unauthorised, or unresolved → continue investigation and contain if active risk exists.
+
+    > **Warning:** Do not assume execution is benign because the binary is signed, the command completed successfully, the user appears to have initiated it, or antivirus did not alert.
+
+## 5. Investigation & Analysis
+
+- **Evidence Collection:**
+    - Collect process execution, command line, parent-child process, file, registry, persistence, network, DNS, authentication, and EDR telemetry for the affected host and time window.
+        - 📘 [RB-EVIDENCE-002: Host-Based Log Acquisition](../runbooks/evidence/RB-EVIDENCE-002-host-log-acquisition.md)
+        - 📘 [RB-EVIDENCE-001: Memory Acquisition](../runbooks/evidence/RB-EVIDENCE-001-memory-acquisition.md)
+        - If execution occurred on a cloud workload, preserve cloud control plane and workload evidence.
+            - 📘 [RB-EVIDENCE-004: Cloud Control Plane Log Acquisition](../runbooks/evidence/RB-EVIDENCE-004-cloud-control-plane-log-acquisition.md)
+            - 📘 [RB-EVIDENCE-005: Cloud Workload Snapshot Acquisition](../runbooks/evidence/RB-EVIDENCE-005-cloud-workload-snapshot-acquisition.md)
+    - Preserve suspicious scripts, binaries, payloads, command output, decoded content, hashes, and sandbox results where available.
+
+- **Analysis Steps:**
+    - Reconstruct process ancestry, child processes, execution source, and user context.
+        - 📘 [RB-ANALYSIS-006: Process Tree Analysis](../runbooks/analysis/RB-ANALYSIS-006-process-tree-analysis.md)
+    - Analyse full command lines, arguments, hidden flags, download activity, encoded content, and adversary techniques.
+        - 📘 [RB-ANALYSIS-023: Command-Line Analysis](../runbooks/analysis/RB-ANALYSIS-023-command-line-analysis.md)
+    - Investigate LOLBin usage and determine whether legitimate tools were abused for execution, persistence, credential access, discovery, lateral movement, staging, exfiltration, or evasion.
+        - 📘 [RB-ANALYSIS-024: LOLBin Abuse Investigation](../runbooks/analysis/RB-ANALYSIS-024-lolbin-abuse-investigation.md)
+    - Analyse script type, origin, contents, obfuscation, network activity, and execution intent.
+        - 📘 [RB-ANALYSIS-025: Script Execution Analysis](../runbooks/analysis/RB-ANALYSIS-025-script-execution-analysis.md)
+    - Validate whether execution was authorised by the user, manager, system owner, IT operations, development team, change record, or scheduled maintenance.
+        - 📘 [RB-ANALYSIS-026: User Activity Validation](../runbooks/analysis/RB-ANALYSIS-026-user-activity-validation.md)
+    - Review persistence mechanisms if execution created services, scheduled tasks, startup entries, registry changes, cron jobs, launch agents, WMI subscriptions, or cloud scheduled execution.
+        - 📘 [RB-ANALYSIS-014: Malware Persistence Mechanism Hunt](../runbooks/analysis/RB-ANALYSIS-014-malware-persistence-mechanism-hunt.md)
+    - Analyse malware behaviour where payloads, C2, credential theft, persistence, or secondary execution are identified.
+        - 📘 [RB-ANALYSIS-015: Malware Analysis](../runbooks/analysis/RB-ANALYSIS-015-malware-analysis.md)
+    - Analyse memory where process injection, in-memory execution, hidden processes, credential material, or memory-only malware is suspected.
+        - 📘 [RB-ANALYSIS-016: Memory Analysis](../runbooks/analysis/RB-ANALYSIS-016-memory-analysis.md)
+    - Review outbound traffic if execution involved downloads, C2, reverse shells, cloud storage, or external transfers.
+        - 📘 [RB-ANALYSIS-018: Outbound Traffic Analysis](../runbooks/analysis/RB-ANALYSIS-018-outbound-traffic-analysis.md)
+    - Hunt for the same hashes, command lines, scripts, tools, parent processes, users, or infrastructure across the environment.
+        - 📘 [RB-ANALYSIS-035: Affected Asset Identification](../runbooks/analysis/RB-ANALYSIS-035-affected-asset-identification.md)
+
+    > **Decision Point:**
+    > Run the post-detection phases (Analysis → Recovery) of any relevant sibling playbook concurrently alongside this one based on what was observed:
+    > - Malware confirmed → execute [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md) concurrently.
+    > - Privilege escalation identified → execute [PB-009: Privilege Escalation](PB-009-privilege-escalation.md) concurrently.
+    > - Lateral movement identified → execute [PB-010: Lateral Movement](PB-010-lateral-movement.md) concurrently.
+    > - Credential or account compromise identified → execute [PB-004: Account Takeover](PB-004-account-takeover.md) concurrently.
+    > - Data staging or exfiltration identified → execute [PB-005: Data Exfiltration](PB-005-data-exfiltration.md) concurrently.
+    > - Cloud workload or control plane abuse identified → execute [PB-007: Cloud Compromise](PB-007-cloud-compromise.md) concurrently.
+
+## 6. Containment, Eradication & Recovery
+
+- **Containment Actions:**
+    - Isolate affected hosts when execution is malicious, still active, or associated with credential theft, persistence, C2, or lateral movement.
+        - 📘 [RB-CONTAIN-004: Host Isolation](../runbooks/contain/RB-CONTAIN-004-host-isolation.md)
+    - Isolate affected cloud workloads when suspicious execution occurs in cloud infrastructure.
+        - 📘 [RB-CONTAIN-015: Cloud Workload Isolation](../runbooks/contain/RB-CONTAIN-015-cloud-workload-isolation.md)
+    - Lock or reset accounts and revoke sessions where credential theft, token theft, or account misuse is suspected.
+        - 📘 [RB-CONTAIN-001: Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
+        - 📘 [RB-CONTAIN-005: Session & Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+    - Block active outbound attacker infrastructure or transfer paths.
+        - 📘 [RB-CONTAIN-007: Outbound Transfer Blocking](../runbooks/contain/RB-CONTAIN-007-outbound-transfer-blocking.md)
+    - Restrict lateral movement paths if remote execution or propagation is suspected.
+        - 📘 [RB-CONTAIN-002: Rapid Containment & Network Segmentation](../runbooks/contain/RB-CONTAIN-002-rapid-containment-network-segmentation.md)
+
+- **Eradication Steps:**
+    - Remove malicious binaries, scripts, payloads, scheduled tasks, services, registry entries, cron jobs, launch agents, WMI subscriptions, attacker-created accounts, and unauthorised tooling.
+    - Remove or roll back unauthorised configuration changes and persistence mechanisms.
+    - Rotate credentials, secrets, tokens, certificates, and keys that may have been exposed during execution.
+
+- **Recovery Steps:**
+    - Rebuild or re-provision systems where integrity cannot be validated.
+        - 📘 [RB-RECOVERY-002: Clean System Rebuild](../runbooks/recovery/RB-RECOVERY-002-clean-system-rebuild.md)
+    - Coordinate phased restoration when multiple hosts, users, or dependencies are affected.
+        - 📘 [RB-RECOVERY-001: Recovery & Restoration Coordination](../runbooks/recovery/RB-RECOVERY-001-recovery-restoration-coordination.md)
+    - Restore user access only after credentials, sessions, tokens, MFA, and endpoint integrity are validated.
+        - 📘 [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
+    - Monitor for recurrence using hashes, command lines, decoded content, parent-child chains, network destinations, scripts, and observed TTPs.
+
+## 7. Communication & Escalation
+
+- **Internal Communication:**
+    - Notify security leadership, endpoint/platform owners, identity teams, service owners, and affected business teams when containment or downtime is required.
+    - Use geo handoff where the incident spans shifts.
+        - 📘 [SOP-002: Incident Handoff Between Geos](../sops/SOP-002-incident-handoff-between-geos.md)
+    - Notify affected users if account reset, MFA reset, device rebuild, or access restoration is required.
+        - 📘 [SOP-004: User Notification](../sops/SOP-004-user-notification.md)
+
+- **External Communication:**
+    - Engage Legal/Privacy if suspicious execution resulted in customer data access, regulated data exposure, public service impact, or third-party impact.
+        - 📘 [SOP-003: Escalation, Legal & Executive Communications](../sops/SOP-003-escalation-legal-executive-comms.md)
+
+- **Escalation Criteria:**
+
+    | Condition | Escalate To |
+    |-----------|-------------|
+    | Malware, payload, C2, or persistence confirmed | [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md) |
+    | Credential theft or account compromise identified | [PB-004: Account Takeover](PB-004-account-takeover.md) |
+    | Privilege escalation identified | [PB-009: Privilege Escalation](PB-009-privilege-escalation.md) |
+    | Lateral movement or remote execution identified | [PB-010: Lateral Movement](PB-010-lateral-movement.md) |
+    | Data staging or exfiltration identified | [PB-005: Data Exfiltration](PB-005-data-exfiltration.md) |
+    | Cloud workload or control plane abuse identified | [PB-007: Cloud Compromise](PB-007-cloud-compromise.md) |
+    | Widespread execution, ransomware behaviour, or critical infrastructure impact | [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md) |
+
+## 8. Post-Incident Activities
+
+- **Lessons Learned:**
+    - Conduct a Post-Incident Review (PIR)
+    - Document what worked, what didn't, and what needs improvement
+
+- **Documentation Updates:**
+    - Update this playbook, linked runbooks, detection content, allowlists, administrative tooling guidance, and endpoint hardening guidance where required.
+
+## 9. References & Linked Resources
+
+- **Playbooks:**
+    - [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md)
+    - [PB-004: Account Takeover](PB-004-account-takeover.md)
+    - [PB-005: Data Exfiltration](PB-005-data-exfiltration.md)
+    - [PB-007: Cloud Compromise](PB-007-cloud-compromise.md)
+    - [PB-009: Privilege Escalation](PB-009-privilege-escalation.md)
+    - [PB-010: Lateral Movement](PB-010-lateral-movement.md)
+    - [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md)
+
+- **Runbooks:**
+    - [RB-TRIAGE-002: EDR Alert Triage](../runbooks/triage/RB-TRIAGE-002-edr-alert-triage.md)
+    - [RB-EVIDENCE-001: Memory Acquisition](../runbooks/evidence/RB-EVIDENCE-001-memory-acquisition.md)
+    - [RB-EVIDENCE-002: Host-Based Log Acquisition](../runbooks/evidence/RB-EVIDENCE-002-host-log-acquisition.md)
+    - [RB-EVIDENCE-004: Cloud Control Plane Log Acquisition](../runbooks/evidence/RB-EVIDENCE-004-cloud-control-plane-log-acquisition.md)
+    - [RB-EVIDENCE-005: Cloud Workload Snapshot Acquisition](../runbooks/evidence/RB-EVIDENCE-005-cloud-workload-snapshot-acquisition.md)
+    - [RB-ANALYSIS-006: Process Tree Analysis](../runbooks/analysis/RB-ANALYSIS-006-process-tree-analysis.md)
+    - [RB-ANALYSIS-014: Malware Persistence Mechanism Hunt](../runbooks/analysis/RB-ANALYSIS-014-malware-persistence-mechanism-hunt.md)
+    - [RB-ANALYSIS-015: Malware Analysis](../runbooks/analysis/RB-ANALYSIS-015-malware-analysis.md)
+    - [RB-ANALYSIS-016: Memory Analysis](../runbooks/analysis/RB-ANALYSIS-016-memory-analysis.md)
+    - [RB-ANALYSIS-018: Outbound Traffic Analysis](../runbooks/analysis/RB-ANALYSIS-018-outbound-traffic-analysis.md)
+    - [RB-ANALYSIS-023: Command-Line Analysis](../runbooks/analysis/RB-ANALYSIS-023-command-line-analysis.md)
+    - [RB-ANALYSIS-024: LOLBin Abuse Investigation](../runbooks/analysis/RB-ANALYSIS-024-lolbin-abuse-investigation.md)
+    - [RB-ANALYSIS-025: Script Execution Analysis](../runbooks/analysis/RB-ANALYSIS-025-script-execution-analysis.md)
+    - [RB-ANALYSIS-026: User Activity Validation](../runbooks/analysis/RB-ANALYSIS-026-user-activity-validation.md)
+    - [RB-ANALYSIS-035: Affected Asset Identification](../runbooks/analysis/RB-ANALYSIS-035-affected-asset-identification.md)
+    - [RB-CONTAIN-001: Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
+    - [RB-CONTAIN-002: Rapid Containment & Network Segmentation](../runbooks/contain/RB-CONTAIN-002-rapid-containment-network-segmentation.md)
+    - [RB-CONTAIN-004: Host Isolation](../runbooks/contain/RB-CONTAIN-004-host-isolation.md)
+    - [RB-CONTAIN-005: Session & Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+    - [RB-CONTAIN-007: Outbound Transfer Blocking](../runbooks/contain/RB-CONTAIN-007-outbound-transfer-blocking.md)
+    - [RB-CONTAIN-015: Cloud Workload Isolation](../runbooks/contain/RB-CONTAIN-015-cloud-workload-isolation.md)
+    - [RB-RECOVERY-001: Recovery & Restoration Coordination](../runbooks/recovery/RB-RECOVERY-001-recovery-restoration-coordination.md)
+    - [RB-RECOVERY-002: Clean System Rebuild](../runbooks/recovery/RB-RECOVERY-002-clean-system-rebuild.md)
+    - [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
+    - [RB-POST-001: Ransomware Post-Incident Hardening](../runbooks/post-incident/RB-POST-001-ransomware-post-incident-hardening.md)
+
+- **SOPs:**
+    - [SOP-002: Incident Handoff Between Geos](../sops/SOP-002-incident-handoff-between-geos.md)
+    - [SOP-003: Escalation, Legal & Executive Communications](../sops/SOP-003-escalation-legal-executive-comms.md)
+    - [SOP-004: User Notification](../sops/SOP-004-user-notification.md)
+
+## 10. Appendices
 
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

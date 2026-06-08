@@ -1,4 +1,4 @@
-# RB-ANALYSIS-025 Script Execution Analysis
+# RB-ANALYSIS-025: Script Execution Analysis
 
 ## Document Control
 
@@ -13,9 +13,8 @@
 | Runbook ID | RB-ANALYSIS-025 | 2026-06-04 |
 | Runbook Name | Script Execution Analysis | 2026-06-04 |
 
----
 
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -27,11 +26,10 @@ Before starting this runbook, ensure the following:
 - User context identified
 - Incident ticket created
 
----
 
-# 2. Step-by-Step Instructions
+## 2. Step-by-Step Instructions
 
-### Step 1 – Identify Script Execution Activity
+1. **Identify Script Execution Activity**
 
 Determine whether execution involved:
 
@@ -53,9 +51,8 @@ Document:
 - Execution timestamp
 - User context
 
----
 
-### Step 2 – Collect Script Artefacts
+2. **Collect Script Artefacts**
 
 Gather:
 
@@ -69,9 +66,8 @@ Gather:
 
 Preserve artefacts before modification or removal.
 
----
 
-### Step 3 – Determine Script Origin
+3. **Determine Script Origin**
 
 Identify source of execution:
 
@@ -86,9 +82,8 @@ Identify source of execution:
 
 Document origin and acquisition method.
 
----
 
-### Step 4 – Review Script Contents
+4. **Review Script Contents**
 
 Analyse for:
 
@@ -103,9 +98,8 @@ Analyse for:
 
 Review for suspicious or malicious behaviour.
 
----
 
-### Step 5 – Assess Obfuscation
+5. **Assess Obfuscation**
 
 Review for:
 
@@ -123,9 +117,8 @@ If obfuscation exists:
 - Preserve decoded content
 - Document findings
 
----
 
-### Step 6 – Review Network Activity
+6. **Review Network Activity**
 
 Identify:
 
@@ -137,9 +130,8 @@ Identify:
 
 Correlate network activity with script execution.
 
----
 
-### Step 7 – Assess Execution Intent
+7. **Assess Execution Intent**
 
 Determine whether script was used for:
 
@@ -155,9 +147,8 @@ Determine whether script was used for:
 
 Document rationale.
 
----
 
-### Step 8 – Identify Additional Activity
+8. **Identify Additional Activity**
 
 Review:
 
@@ -169,9 +160,8 @@ Review:
 
 Expand investigation scope where required.
 
----
 
-### Step 9 – Escalate if Required
+9. **Escalate if Required**
 
 If evidence supports another incident type:
 
@@ -186,9 +176,8 @@ Activate:
 
 Continue executing current playbook concurrently.
 
----
 
-### Step 10 – Update Incident Record
+10. **Update Incident Record**
 
 Record:
 
@@ -201,9 +190,8 @@ Record:
 
 Attach supporting evidence.
 
----
 
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -212,12 +200,11 @@ Upon completion:
 - Ensure execution source is identified
 - Ensure escalation decisions are recorded
 - Ensure incident ticket is updated
-
 ---
 
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

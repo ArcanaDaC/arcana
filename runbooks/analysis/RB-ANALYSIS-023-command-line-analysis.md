@@ -1,4 +1,4 @@
-# RB-ANALYSIS-023 Command-Line Analysis
+# RB-ANALYSIS-023: Command-Line Analysis
 
 ## Document Control
 
@@ -13,9 +13,8 @@
 | Runbook ID | RB-ANALYSIS-023 | 2026-06-04 |
 | Runbook Name | Command-Line Analysis | 2026-06-04 |
 
----
 
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -27,11 +26,10 @@ Before starting this runbook, ensure the following:
 - User context identified
 - Incident ticket created
 
----
 
-# 2. Step-by-Step Instructions
+## 2. Step-by-Step Instructions
 
-### Step 1 – Identify Suspicious Process Execution
+1. **Identify Suspicious Process Execution**
 
 Collect:
 
@@ -47,9 +45,8 @@ Determine:
 - Whether execution aligns with alert telemetry
 - Whether execution is still occurring
 
----
 
-### Step 2 – Obtain Full Command Line
+2. **Obtain Full Command Line**
 
 Collect:
 
@@ -65,9 +62,8 @@ Review for:
 - Missing arguments
 - Alternate execution paths
 
----
 
-### Step 3 – Analyse Command-Line Arguments
+3. **Analyse Command-Line Arguments**
 
 Review for:
 
@@ -86,9 +82,8 @@ Identify:
 - Unusual argument combinations
 - Hidden execution flags
 
----
 
-### Step 4 – Decode Obfuscated Content
+4. **Decode Obfuscated Content**
 
 Review for:
 
@@ -104,9 +99,8 @@ If encoded content exists:
 - Preserve decoded output
 - Document findings
 
----
 
-### Step 5 – Identify Common Adversary Techniques
+5. **Identify Common Adversary Techniques**
 
 Review for:
 
@@ -121,9 +115,8 @@ Review for:
 
 Map activity to known ATT&CK techniques where applicable.
 
----
 
-### Step 6 – Assess Execution Intent
+6. **Assess Execution Intent**
 
 Determine whether command line indicates:
 
@@ -138,9 +131,8 @@ Determine whether command line indicates:
 
 Document rationale.
 
----
 
-### Step 7 – Correlate Additional Activity
+7. **Correlate Additional Activity**
 
 Review:
 
@@ -153,9 +145,8 @@ Review:
 
 Determine whether execution was isolated or part of broader activity.
 
----
 
-### Step 8 – Escalate if Required
+8. **Escalate if Required**
 
 If evidence supports another incident type:
 
@@ -170,9 +161,8 @@ Activate:
 
 Continue executing current playbook concurrently.
 
----
 
-### Step 9 – Document Findings
+9. **Document Findings**
 
 Record:
 
@@ -185,9 +175,8 @@ Record:
 
 Attach supporting evidence.
 
----
 
-### Step 10 – Update Incident Record
+10. **Update Incident Record**
 
 Update:
 
@@ -199,9 +188,8 @@ Update:
 
 Notify Incident Lead if escalation required.
 
----
 
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -210,12 +198,11 @@ Upon completion:
 - Ensure escalation decisions are recorded
 - Ensure related playbooks are activated if required
 - Ensure incident ticket is updated
-
 ---
 
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

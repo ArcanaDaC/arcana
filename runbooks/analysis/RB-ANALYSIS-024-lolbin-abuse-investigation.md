@@ -1,4 +1,4 @@
-# RB-ANALYSIS-024 LOLBin Abuse Investigation
+# RB-ANALYSIS-024: LOLBin Abuse Investigation
 
 ## Document Control
 
@@ -13,9 +13,8 @@
 | Runbook ID | RB-ANALYSIS-024 | 2026-06-04 |
 | Runbook Name | LOLBin Abuse Investigation | 2026-06-04 |
 
----
 
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -27,11 +26,10 @@ Before starting this runbook, ensure the following:
 - User context identified
 - Incident ticket created
 
----
 
-# 2. Step-by-Step Instructions
+## 2. Step-by-Step Instructions
 
-### Step 1 – Identify LOLBin Usage
+1. **Identify LOLBin Usage**
 
 Determine whether execution involved a Living-Off-the-Land Binary (LOLBin).
 
@@ -55,9 +53,8 @@ Common examples include:
 
 Document all observed LOLBins.
 
----
 
-### Step 2 – Collect Execution Context
+2. **Collect Execution Context**
 
 Collect:
 
@@ -75,9 +72,8 @@ Review:
 - Associated activity
 - Related alerts
 
----
 
-### Step 3 – Analyse Parent-Child Relationships
+3. **Analyse Parent-Child Relationships**
 
 Review:
 
@@ -96,9 +92,8 @@ Examples:
 - chrome.exe → mshta.exe
 - excel.exe → rundll32.exe
 
----
 
-### Step 4 – Review Command-Line Activity
+4. **Review Command-Line Activity**
 
 Analyse:
 
@@ -112,9 +107,8 @@ Analyse:
 
 Review for common attacker tradecraft.
 
----
 
-### Step 5 – Assess LOLBin Purpose
+5. **Assess LOLBin Purpose**
 
 Determine whether LOLBin was used for:
 
@@ -129,9 +123,8 @@ Determine whether LOLBin was used for:
 
 Document findings.
 
----
 
-### Step 6 – Review Network Activity
+6. **Review Network Activity**
 
 Identify:
 
@@ -143,9 +136,8 @@ Identify:
 
 Correlate network activity with execution events.
 
----
 
-### Step 7 – Hunt for Additional LOLBin Activity
+7. **Hunt for Additional LOLBin Activity**
 
 Search for:
 
@@ -157,9 +149,8 @@ Search for:
 
 Expand investigation scope where required.
 
----
 
-### Step 8 – Determine Legitimacy
+8. **Determine Legitimacy**
 
 Validate:
 
@@ -171,9 +162,8 @@ Validate:
 
 Document rationale for determination.
 
----
 
-### Step 9 – Escalate if Required
+9. **Escalate if Required**
 
 If evidence supports another incident type:
 
@@ -187,9 +177,8 @@ Activate:
 
 Continue executing current playbook concurrently.
 
----
 
-### Step 10 – Update Incident Record
+10. **Update Incident Record**
 
 Record:
 
@@ -202,9 +191,8 @@ Record:
 
 Attach supporting evidence.
 
----
 
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -213,12 +201,11 @@ Upon completion:
 - Ensure investigation scope has been assessed
 - Ensure escalation decisions are recorded
 - Ensure incident ticket is updated
-
 ---
 
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

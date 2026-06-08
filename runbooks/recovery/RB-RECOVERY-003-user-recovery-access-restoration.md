@@ -25,31 +25,30 @@
 ## 2. Step-by-Step Instructions
 
 1. **Validate Containment Completion**
-	- Confirm sessions revoked
-	- Confirm tokens invalidated
-	- Confirm OAuth abuse addressed
-	- Confirm rogue devices removed
-	- Confirm credentials reset
-
+    - Confirm sessions revoked
+    - Confirm tokens invalidated
+    - Confirm OAuth abuse addressed
+    - Confirm rogue devices removed
+    - Confirm credentials reset
 
 2. **Reset Credentials Securely**
-	- Require strong password creation
-	- Require MFA enforcement
-	- Require identity verification
-	- Require password reuse prevention
+    - Require strong password creation
+    - Require MFA enforcement
+    - Require identity verification
+    - Require password reuse prevention
 
 3. **Re-Enroll MFA**
-	- Validate trusted MFA methods
-	- Validate approved devices
-	- Validate recovery methods
-	- Validate conditional access enforcement
+    - Validate trusted MFA methods
+    - Validate approved devices
+    - Validate recovery methods
+    - Validate conditional access enforcement
 
 4. **Restore User Access**
-	- Re-enable identity provider access
-	- Re-enable SaaS access
-	- Re-enable VPN access
-	- Re-enable email access
-	- Re-enable administrative access (if applicable)
+    - Re-enable identity provider access
+    - Re-enable SaaS access
+    - Re-enable VPN access
+    - Re-enable email access
+    - Re-enable administrative access (if applicable)
 
 ## 3. Post-Action
 - Record the credential/MFA reset method, the type of access restored, and a timestamped log of all actions within the incident ticket.

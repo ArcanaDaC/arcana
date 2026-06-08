@@ -68,8 +68,6 @@
 - Record all isolation actions and timestamps in the incident record
 - Notify the Incident Commander and Cloud Security / Platform Team that isolation is complete
 
----
-
 ## Contributor
 
 **Firstname Lastname**

@@ -51,17 +51,15 @@
 
 5. **Classify the Activity**
     - Map the alert to one of:
-      - Workload behaviour anomaly (cryptomining, reverse shell, unexpected outbound)
-      - Control plane abuse (IAM change, resource creation, security service tampering)
-      - Credential abuse (use of a credential from a new region / source / user agent)
-      - Reconnaissance (port scan, IMDS probing, listing buckets / roles)
-      - Data access anomaly (unusual bucket / database access pattern)
+        - Workload behaviour anomaly (cryptomining, reverse shell, unexpected outbound)
+        - Control plane abuse (IAM change, resource creation, security service tampering)
+        - Credential abuse (use of a credential from a new region / source / user agent)
+        - Reconnaissance (port scan, IMDS probing, listing buckets / roles)
+        - Data access anomaly (unusual bucket / database access pattern)
 
 ## 3. Post-Action
 
 - Ensure all alert details, queries used, and findings are recorded in the incident ticket
-
----
 
 ## Contributor
 

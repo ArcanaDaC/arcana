@@ -66,11 +66,10 @@
 
 ## 3. Post-Action
 - Document all containment steps taken in the incident ticket, along with the time each action was taken
----
 
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 **Jayden Vo**

@@ -32,51 +32,50 @@
 >- Missing shared infrastructure indicators
 
 1. Validate Alert Authenticity
-	- Determine:
-		- Alert source
-		- Detection type
-		- Alert confidence
-		- Triggering conditions
+    - Determine:
+        - Alert source
+        - Detection type
+        - Alert confidence
+        - Triggering conditions
 
-	- Review:
-		- Alert metadata
-		- Authentication anomalies
-		- Associated indicators
+    - Review:
+        - Alert metadata
+        - Authentication anomalies
+        - Associated indicators
 
 2. Identify Impacted Identity
 
-	- Collect:
-		- Username
-		- Email address
-		- Privilege level
-		- Group memberships
-		- Administrative roles
-		- Device associations
+    - Collect:
+        - Username
+        - Email address
+        - Privilege level
+        - Group memberships
+        - Administrative roles
+        - Device associations
 
 3. Review Authentication Activity
 
-	- Review:
-		- Login timestamps
-		- Source IPs
-		- Geolocation
-		- Device fingerprints
-		- MFA outcomes
+    - Review:
+        - Login timestamps
+        - Source IPs
+        - Geolocation
+        - Device fingerprints
+        - MFA outcomes
 
 4. Assess Active Risk
 
-	- Determine:
-		- Is attacker activity ongoing?
-		- Are active sessions present?
-		- Is privilege escalation suspected?
-		- Is lateral movement suspected?
+    - Determine:
+        - Is attacker activity ongoing?
+        - Are active sessions present?
+        - Is privilege escalation suspected?
+        - Is lateral movement suspected?
 
 5. Assess Scope
-	- Identify:
-		- Additional impacted accounts
-		- Shared devices
-		- Shared IPs
-		- Similar authentication patterns
-
+    - Identify:
+        - Additional impacted accounts
+        - Shared devices
+        - Shared IPs
+        - Similar authentication patterns
 
 ## 3. Post-Action
 - Ensure all alert validation findings and containment recommendations are documented in the incident ticket

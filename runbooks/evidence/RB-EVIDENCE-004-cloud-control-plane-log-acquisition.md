@@ -37,17 +37,17 @@
 
 2. **Collect Relevant Control Plane Activity**
 
-   For each category relevant to the incident, prefer querying the SIEM where the data is already indexed; fall back to the provider-native log when needed.
+    For each category relevant to the incident, prefer querying the SIEM where the data is already indexed; fall back to the provider-native log when needed.
 
-   | Category | AWS | Azure | GCP | Oracle Cloud (OCI) |
-   |---|---|---|---|---|
-   | Management API calls | CloudTrail Management Events | Activity Log | Admin Activity audit log | Audit log (`audit.log`) |
-   | Data plane API calls | CloudTrail Data Events (S3, KMS, Lambda) | Diagnostic Settings per-service | Data Access audit log | Audit log (data access events) |
-   | IAM changes | CloudTrail (`iam:*`, `sts:AssumeRole`) | Activity Log + Entra ID audit (`Microsoft.Authorization`) | Admin Activity (`SetIamPolicy`) | Audit log (`identity:*`) |
-   | Resource creation / modification | CloudTrail (`Run*`, `Create*`, `Modify*`, `Delete*`) | Activity Log | Admin Activity | Audit log |
-   | Security service tampering | CloudTrail (`guardduty:*`, `cloudtrail:Stop*`, `config:*`) | Activity Log (Defender for Cloud, Sentinel changes) | Admin Activity (SCC mute/disable) | Audit log (Cloud Guard disable) |
-   | Org / tenancy-level events | CloudTrail in management account | Management Group / Tenant Root activity | Organization audit log | Tenancy-level audit |
-   | Cross-account / cross-tenant access | CloudTrail (`sts:AssumeRole`, external IDs) | Activity Log (Lighthouse, B2B) | Admin Activity (delegated access) | Audit log (cross-tenancy) |
+    | Category | AWS | Azure | GCP | Oracle Cloud (OCI) |
+    |---|---|---|---|---|
+    | Management API calls | CloudTrail Management Events | Activity Log | Admin Activity audit log | Audit log (`audit.log`) |
+    | Data plane API calls | CloudTrail Data Events (S3, KMS, Lambda) | Diagnostic Settings per-service | Data Access audit log | Audit log (data access events) |
+    | IAM changes | CloudTrail (`iam:*`, `sts:AssumeRole`) | Activity Log + Entra ID audit (`Microsoft.Authorization`) | Admin Activity (`SetIamPolicy`) | Audit log (`identity:*`) |
+    | Resource creation / modification | CloudTrail (`Run*`, `Create*`, `Modify*`, `Delete*`) | Activity Log | Admin Activity | Audit log |
+    | Security service tampering | CloudTrail (`guardduty:*`, `cloudtrail:Stop*`, `config:*`) | Activity Log (Defender for Cloud, Sentinel changes) | Admin Activity (SCC mute/disable) | Audit log (Cloud Guard disable) |
+    | Org / tenancy-level events | CloudTrail in management account | Management Group / Tenant Root activity | Organization audit log | Tenancy-level audit |
+    | Cross-account / cross-tenant access | CloudTrail (`sts:AssumeRole`, external IDs) | Activity Log (Lighthouse, B2B) | Admin Activity (delegated access) | Audit log (cross-tenancy) |
 
 3. **Run Targeted Queries**
     - Query by identity (user / role / service account / workload identity ARN)
@@ -68,7 +68,6 @@
 
 - Record query strings, time ranges, sources, and any export hashes in the incident ticket
 - Confirm logging services and centralised archives are intact and were not tampered with during the incident window
----
 
 ## Contributor
 

@@ -32,63 +32,60 @@
 >- Failing to assess broader scope
 
 1. Validate Alert Authenticity
-	- Determine:
-		- Alert source
-		- Detection type
-		- Confidence level
-		- Whether detection is prevention or detection only
+    - Determine:
+        - Alert source
+        - Detection type
+        - Confidence level
+        - Whether detection is prevention or detection only
 
-	Review:
-		- Detection signatures
-		- Behavioural indicators
-		- Alert metadata
-
+    Review:
+        - Detection signatures
+        - Behavioural indicators
+        - Alert metadata
 
 2. Identify Impacted Endpoint
-	- Collect:
-		- Hostname
-		- IP address
-		- Logged-in user
-		- Device criticality
-		- Operating system
-		- Business owner
-
+    - Collect:
+        - Hostname
+        - IP address
+        - Logged-in user
+        - Device criticality
+        - Operating system
+        - Business owner
 
 3. Review Malware Indicators
-	- Identify:
-		- File hashes
-		- Process names
-		- Command-line arguments
-		- Parent-child process chains
-		- Network connections
-
+    - Identify:
+        - File hashes
+        - Process names
+        - Command-line arguments
+        - Parent-child process chains
+        - Network connections
 
 4. Assess Execution Status
-	- Determine:
-		- Was malware blocked?
-		- Was execution successful?
-		- Is malware still active?
-		- Did persistence occur?
-
+    - Determine:
+        - Was malware blocked?
+        - Was execution successful?
+        - Is malware still active?
+        - Did persistence occur?
 
 5. Assess Potential Scope
 
-	- Review:
-		- Similar detections across environment
-		- Same hash/process activity
-		- Shared user activity
-		- Shared infrastructure usage
+    - Review:
+        - Similar detections across environment
+        - Same hash/process activity
+        - Shared user activity
+        - Shared infrastructure usage
 
 6. Determine Severity
-	- Assess:
-		- Malware capability
-		- Credential theft potential
-		- Lateral movement indicators
-		- Persistence mechanisms
-		- Critical system involvement
+    - Assess:
+        - Malware capability
+        - Credential theft potential
+        - Lateral movement indicators
+        - Persistence mechanisms
+        - Critical system involvement
 
 ## 3. Post-Action
 - Ensure all analysed headers, extracted IOCs, and initial verdict are documented in the incident ticket
+
 ## Contributor
 
 **Vishal Thakur**

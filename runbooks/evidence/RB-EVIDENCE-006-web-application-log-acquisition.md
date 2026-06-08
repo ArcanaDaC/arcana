@@ -29,41 +29,39 @@
 > - Losing request IDs, session IDs, user IDs, or object IDs needed for correlation
 
 1. **Confirm Scope**
-   - Confirm affected application, environment, routes, APIs, tenants, and time window.
+    - Confirm affected application, environment, routes, APIs, tenants, and time window.
 
 2. **Collect Edge Logs**
-   - Export WAF, CDN, reverse proxy, load balancer, firewall, IDS/IPS, DNS, and NetFlow logs.
-   - Preserve source IP, user agent, method, URI, query string, response code, bytes, rule ID, and action.
+    - Export WAF, CDN, reverse proxy, load balancer, firewall, IDS/IPS, DNS, and NetFlow logs.
+    - Preserve source IP, user agent, method, URI, query string, response code, bytes, rule ID, and action.
 
 3. **Collect Application Logs**
-   - Export application, API gateway, access, error, audit, and framework security logs.
-   - Preserve request IDs, user IDs, tenant IDs, session IDs, auth outcomes, object IDs, and application errors.
+    - Export application, API gateway, access, error, audit, and framework security logs.
+    - Preserve request IDs, user IDs, tenant IDs, session IDs, auth outcomes, object IDs, and application errors.
 
 4. **Collect Auth and Session Logs**
-   - Export SSO, local auth, MFA, token, API key, and session activity for affected users or services.
+    - Export SSO, local auth, MFA, token, API key, and session activity for affected users or services.
 
 5. **Collect Runtime Logs**
-   - Export web server, container, serverless, database, cache, queue, deployment, and cloud control plane logs as applicable.
+    - Export web server, container, serverless, database, cache, queue, deployment, and cloud control plane logs as applicable.
 
 6. **Preserve Application State**
-   - Capture relevant configuration, WAF rules, routes, access controls, feature flags, deployments, suspicious uploads, web shells, and modified content.
+    - Capture relevant configuration, WAF rules, routes, access controls, feature flags, deployments, suspicious uploads, web shells, and modified content.
 
 7. **Package Evidence**
-   - Store exports by source and time range.
-   - Hash exported files where applicable.
-   - Record operator, export method, query, location, and hash.
+    - Store exports by source and time range.
+    - Hash exported files where applicable.
+    - Record operator, export method, query, location, and hash.
 
 8. **Validate Completeness**
-   - Confirm expected sources and time ranges are present.
-   - Document gaps, sampling, missing logs, disabled logging, or retention limits.
+    - Confirm expected sources and time ranges are present.
+    - Document gaps, sampling, missing logs, disabled logging, or retention limits.
 
 ## 3. Post-Action
 
 - Transfer evidence to approved storage.
 - Record evidence metadata and known gaps in the incident ticket.
 - Record evidence readiness and location in the incident ticket.
-
----
 
 ## Contributor
 

@@ -22,38 +22,36 @@
 ## 2. Step-by-Step Instructions
 
 1. **Capture Alert Details**
-   - Record alert source, timestamp, affected app, endpoint, source IP, user agent, request path, payload indicators, and current severity.
+    - Record alert source, timestamp, affected app, endpoint, source IP, user agent, request path, payload indicators, and current severity.
 
 2. **Validate Application Context**
-   - Identify business criticality, production status, internet exposure, and data sensitivity.
+    - Identify business criticality, production status, internet exposure, and data sensitivity.
 
 3. **Classify Attack Type**
-   - Identify whether activity indicates injection, access control abuse, file upload abuse, path traversal, API abuse, credential stuffing, session abuse, denial of service, or known vulnerability exploitation.
+    - Identify whether activity indicates injection, access control abuse, file upload abuse, path traversal, API abuse, credential stuffing, session abuse, denial of service, or known vulnerability exploitation.
 
 4. **Assess Exploitation Status**
-   - Classify as scanning, attempted exploitation, suspected exploitation, confirmed exploitation, or ongoing attacker activity.
+    - Classify as scanning, attempted exploitation, suspected exploitation, confirmed exploitation, or ongoing attacker activity.
 
 5. **Assess Immediate Impact**
-   - Check for unauthorised access, data access, privilege escalation, web shell, command execution, service disruption, or tampering.
+    - Check for unauthorised access, data access, privilege escalation, web shell, command execution, service disruption, or tampering.
 
 6. **Check Active Risk**
-   - Determine whether malicious requests, attacker sessions, tokens, API keys, or uploaded artifacts remain active.
+    - Determine whether malicious requests, attacker sessions, tokens, API keys, or uploaded artifacts remain active.
 
 7. **Assign Initial Severity**
-   - Use application criticality, exploitation status, data sensitivity, active attacker presence, and service impact.
+    - Use application criticality, exploitation status, data sensitivity, active attacker presence, and service impact.
 
 8. **Identify Required Evidence**
-   - List required web, API, WAF/CDN, authentication, and infrastructure logs for follow-on collection.
-   - Record sources, retention limits, and urgency.
+    - List required web, API, WAF/CDN, authentication, and infrastructure logs for follow-on collection.
+    - Record sources, retention limits, and urgency.
 
 9. **Record Triage Result**
-   - Document verdict, severity, suspected attack type, affected assets, indicators, evidence needs, and open questions.
+    - Document verdict, severity, suspected attack type, affected assets, indicators, evidence needs, and open questions.
 
 ## 3. Post-Action
 
 - Ensure triage findings, evidence needs, affected assets, severity rationale, indicators, and open questions are documented.
-
----
 
 ## Contributor
 

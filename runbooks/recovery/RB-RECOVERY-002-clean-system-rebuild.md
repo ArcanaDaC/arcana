@@ -22,39 +22,37 @@ Applies to any single compromised system that needs to be brought back to a clea
 ## 2. Step-by-Step Instructions
 
 1. **Determine Recovery Approach**
-	- Assess compromise severity
-	- Assess persistence mechanisms
-	- Assess system criticality
-	- Assess confidence in cleanup capability
-	- Determine whether cleanup is sufficient or full rebuild / re-provisioning (**recommended**) is required
+    - Assess compromise severity
+    - Assess persistence mechanisms
+    - Assess system criticality
+    - Assess confidence in cleanup capability
+    - Determine whether cleanup is sufficient or full rebuild / re-provisioning (**recommended**) is required
 
-> Execute **either** 2 (cleanup-in-place) **or** 3 (rebuild / re-provision), based on the decision made in 1. Do not execute both.
+    > Execute **either** 2 (cleanup-in-place) **or** 3 (rebuild / re-provision), based on the decision made in 1. Do not execute both.
 
 2. **Execute Cleanup (Cleanup-In-Place Path Only)**
-	- Remove malicious binaries
-	- Remove persistence mechanisms
-	- Remove malicious services
-	- Remove unauthorised configuration changes (registry, system config, IAM policies, app settings)
-	- Remove scheduled tasks / cron jobs / automation triggers
-	- Remove unauthorised accounts, API keys, tokens, or app installs
+    - Remove malicious binaries
+    - Remove persistence mechanisms
+    - Remove malicious services
+    - Remove unauthorised configuration changes (registry, system config, IAM policies, app settings)
+    - Remove scheduled tasks / cron jobs / automation triggers
+    - Remove unauthorised accounts, API keys, tokens, or app installs
 
 3. **Execute Rebuild / Re-provision (Rebuild Path Only)**
-	- Perform full system reimage, container rebuild, VM re-provisioning, or tenant reset as appropriate
-	- Perform operating system / platform validation
-	- Perform security tooling reinstallation
-	- Perform patch validation
+    - Perform full system reimage, container rebuild, VM re-provisioning, or tenant reset as appropriate
+    - Perform operating system / platform validation
+    - Perform security tooling reinstallation
+    - Perform patch validation
 
 4. **Validate System Integrity**
-	- Confirm no active compromise indicators
-	- Confirm no persistence remains
-	- Confirm EDR / security tooling operational
-	- Confirm security controls healthy
-	- Confirm system activity normal
-
+    - Confirm no active compromise indicators
+    - Confirm no persistence remains
+    - Confirm EDR / security tooling operational
+    - Confirm security controls healthy
+    - Confirm system activity normal
 
 ## 3. Post-Action
 - Record the chosen recovery path (cleanup or rebuild), the rationale, and a timestamped log of all recovery actions in the incident ticket.
----
 
 ## Contributor
 

@@ -11,7 +11,6 @@
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
 
-
 ## 1. Prerequisites
 - User identity (email / username)
 - Session/token data
@@ -22,39 +21,37 @@
 
 1. **Assess Compromise Status**
     - Determine whether:
-      - Credentials were submitted
-      - Suspicious login activity exists
-      - Active sessions are present
-      - MFA bypass or fatigue occurred
+        - Credentials were submitted
+        - Suspicious login activity exists
+        - Active sessions are present
+        - MFA bypass or fatigue occurred
 2. **Disable or Lock Account**
-	- Immediately:
-		- Disable user account OR
-		- Force password reset with temporary lockout
-	- User cannot authenticate during containment
+    - Immediately:
+        - Disable user account OR
+        - Force password reset with temporary lockout
+    - User cannot authenticate during containment
 
 3. **Revoke Active Sessions & Tokens**
-	- Revoke:
-		- Browser sessions
-		- OAuth tokens
-		- Refresh tokens
-		- Mobile sessions
-		- API sessions
-	- Validate revocation success.
+    - Revoke:
+        - Browser sessions
+        - OAuth tokens
+        - Refresh tokens
+        - Mobile sessions
+        - API sessions
+    - Validate revocation success.
 
 4. **Reset Credentials**
-	- Force password reset
-	- Require strong password
-	- Prevent password reuse (if supported)
+    - Force password reset
+    - Require strong password
+    - Prevent password reuse (if supported)
 
 5. **Enforce MFA Re-Registration**
-	- Reset MFA factors
-	- Require re-enrollment
-	- Remove unknown/authenticator devices
-
+    - Reset MFA factors
+    - Require re-enrollment
+    - Remove unknown/authenticator devices
 
 ## 3. Post-Action
 - Document findings within the incident ticket
----
 
 ## Contributor
 

@@ -68,8 +68,6 @@
 ## 3. Post-Action
 - Ensure all analysis steps and findings are fully documented in the incident ticket
 
----
-
 ## Contributor
 
 **Vishal Thakur**

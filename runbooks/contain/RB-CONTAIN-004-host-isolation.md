@@ -18,32 +18,30 @@
 
 ## 2. Step-by-Step Instructions
 1. **Validate Isolation Requirements**
-   - Confirm reason for isolation
-   - Assess propagation or impact risk if the host remains connected
-   - Evaluate user impact
-   - Assess critical business function dependency
+    - Confirm reason for isolation
+    - Assess propagation or impact risk if the host remains connected
+    - Evaluate user impact
+    - Assess critical business function dependency
 
 2. **Isolate Host**
-   - Choose one of the following
-      - Perform EDR isolation (recommended)
-      - Perform network disconnection
-      - Perform VLAN quarantine
-      - Perform NAC isolation
+    - Choose one of the following
+        - Perform EDR isolation (recommended)
+        - Perform network disconnection
+        - Perform VLAN quarantine
+        - Perform NAC isolation
 
 3. **Restrict Lateral Movement**
-   - Block SMB access
-   - Block remote admin protocols
-   - Block peer-to-peer communication
-   - Block unnecessary outbound traffic
+    - Block SMB access
+    - Block remote admin protocols
+    - Block peer-to-peer communication
+    - Block unnecessary outbound traffic
 
 4. **Validate Isolation Effectiveness**
-   - Confirm host no longer communicating externally
-   - Verify isolation remains enforced
+    - Confirm host no longer communicating externally
+    - Verify isolation remains enforced
 
 ## 3. Post-Action
 - Document all actions taken within the incident ticket
-
----
 
 ## Contributor
 

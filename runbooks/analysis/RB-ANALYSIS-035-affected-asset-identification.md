@@ -24,65 +24,65 @@
 ## 2. Step-by-Step Instructions
 
 1. **Identify Initial Affected Asset**
-   - Confirm the originally affected system.
-   - Document ownership and business function.
+    - Confirm the originally affected system.
+    - Document ownership and business function.
 
 2. **Review Related Connections**
-   - Review:
-     - Network communications
-     - Authentication relationships
-     - Administrative access
-   - Identify related assets.
+    - Review:
+        - Network communications
+        - Authentication relationships
+        - Administrative access
+    - Identify related assets.
 
 3. **Identify Additional Hosts**
-   - Search for:
-     - Similar indicators
-     - Similar activity
-     - Related communications
-   - Document findings.
+    - Search for:
+        - Similar indicators
+        - Similar activity
+        - Related communications
+    - Document findings.
 
 4. **Review Authentication Activity**
-   - Identify:
-     - Shared accounts
-     - Administrative access
-     - Lateral movement indicators
-   - Document findings.
+    - Identify:
+        - Shared accounts
+        - Administrative access
+        - Lateral movement indicators
+    - Document findings.
 
 5. **Review Cloud and SaaS Activity**
-   - Identify:
-     - Connected assets
-     - Cloud resources
-     - SaaS resources
-   - Document findings.
+    - Identify:
+        - Connected assets
+        - Cloud resources
+        - SaaS resources
+    - Document findings.
 
 6. **Review Asset Inventory**
-   - Identify:
-     - Asset owners
-     - Business units
-     - Criticality ratings
-   - Document findings.
+    - Identify:
+        - Asset owners
+        - Business units
+        - Criticality ratings
+    - Document findings.
 
 7. **Correlate Findings**
-   - Correlate:
-     - Endpoint telemetry
-     - Authentication activity
-     - Network activity
-   - Determine full affected scope.
+    - Correlate:
+        - Endpoint telemetry
+        - Authentication activity
+        - Network activity
+    - Determine full affected scope.
 
 8. **Assess Business Impact**
-   - Identify:
-     - Critical systems
-     - Production systems
-     - Sensitive environments
-   - Document impact.
+    - Identify:
+        - Critical systems
+        - Production systems
+        - Sensitive environments
+    - Document impact.
 
 9. **Create Asset Inventory**
-   - Record:
-     - Hostnames
-     - IP addresses
-     - Asset owners
-     - Business criticality
-   - Finalise affected asset list.
+    - Record:
+        - Hostnames
+        - IP addresses
+        - Asset owners
+        - Business criticality
+    - Finalise affected asset list.
 
 10. **Escalate and Hand Off**
     - Provide findings to containment and recovery teams.
@@ -93,8 +93,6 @@
 - Ensure affected asset inventory is complete.
 - Preserve evidence supporting asset identification.
 - Attach asset inventory to the incident record.
-
----
 
 ## Contributor
 

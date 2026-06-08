@@ -27,89 +27,89 @@
 ## 2. Step-by-Step Instructions
 
 1. **Identify Potentially Impacted Assets**
-   - Identify:
-     - Workstations
-     - Servers
-     - Cloud workloads
-     - File servers
-     - SaaS-connected endpoints
-   - Document all assets associated with the investigation.
+    - Identify:
+        - Workstations
+        - Servers
+        - Cloud workloads
+        - File servers
+        - SaaS-connected endpoints
+    - Document all assets associated with the investigation.
 
 2. **Review File Access Activity**
-   - Identify:
-     - Large-scale file access
-     - Bulk file enumeration
-     - Sensitive file access
-     - Unusual access patterns
-   - Determine whether activity aligns with normal business operations.
+    - Identify:
+        - Large-scale file access
+        - Bulk file enumeration
+        - Sensitive file access
+        - Unusual access patterns
+    - Determine whether activity aligns with normal business operations.
 
 3. **Identify Archive Creation Activity**
-   - Review execution and file creation activity for:
-     - ZIP
-     - RAR
-     - 7z
-     - TAR
-     - GZIP
-     - Other compression utilities
-   - Identify newly created archive files.
+    - Review execution and file creation activity for:
+        - ZIP
+        - RAR
+        - 7z
+        - TAR
+        - GZIP
+        - Other compression utilities
+    - Identify newly created archive files.
 
 4. **Investigate Staging Directories**
-   - Review:
-     - Temporary directories
-     - User profile directories
-     - Downloads folders
-     - Shared folders
-     - Cloud sync folders
-   - Identify locations used to aggregate files prior to transfer.
+    - Review:
+        - Temporary directories
+        - User profile directories
+        - Downloads folders
+        - Shared folders
+        - Cloud sync folders
+    - Identify locations used to aggregate files prior to transfer.
 
 5. **Review Command-Line Activity**
-   - Investigate execution of:
-     - Compression tools
-     - File copy utilities
-     - Synchronisation tools
-     - Scripting engines
-     - Automation utilities
-   - Document suspicious commands and execution chains.
+    - Investigate execution of:
+        - Compression tools
+        - File copy utilities
+        - Synchronisation tools
+        - Scripting engines
+        - Automation utilities
+    - Document suspicious commands and execution chains.
 
 6. **Review Cloud Storage Usage**
-   - Identify use of:
-     - OneDrive
-     - Google Drive
-     - Dropbox
-     - Box
-     - Mega
-     - Other cloud storage providers
-   - Determine whether files were copied into synchronised directories.
+    - Identify use of:
+        - OneDrive
+        - Google Drive
+        - Dropbox
+        - Box
+        - Mega
+        - Other cloud storage providers
+    - Determine whether files were copied into synchronised directories.
 
 7. **Review Removable Media Activity**
-   - Investigate:
-     - USB device insertions
-     - External storage usage
-     - Large file copy operations
-   - Identify potential staging to removable media.
+    - Investigate:
+        - USB device insertions
+        - External storage usage
+        - Large file copy operations
+    - Identify potential staging to removable media.
 
 8. **Correlate with Outbound Traffic Analysis**
-   - Compare identified staging activity against:
-     - Network transfers
-     - Cloud uploads
-     - External communications
-   - Determine whether staged data was subsequently transferred.
+    - Compare identified staging activity against:
+        - Network transfers
+        - Cloud uploads
+        - External communications
+    - Determine whether staged data was subsequently transferred.
 
 9. **Determine Scope of Staged Data**
-   - Identify:
-     - Number of files involved
-     - File types involved
-     - Data owners
-     - Business units affected
-     - Estimated data volume
-   - Document findings and confidence level.
+    - Identify:
+        - Number of files involved
+        - File types involved
+        - Data owners
+        - Business units affected
+        - Estimated data volume
+    - Document findings and confidence level.
 
 10. **Escalate and Hand Off**
     - Provide findings to the Incident Commander and Technical Lead.
     - Escalate to:
-      - Sensitive Data Impact Assessment
-      - Exfiltration Scoping Hunt
-      - Containment activities
+        - Sensitive Data Impact Assessment
+        - Exfiltration Scoping Hunt
+        - Containment activities
     - Update the incident record with all findings.
 
 ## 3. Post-Action
@@ -121,11 +121,9 @@
 - Attach investigation findings to the incident record.
 - Participate in subsequent containment and impact assessment activities as required.
 
----
-
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

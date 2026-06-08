@@ -69,7 +69,7 @@ Suspicious execution should be treated as a potential precursor to compromise un
 - [RB-ANALYSIS-024 LOLBin Abuse Investigation](../runbooks/analysis/RB-ANALYSIS-024-lolbin-abuse-investigation.md)
 - [RB-ANALYSIS-025 Script Execution Analysis](../runbooks/analysis/RB-ANALYSIS-025-script-execution-analysis.md)
 - [RB-ANALYSIS-026 User Activity Validation](../runbooks/analysis/RB-ANALYSIS-026-user-activity-validation.md)
-- [RB-ANALYSIS-022 Exfiltration Scope Expansion Hunt](../runbooks/analysis/RB-ANALYSIS-022-exfiltration-scope-expansion-hunt.md)
+- [RB-ANALYSIS-022 Exfiltration Scoping Hunt](../runbooks/analysis/RB-ANALYSIS-022-exfiltration-scoping-hunt.md)
 
 ### Containment
 
@@ -243,11 +243,11 @@ Actions:
 
 ---
 
-### 8. Scope Expansion Hunt
+### 8. Exfiltration Scoping Hunt
 
 Runbook:
 
-- [RB-ANALYSIS-022 Exfiltration Scope Expansion Hunt](../runbooks/analysis/RB-ANALYSIS-022-exfiltration-scope-expansion-hunt.md)
+- [RB-ANALYSIS-022 Exfiltration Scoping Hunt](../runbooks/analysis/RB-ANALYSIS-022-exfiltration-scoping-hunt.md)
 
 Actions:
 

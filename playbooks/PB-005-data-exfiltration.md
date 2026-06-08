@@ -51,197 +51,149 @@
 
 - **Incident Commander:** Coordinates and leads the incident response effort, approves containment actions, and manages escalation decisions.
 
-- **Technical Lead:** Directs investigative activities, determines scope, and coordinates technical response actions.
+- Incident Responder / Forensic Analyst: Performs forensic investigation, determines exfiltration scope, preserves evidence, reconstructs the attack timeline, and identifies root cause.
 
 - **Communications Lead:** Coordinates internal and external communications, executive updates, and stakeholder notifications.
 
-- **Forensic Analyst:** Conducts forensic investigation, evidence preservation, timeline reconstruction, and root cause analysis.
-
 - **Other Roles:**
-  - Identity & Access Team
-  - Cloud Security Team
-  - Legal & Compliance
-  - Data Owners
-  - Business Stakeholders
+	- **Identity & Access (IAM) Team:** Locks down compromised accounts, revokes sessions/tokens, and rotates credentials.
+	- **Cloud Security Team:** Investigates and remediates exfiltration via cloud storage, SaaS, and cloud workloads.
+	- **Data Owners:** Assess data sensitivity, regulatory classification, and business impact.
+	- **Legal & Compliance:** Assesses regulatory and breach notification obligations; owns external notification decisions.
+	- **HR / People Team:** Engaged where insider activity is suspected or out-of-band user contact is required.
 
 ## 4. Initial Actions
 
-### Immediate Steps
+- **Immediate Steps:**
+  - Triage the originating alert or report to validate it represents real exfiltration activity
+    - 📘 [RB-TRIAGE-010: Suspected Data Loss Triage](../runbooks/triage/RB-TRIAGE-010-suspected-data-loss-triage.md)
+  - Determine whether exfiltration is currently active (e.g. traffic to known C2 / suspicious domain, uploads to personal cloud storage)
+  - Determine what type and volume of data is being exfiltrated (sensitive file names/paths, large size, high file count)
+  - Identify the account(s) and host(s) being used to perform the exfiltration
 
-- Determine whether exfiltration activity is currently ongoing
-- Preserve logs and evidence immediately
-- Identify affected systems, users, and datasets
-- Notify Incident Commander
-- Start incident documentation and timeline
-- Assign investigation and containment responsibilities
-
-### Runbooks
-
-- [RB-TRIAGE-002: EDR Alert Triage](../runbooks/triage/RB-TRIAGE-002-edr-alert-triage.md)
-- [RB-TRIAGE-003: Identity Alert Triage](../runbooks/triage/RB-TRIAGE-003-identity-alert-triage.md)
-
-> **Decision Point**
->
-> - Active exfiltration identified → Proceed immediately to Containment actions
-> - Historical exfiltration only → Continue Investigation & Analysis
+  > **Decision Point:**
+  > - Active exfiltration identified → Proceed immediately to Containment actions
+  > - Historical exfiltration only → Continue Investigation & Analysis
 
 ## 5. Investigation & Analysis
 
-### Determine Exfiltration Scope
+- **Determine Exfiltration Scope:**
+  - Review outbound traffic patterns
+    - 📘 [RB-ANALYSIS-018: Outbound Traffic Analysis](../runbooks/analysis/RB-ANALYSIS-018-outbound-traffic-analysis.md)
+  - Investigate data staging activity
+    - 📘 [RB-ANALYSIS-019: Data Staging Investigation](../runbooks/analysis/RB-ANALYSIS-019-data-staging-investigation.md)
+  - Review cloud storage and SaaS activity
+    - 📘 [RB-ANALYSIS-020: Cloud Storage & SaaS Review](../runbooks/analysis/RB-ANALYSIS-020-cloud-storage-saas-review.md)
+  - Identify impacted data and business impact
+    - 📘 [RB-ANALYSIS-021: Sensitive Data Impact Assessment](../runbooks/analysis/RB-ANALYSIS-021-sensitive-data-impact-assessment.md)
+  - Hunt for additional exfiltration
+    - 📘 [RB-ANALYSIS-022: Exfiltration Scoping Hunt](../runbooks/analysis/RB-ANALYSIS-022-exfiltration-scoping-hunt.md)
+  - Review authentication activity
+    - 📘 [RB-ANALYSIS-007: Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
+  - Identify additional compromised accounts
+    - 📘 [RB-ANALYSIS-011: Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
 
-- Review outbound traffic patterns
-  - [RB-ANALYSIS-018: Outbound Traffic Analysis](../runbooks/analysis/RB-ANALYSIS-018-outbound-traffic-analysis.md)
-
-- Investigate data staging activity
-  - [RB-ANALYSIS-019: Data Staging Investigation](../runbooks/analysis/RB-ANALYSIS-019-data-staging-investigation.md)
-
-- Review cloud storage and SaaS activity
-  - [RB-ANALYSIS-020: Cloud Storage & SaaS Review](../runbooks/analysis/RB-ANALYSIS-020-cloud-storage-saas-review.md)
-
-- Identify impacted data and business impact
-  - [RB-ANALYSIS-021: Sensitive Data Impact Assessment](../runbooks/analysis/RB-ANALYSIS-021-sensitive-data-impact-assessment.md)
-
-- Hunt for additional affected systems and accounts
-  - [RB-ANALYSIS-022: Exfiltration Scope Expansion Hunt](../runbooks/analysis/RB-ANALYSIS-022-exfiltration-scope-expansion-hunt.md)
-
-- Review authentication activity
-  - [RB-ANALYSIS-007: Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
-
-- Identify additional compromised accounts
-  - [RB-ANALYSIS-011: Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
-
-> **Decision Point**
->
-> - Privileged account abuse identified → Execute [PB-009: Privilege Escalation](PB-009-privilege-escalation.md)
-> - Cloud tenant compromise identified → Execute [PB-007: Cloud Compromise](PB-007-cloud-compromise.md)
-> - Insider activity identified → Execute [PB-006: Insider Threat](PB-006-insider-threat.md)
+  
+  > **Decision Point:**
+  > For each identified initial access vector, run the post-detection phases (Analysis → Recovery) of the relevant playbook concurrently alongside this one:
+  > - Phishing → [PB-001: Phishing & Credential Theft](PB-001-phishing.md)
+  > - Account takeover → [PB-004: Account Takeover](PB-004-account-takeover.md)
+  > - Endpoint malware → [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md)
+  > - Ransomware activity observed alongside exfil → [PB-002: Ransomware](PB-002-ransomware.md)
+  > - Active exploitation → [PB-015: Active Exploitation](PB-015-active-exploitation.md)
+  > - Zero-day exploitation → [PB-018: Zero-Day Response](PB-018-zero-day-response.md)
 
 ## 6. Containment, Eradication & Recovery
 
-### Containment Actions
-
-- [RB-CONTAIN-001: Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
-  - Disable compromised accounts
-  - Revoke active sessions
-  - Reset credentials
-  - Enforce MFA re-registration
-
-- [RB-CONTAIN-004: Host Isolation](../runbooks/contain/RB-CONTAIN-004-host-isolation.md)
+- **Containment Actions:**
+  - Disable compromised accounts, revoke active sessions, reset credentials, and enforce MFA re-registration
+    - 📘 [RB-CONTAIN-001: Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
   - Isolate impacted systems
-
-- [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+    - 📘 [RB-CONTAIN-004: Host Isolation](../runbooks/contain/RB-CONTAIN-004-host-isolation.md)
   - Revoke active tokens and sessions
+    - 📘 [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+  - Block active exfiltration channels, restrict outbound communications, and block identified destinations
+    - 📘 [RB-CONTAIN-007: Outbound Transfer Blocking](../runbooks/contain/RB-CONTAIN-007-outbound-transfer-blocking.md)
 
-- [RB-CONTAIN-007: Outbound Transfer Blocking](../runbooks/contain/RB-CONTAIN-007-outbound-transfer-blocking.md)
-  - Block active exfiltration channels
-  - Restrict outbound communications
-  - Block identified destinations
+- **Eradication Steps:**
+  - Remove attacker access mechanisms
+  - Remove malicious tooling used for collection or transfer
+  - Remove unauthorised SaaS sharing configurations
+  - Remove unauthorised cloud storage access
 
-### Eradication Steps
-
-- Remove attacker access mechanisms
-- Remove malicious tooling used for collection or transfer
-- Remove unauthorised SaaS sharing configurations
-- Remove unauthorised cloud storage access
-
-### Recovery Steps
-
-- [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
-
-- Restore legitimate user access
-- Validate corrective actions
-- Restore normal business operations
-- Monitor for recurring activity
+- **Recovery Steps:**
+  - Restore legitimate user access
+    - 📘 [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
+  - Validate corrective actions
+  - Restore normal business operations
+  - Monitor for recurring activity
 
 ## 7. Communication & Escalation
 
-### Internal Communication
+- **Internal Communication:**
+  - Notify leadership and affected business units
+  - Provide regular incident updates
+  - Engage data owners for impact assessment
 
-- Notify leadership and affected business units
-- Provide regular incident updates
-- Engage data owners for impact assessment
+- **External Communication:**
+  - Engage Legal and Compliance if regulated data is involved
+  - Notify customers, regulators, or partners as directed by Legal
+  - Coordinate all external communication through approved channels
 
-### External Communication
+- **Escalation Criteria:**
 
-- Engage Legal and Compliance if regulated data is involved
-- Notify customers, regulators, or partners as directed by Legal
-- Coordinate all external communication through approved channels
-
-### Escalation Criteria
-
-| Condition | Escalate To |
-|-----------|-------------|
-| Insider activity identified | [PB-006: Insider Threat](PB-006-insider-threat.md) |
-| Cloud tenant compromise | [PB-007: Cloud Compromise](PB-007-cloud-compromise.md) |
-| Privileged account abuse | [PB-009: Privilege Escalation](PB-009-privilege-escalation.md) |
-| Malware-assisted exfiltration | [PB-003: Endpoint Malware](PB-003-endpoint-malware.md) |
-| Ransomware-linked exfiltration | [PB-002: Ransomware](PB-002-ransomware.md) |
+  | Condition | Escalate To |
+  |-----------|-------------|
+  | Phishing identified as initial access vector | [PB-001: Phishing & Credential Theft](PB-001-phishing.md) |
+  | Account takeover identified as initial access vector | [PB-004: Account Takeover](PB-004-account-takeover.md) |
+  | Endpoint malware identified as initial access vector | [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md) |
+  | Ransomware activity observed alongside exfil (double extortion) | [PB-002: Ransomware](PB-002-ransomware.md) |
+  | Active exploitation identified | [PB-015: Active Exploitation](PB-015-active-exploitation.md) |
+  | Zero-day exploitation identified | [PB-018: Zero-Day Response](PB-018-zero-day-response.md) |
+  | Insider activity identified | [PB-006: Insider Threat](PB-006-insider-threat.md) |
 
 ## 8. Post-Incident Activities
 
-### Lessons Learned
+- **Lessons Learned:**
+  - Schedule and conduct a Post-Incident Review (PIR)
+  - Document timeline and root cause
+  - Identify detection and response gaps
+  - Assess effectiveness of containment actions
+  - Review data governance controls
 
-- Schedule and conduct a Post-Incident Review (PIR)
-- Document timeline and root cause
-- Identify detection and response gaps
-- Assess effectiveness of containment actions
-- Review data governance controls
-
-### Documentation Updates
-
-- Update this playbook as required
-- Update associated runbooks
-- Update detection content and monitoring logic
-- Update data handling and governance procedures
+- **Documentation Updates:**
+  - Update this playbook as required
+  - Update associated runbooks
+  - Update detection content and monitoring logic
+  - Update data handling and governance procedures
 
 ## 9. References & Linked Resources
 
-### Playbooks
+- **Playbooks:**
+  - [PB-001: Phishing & Credential Theft](PB-001-phishing.md)
+  - [PB-002: Ransomware](PB-002-ransomware.md)
+  - [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md)
+  - [PB-004: Account Takeover](PB-004-account-takeover.md)
+  - [PB-006: Insider Threat](PB-006-insider-threat.md)
+  - [PB-015: Active Exploitation](PB-015-active-exploitation.md)
+  - [PB-018: Zero-Day Response](PB-018-zero-day-response.md)
 
-- [PB-002: Ransomware](PB-002-ransomware.md)
-- [PB-003: Endpoint Malware](PB-003-endpoint-malware.md)
-- [PB-006: Insider Threat](PB-006-insider-threat.md)
-- [PB-007: Cloud Compromise](PB-007-cloud-compromise.md)
-- [PB-009: Privilege Escalation](PB-009-privilege-escalation.md)
-
-### Runbooks
-
-- [RB-TRIAGE-002: EDR Alert Triage](../runbooks/triage/RB-TRIAGE-002-edr-alert-triage.md)
-- [RB-TRIAGE-003: Identity Alert Triage](../runbooks/triage/RB-TRIAGE-003-identity-alert-triage.md)
-- [RB-ANALYSIS-007: Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
-- [RB-ANALYSIS-011: Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
-- [RB-ANALYSIS-018: Outbound Traffic Analysis](../runbooks/analysis/RB-ANALYSIS-018-outbound-traffic-analysis.md)
-- [RB-ANALYSIS-019: Data Staging Investigation](../runbooks/analysis/RB-ANALYSIS-019-data-staging-investigation.md)
-- [RB-ANALYSIS-020: Cloud Storage & SaaS Review](../runbooks/analysis/RB-ANALYSIS-020-cloud-storage-saas-review.md)
-- [RB-ANALYSIS-021: Sensitive Data Impact Assessment](../runbooks/analysis/RB-ANALYSIS-021-sensitive-data-impact-assessment.md)
-- [RB-ANALYSIS-022: Exfiltration Scope Expansion Hunt](../runbooks/analysis/RB-ANALYSIS-022-exfiltration-scope-expansion-hunt.md)
-- [RB-CONTAIN-001: Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
-- [RB-CONTAIN-004: Host Isolation](../runbooks/contain/RB-CONTAIN-004-host-isolation.md)
-- [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
-- [RB-CONTAIN-007: Outbound Transfer Blocking](../runbooks/contain/RB-CONTAIN-007-outbound-transfer-blocking.md)
-- [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
+- **Runbooks:**
+  - [RB-TRIAGE-010: Suspected Data Loss Triage](../runbooks/triage/RB-TRIAGE-010-suspected-data-loss-triage.md)
+  - [RB-ANALYSIS-007: Authentication Log Analysis](../runbooks/analysis/RB-ANALYSIS-007-authentication-log-analysis.md)
+  - [RB-ANALYSIS-011: Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
+  - [RB-ANALYSIS-018: Outbound Traffic Analysis](../runbooks/analysis/RB-ANALYSIS-018-outbound-traffic-analysis.md)
+  - [RB-ANALYSIS-019: Data Staging Investigation](../runbooks/analysis/RB-ANALYSIS-019-data-staging-investigation.md)
+  - [RB-ANALYSIS-020: Cloud Storage & SaaS Review](../runbooks/analysis/RB-ANALYSIS-020-cloud-storage-saas-review.md)
+  - [RB-ANALYSIS-021: Sensitive Data Impact Assessment](../runbooks/analysis/RB-ANALYSIS-021-sensitive-data-impact-assessment.md)
+  - [RB-ANALYSIS-022: Exfiltration Scoping Hunt](../runbooks/analysis/RB-ANALYSIS-022-exfiltration-scoping-hunt.md)
+  - [RB-CONTAIN-001: Account Lockdown](../runbooks/contain/RB-CONTAIN-001-account-lockdown.md)
+  - [RB-CONTAIN-004: Host Isolation](../runbooks/contain/RB-CONTAIN-004-host-isolation.md)
+  - [RB-CONTAIN-005: Session Token Revocation](../runbooks/contain/RB-CONTAIN-005-session-token-revocation.md)
+  - [RB-CONTAIN-007: Outbound Transfer Blocking](../runbooks/contain/RB-CONTAIN-007-outbound-transfer-blocking.md)
+  - [RB-RECOVERY-003: User Recovery & Access Restoration](../runbooks/recovery/RB-RECOVERY-003-user-recovery-access-restoration.md)
 
 ## 10. Appendices
-
-### Contact List
-
-- Incident Response Team
-- Legal & Compliance
-- Cloud Security Team
-- Identity & Access Team
-- Executive Stakeholders
-
-### Templates
-
-- Incident Timeline Template
-- Regulatory Notification Template
-- Evidence Collection Template
-
-### Process Flowchart
-
-Data Exfiltration Detection → Investigation & Analysis → Containment → Eradication → Recovery → Post-Incident Review
-
----
 
 ## Contributor
 

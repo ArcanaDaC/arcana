@@ -3,7 +3,7 @@
 ## Document Control
 | Attribute | Value | Date |
 | --- | --- | --- |
-| Document Name | URL Detonation & Analysis | |
+| Document Name | Authentication Log Analysis | |
 | Version | v1.0 | |
 | Owner | [Enter owner/team] | |
 | Status | [Draft/Approved/Retired] | |

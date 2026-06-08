@@ -10,7 +10,7 @@
 | Status | [Draft/Approved/Retired] | |
 | Next Review Date | [Enter next review date] | |
 | Approvals | [Enter approver(s)] | |
-| Change Summary | Initial creation | |
+| Change Summary | [Brief summary of changes] | |
 
 ## 1. Prerequisites
 
@@ -108,7 +108,7 @@
     - Provide findings to the Incident Commander and Technical Lead.
     - Escalate to:
       - Sensitive Data Impact Assessment
-      - Exfiltration Scope Expansion Hunt
+      - Exfiltration Scoping Hunt
       - Containment activities
     - Update the incident record with all findings.
 

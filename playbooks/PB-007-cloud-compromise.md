@@ -30,8 +30,8 @@
   - Exposed cloud credentials, API keys, or instance metadata
 
   Out of scope (handled by dedicated playbooks):
-  - Compromise of cloud identities themselves (IdP, federated identity) → [PB-019: Cloud Identity Compromise](PB-019-cloud-identity-compromise.md)
-  - Compromise of a user/service/bot account → [PB-004: Account Takeover](PB-004-account-takeover.md)
+  - Identity containment and recovery for compromised cloud IAM users, roles, service accounts, workload identities, federated identities, tokens, or access keys → [PB-004: Account Takeover](PB-004-account-takeover.md)
+  - Continue this playbook for cloud control plane, workload, storage, network, resource, and security-service impact caused by that identity.
 
 
 ## 2. Incident Identification & Criteria
@@ -119,11 +119,11 @@ Initiate this playbook when any of the following occur:
   - Review cloud storage and SaaS access for data exposure
     - 📘 [RB-ANALYSIS-020: Cloud Storage / SaaS Review](../runbooks/analysis/RB-ANALYSIS-020-cloud-storage-saas-review.md)
   - Identify any additional cloud / workload identities compromised
-    - 📘 [RB-ANALYSIS-011: Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
+
 
   > **Decision Point:** Run the post-detection phases (Analysis → Recovery) of any relevant sibling playbook concurrently alongside this one based on what was observed:
-  > - Compromised user / service / bot account → [PB-004: Account Takeover](PB-004-account-takeover.md)
-  > - Compromised cloud / workload identity → [PB-019: Cloud Identity Compromise](PB-019-cloud-identity-compromise.md)
+  > - Compromised user / service / bot account → execute [PB-004: Account Takeover](PB-004-account-takeover.md) for identity containment and recovery.
+  > - Compromised cloud IAM user, role, service account, workload identity, token, or access key → execute [PB-004: Account Takeover](PB-004-account-takeover.md) for identity containment and continue this playbook for cloud activity and environment impact.
   > - Zero-day exploitation → [PB-018: Zero-Day Response](PB-018-zero-day-response.md)
   > - Malware deployed on a cloud workload → [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md)
   > - Ransomware activity observed → [PB-002: Ransomware](PB-002-ransomware.md)
@@ -187,13 +187,13 @@ Initiate this playbook when any of the following occur:
 
   | Condition | Escalate To |
   |-----------|-------------|
-  | Compromised cloud / workload identity | [PB-019: Cloud Identity Compromise](PB-019-cloud-identity-compromise.md) |
+  | Compromised cloud IAM user, role, service account, workload identity, token, or access key requires identity containment | [PB-004: Account Takeover](PB-004-account-takeover.md) |
   | Compromised user / service / bot account identified as initial access vector | [PB-004: Account Takeover](PB-004-account-takeover.md) |
   | Zero-day exploitation identified as initial access vector | [PB-018: Zero-Day Response](PB-018-zero-day-response.md) |
   | Malware deployed on a cloud workload | [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md) |
   | Ransomware activity observed | [PB-002: Ransomware](PB-002-ransomware.md) |
   | Data exfiltration confirmed | [PB-005: Data Exfiltration](PB-005-data-exfiltration.md) |
-  | Cloud tenant-wide compromise, cloud admin compromise, or logging infrastructure compromise | [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md) / Executive escalation |
+  | Cloud tenant-wide compromise, cloud admin compromise, or logging infrastructure compromise | [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md) / Executive escalation |
 
 
 ## 8. Post-Incident Activities
@@ -221,8 +221,7 @@ Initiate this playbook when any of the following occur:
   - [PB-004: Account Takeover](PB-004-account-takeover.md)
   - [PB-005: Data Exfiltration](PB-005-data-exfiltration.md)
   - [PB-018: Zero-Day Response](PB-018-zero-day-response.md)
-  - [PB-019: Cloud Identity Compromise](PB-019-cloud-identity-compromise.md)
-  - [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md)
+  - [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md)
 
 - **Runbooks:**
   - [RB-TRIAGE-002: EDR Alert Triage](../runbooks/triage/RB-TRIAGE-002-edr-alert-triage.md)

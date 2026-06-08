@@ -50,8 +50,9 @@ Arcana organises IR documentation into **five components**:
 
 ## Document Naming Conventions
 All documents in the Arcana framework should follow consistent naming conventions to make them easy to identify, reference, and search.
-The format is `<PREFIX>-###: <Descriptor>`, where:
-- `<PREFIX>` identifies the document type
+The standard display format is based on a document prefix, a zero-padded number, and a short descriptor. Runbooks also include a category prefix to show the response phase they support.
+
+- `<PREFIX>` identifies the document type or runbook category
 - `###` is a zero-padded sequential number
 - `<Descriptor>` is a short, human-readable title describing the document
 
@@ -59,9 +60,23 @@ The format is `<PREFIX>-###: <Descriptor>`, where:
 | --- | --- | --- | --- |
 | Incident Response Plan | `Incident Response Plan` | N/A | `Incident Response Plan` |
 | Playbook | `PB-###: <Descriptor>` | Incident scenario | `PB-001: Phishing` |
-| Runbook | `RB-###: <Descriptor>` | Operational task | `RB-001: Isolating a Cloud Host` |
+| Runbook | `RB-<CATEGORY>-###: <Descriptor>` | Operational task within a response phase | `RB-CONTAIN-004: Host Isolation` |
 | Standard Operating Procedure (SOP) | `SOP-###: <Descriptor>` | Process being standardised | `SOP-001: Paging On-Call Engineers` |
 | Knowledge Base Article | `KB-###: <Descriptor>` | Topic of the article | `KB-001: Volatility for memory forensics` |
+
+Runbooks use a category prefix to show the response phase they support. Current runbook categories are:
+
+| Category Prefix | Response Phase | Example |
+| --- | --- | --- |
+| `RB-TRIAGE` | Initial validation and triage | `RB-TRIAGE-001: Email Triage & Header Analysis` |
+| `RB-EVIDENCE` | Evidence acquisition and preservation | `RB-EVIDENCE-002: Host-Based Log Acquisition` |
+| `RB-ANALYSIS` | Investigation and analysis | `RB-ANALYSIS-034: Exploitation Activity Analysis` |
+| `RB-CONTAIN` | Containment actions | `RB-CONTAIN-004: Host Isolation` |
+| `RB-ERAD` | Eradication and removal | `RB-ERAD-001: Email Removal & Blocking` |
+| `RB-RECOVERY` | Recovery and restoration | `RB-RECOVERY-003: User Recovery & Access Restoration` |
+| `RB-POST` | Post-incident improvement | `RB-POST-003: DDoS Resilience Improvement` |
+
+For filenames, use lowercase descriptive slugs after the category and number, for example `RB-CONTAIN-004-host-isolation.md`.
 
 ## How To Implement Arcana
 Arcana can be implemented in any tool that supports ownership, review, versioning, and status. The two common patterns:

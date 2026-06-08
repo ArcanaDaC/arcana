@@ -157,7 +157,7 @@ Initiate this playbook when any of the following occur:
     | Malware suspected or identified | [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md) |
     | Privilege escalation suspected or identified | [PB-009: Privilege Escalation](PB-009-privilege-escalation.md) |
     | Lateral movement suspected or identified | [PB-010: Lateral Movement](PB-010-lateral-movement.md) |
-    | Widespread supply chain compromise, critical provider compromise, or major business impact | [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md) |
+    | Widespread supply chain compromise, critical provider compromise, or major business impact | [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md) |
 
 ## 8. Post-Incident Activities
 
@@ -177,7 +177,7 @@ Initiate this playbook when any of the following occur:
     - [PB-007: Cloud Compromise](PB-007-cloud-compromise.md)
     - [PB-009: Privilege Escalation](PB-009-privilege-escalation.md)
     - [PB-010: Lateral Movement](PB-010-lateral-movement.md)
-    - [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md)
+    - [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md)
 
 - **Runbooks:**
     - [RB-TRIAGE-004: Third-Party Notification Validation](../runbooks/triage/RB-TRIAGE-004-third-party-notification-validation.md)

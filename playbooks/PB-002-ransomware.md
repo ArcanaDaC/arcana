@@ -77,7 +77,7 @@ Initiate this playbook when any of the following occur:
   - Freeze non-essential administrative changes
 
   > **Decision Point:**
-  > - If ransomware propagation continues → expand containment scope and escalate to crisis response / major incident management ([PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md)).
+  > - If ransomware propagation continues → expand containment scope and escalate to crisis response / major incident management ([PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md)).
 
 ## 5. Investigation & Analysis
 
@@ -174,7 +174,7 @@ Initiate this playbook when any of the following occur:
   | Zero-day vulnerability exploited as initial access vector | [PB-018: Zero-Day Response](PB-018-zero-day-response.md) |
   | Known/patched vulnerability exploited as initial access vector | [PB-017: Vulnerability Response](PB-017-vulnerability-response.md) |
   | Data exfiltration confirmed | [PB-005: Data Exfiltration](PB-005-data-exfiltration.md) |
-  | Enterprise-wide propagation, hypervisor or backup compromise | [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md) / Executive escalation |
+  | Enterprise-wide propagation, hypervisor or backup compromise | [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md) / Executive escalation |
 
 ## 8. Post-Incident Activities
 
@@ -198,7 +198,7 @@ Initiate this playbook when any of the following occur:
   - [PB-005: Data Exfiltration](PB-005-data-exfiltration.md)
   - [PB-017: Vulnerability Response](PB-017-vulnerability-response.md)
   - [PB-018: Zero-Day Response](PB-018-zero-day-response.md)
-  - [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md)
+  - [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md)
 
 - **Runbooks:**
   - [RB-CONTAIN-002: Rapid Containment & Network Segmentation](../runbooks/contain/RB-CONTAIN-002-rapid-containment-network-segmentation.md)

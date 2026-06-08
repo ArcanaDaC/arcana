@@ -157,7 +157,7 @@
   | Known vulnerability exploited in production | [PB-015: Active Exploitation](PB-015-active-exploitation.md) |
   | Cloud workload or control plane compromise | [PB-007: Cloud Compromise](PB-007-cloud-compromise.md) |
   | Application-layer denial of service | [PB-013: DDoS](PB-013-ddos.md) |
-  | Critical customer, payment, authentication, or regulated-data impact | [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md) / Executive escalation |
+  | Critical customer, payment, authentication, or regulated-data impact | [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md) / Executive escalation |
 
 ## 8. Post-Incident Activities
 
@@ -176,7 +176,7 @@
   - [PB-007: Cloud Compromise](PB-007-cloud-compromise.md)
   - [PB-013: DDoS](PB-013-ddos.md)
   - [PB-015: Active Exploitation](PB-015-active-exploitation.md)
-  - [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md)
+  - [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md)
 
 - **Runbooks:**
   - [RB-TRIAGE-012: Web Application Attack Triage](../runbooks/triage/RB-TRIAGE-012-web-application-attack-triage.md)

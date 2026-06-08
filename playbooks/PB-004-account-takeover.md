@@ -17,16 +17,20 @@
 
 - **Purpose:**
 
-  This playbook outlines the response process for account takeover (ATO) incidents - compromised identities, session hijacking, credential abuse, attackers bypassing or stealing MFA, and unauthorised account activity. The objective is to revoke attacker access, work out what the attacker did and which other accounts or systems they reached, restore secure user access, and harden identity controls against repeat compromise.
+  This playbook outlines the response process for account takeover (ATO) incidents - compromised workforce, service, SaaS, and cloud identities; session hijacking; credential abuse; MFA bypass; and unauthorised account activity. The objective is to revoke attacker access, determine what the identity accessed, restore secure access, and harden identity controls against repeat compromise.
 
 - **Scope:**
 
   Applies to all identity-compromise incidents across the organisation, including:
   - Staff / service / bot account compromise
-  - Session, token, or API key theft
+  - Cloud IAM user, role, service account, managed identity, workload identity, or service principal compromise
+  - Session, token, API key, access key, refresh token, or temporary credential theft
   - OAuth / consent-phishing abuse
+  - Federated identity, role-assumption, or delegated access abuse
   - MFA bypass, MFA fatigue, and SIM-swap attacks
   - Credential stuffing and password spray
+
+  For cloud control plane actions performed by a compromised identity, run [PB-007: Cloud Compromise](PB-007-cloud-compromise.md) concurrently to investigate cloud resource, workload, storage, network, and security-service impact.
 
 ## 2. Incident Identification & Criteria
 
@@ -61,7 +65,7 @@ Initiate this playbook when any of the following occur:
 - **Incident Responder / Forensic Analyst:** Performs authentication log analysis, OAuth consent review, credential exposure investigation, and hunting for other compromised accounts; preserves identity telemetry as evidence.
 - **Other Roles:**
   - **Endpoint / EDR Team:** Investigates endpoints used by the compromised account for credential-theft malware, browser token theft, and persistence; isolates impacted devices.
-  - **Cloud / Platform Team:** Reviews and remediates compromise impact on cloud workloads, service accounts, and federated identity.
+  - **Cloud / Platform Team:** Reviews cloud IAM users, roles, service accounts, managed identities, workload identities, service principals, access keys, federated identity, and cloud control plane impact.
   - **HR / People Team:** Required where the impacted user must be contacted out-of-band, where account recovery requires identity proofing, or where insider threat is suspected.
   - **Legal / Privacy:** Assesses regulatory and breach notification obligations where personal data, regulated data, or financial activity is affected.
 
@@ -112,6 +116,7 @@ Initiate this playbook when any of the following occur:
   - Hunt for adjacent compromised accounts using shared indicators from the initial compromise (source IPs, user-agents, device IDs, OAuth application IDs, MFA factor metadata)
     - 📘 [RB-ANALYSIS-011: Identify Additional Compromised Accounts](../runbooks/analysis/RB-ANALYSIS-011-identify-additional-compromised-accounts.md)
   - Where the compromised account interacted with hosts, review endpoint activity for credential-theft tooling, browser token theft, and persistence
+  - Where the compromised identity performed cloud control plane actions, run [PB-007: Cloud Compromise](PB-007-cloud-compromise.md) concurrently to investigate cloud resource, workload, storage, network, and security-service impact.
   - Document findings, attack timeline, scope of compromise, and indicators of compromise (IOCs)
 
 ## 6. Containment, Eradication & Recovery
@@ -177,7 +182,8 @@ Initiate this playbook when any of the following occur:
   | Endpoint credential-theft malware identified as initial access vector | [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md) |
   | Business email compromise pattern observed | [PB-016: Business Email Compromise](PB-016-business-email-compromise.md) |
   | Data exfiltration confirmed | [PB-005: Data Exfiltration](PB-005-data-exfiltration.md) |
-  | Widespread identity compromise or IdP/IAM infrastructure impact | [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md) / Executive escalation |
+  | Compromised identity performed cloud control plane actions | [PB-007: Cloud Compromise](PB-007-cloud-compromise.md) |
+  | Widespread identity compromise or IdP/IAM infrastructure impact | [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md) / Executive escalation |
 
 ## 8. Post-Incident Activities
 
@@ -204,8 +210,9 @@ Initiate this playbook when any of the following occur:
   - [PB-001: Phishing & Credential Theft](PB-001-phishing.md)
   - [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md)
   - [PB-005: Data Exfiltration](PB-005-data-exfiltration.md)
+  - [PB-007: Cloud Compromise](PB-007-cloud-compromise.md)
   - [PB-016: Business Email Compromise](PB-016-business-email-compromise.md)
-  - [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md)
+  - [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md)
 
 - **Runbooks:**
   - [RB-TRIAGE-003: Identity Alert Triage](../runbooks/triage/RB-TRIAGE-003-identity-alert-triage.md)

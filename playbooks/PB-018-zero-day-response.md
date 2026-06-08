@@ -152,7 +152,7 @@ Initiate this playbook when any of the following occur:
     | Data exposure, staging, or exfiltration identified | [PB-005: Data Exfiltration](PB-005-data-exfiltration.md) |
     | Cloud compromise identified | [PB-007: Cloud Compromise](PB-007-cloud-compromise.md) |
     | Web application compromise identified | [PB-008: Web Application Attack](PB-008-web-application-attack.md) |
-    | Major business impact, emergency shutdown, or widespread exposure | [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md) |
+    | Major business impact, emergency shutdown, or widespread exposure | [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md) |
 
 ## 8. Post-Incident Activities
 
@@ -174,7 +174,7 @@ Initiate this playbook when any of the following occur:
     - [PB-011: Suspicious Execution](PB-011-suspicious-execution.md)
     - [PB-015: Active Exploitation](PB-015-active-exploitation.md)
     - [PB-017: Vulnerability Response](PB-017-vulnerability-response.md)
-    - [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md)
+    - [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md)
 
 - **Runbooks:**
     - [RB-TRIAGE-002: EDR Alert Triage](../runbooks/triage/RB-TRIAGE-002-edr-alert-triage.md)

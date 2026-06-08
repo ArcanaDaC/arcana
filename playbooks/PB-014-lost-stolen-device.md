@@ -144,7 +144,7 @@ Initiate this playbook when any of the following occur:
     | Privilege escalation suspected or identified | [PB-009: Privilege Escalation](PB-009-privilege-escalation.md) |
     | Lateral movement suspected or identified | [PB-010: Lateral Movement](PB-010-lateral-movement.md) |
     | Targeted theft, insider involvement, or physical access abuse suspected | [PB-006: Insider Threat](PB-006-insider-threat.md) |
-    | Major business/customer impact or regulated data exposure | [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md) |
+    | Major business/customer impact or regulated data exposure | [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md) |
 
 ## 8. Post-Incident Activities
 
@@ -165,7 +165,7 @@ Initiate this playbook when any of the following occur:
     - [PB-009: Privilege Escalation](PB-009-privilege-escalation.md)
     - [PB-010: Lateral Movement](PB-010-lateral-movement.md)
     - [PB-011: Suspicious Execution](PB-011-suspicious-execution.md)
-    - [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md)
+    - [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md)
 
 - **Runbooks:**
     - [RB-TRIAGE-006: Lost & Stolen Device Validation](../runbooks/triage/RB-TRIAGE-006-lost-stolen-device-validation.md)

@@ -137,7 +137,7 @@ Initiate this playbook when any of the following occur:
     | Malware or suspicious execution suspected or identified | [PB-003: Endpoint Malware Infection](PB-003-endpoint-malware.md) / [PB-011: Suspicious Execution](PB-011-suspicious-execution.md) |
     | Privilege escalation suspected or identified | [PB-009: Privilege Escalation](PB-009-privilege-escalation.md) |
     | Lateral movement suspected or identified | [PB-010: Lateral Movement](PB-010-lateral-movement.md) |
-    | Major outage, extortion, or multi-service business impact | [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md) |
+    | Major outage, extortion, or multi-service business impact | [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md) |
 
 ## 8. Post-Incident Activities
 
@@ -160,7 +160,7 @@ Initiate this playbook when any of the following occur:
     - [PB-009: Privilege Escalation](PB-009-privilege-escalation.md)
     - [PB-010: Lateral Movement](PB-010-lateral-movement.md)
     - [PB-011: Suspicious Execution](PB-011-suspicious-execution.md)
-    - [PB-020: Major Security Incident Management](PB-020-major-security-incident-management.md)
+    - [PB-019: Major Security Incident Management](PB-019-major-security-incident-management.md)
 
 - **Runbooks:**
     - [RB-TRIAGE-005: DDoS Alert Validation](../runbooks/triage/RB-TRIAGE-005-ddos-alert-validation.md)

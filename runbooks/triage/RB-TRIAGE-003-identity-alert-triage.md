@@ -31,7 +31,7 @@
 >- Ignoring successful MFA activity
 >- Missing shared infrastructure indicators
 
-1. Validate Alert Authenticit
+1. Validate Alert Authenticity
 	- Determine:
 		- Alert source
 		- Detection type

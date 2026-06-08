@@ -1,4 +1,4 @@
-# RB-CONTAIN-010 Traffic Filtering & Rate Limiting
+# RB-CONTAIN-010: Traffic Filtering & Rate Limiting
 
 ## Document Control
 
@@ -12,9 +12,7 @@
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
 
----
-
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -26,184 +24,162 @@ Before starting this runbook, ensure the following:
 - Infrastructure teams are engaged
 - Appropriate change approvals have been obtained where required
 
----
+## 2. Step-by-Step Instructions
 
-# 2. Step-by-Step Instructions
+1. **Review Traffic Analysis Findings**
 
-### Step 1 – Review Traffic Analysis Findings
+    Review:
 
-Review:
+    - Attack type
+    - Source IP distribution
+    - Geographic distribution
+    - Traffic volume
+    - Protocols involved
+    - Targeted services
+    - Attack signatures
 
-- Attack type
-- Source IP distribution
-- Geographic distribution
-- Traffic volume
-- Protocols involved
-- Targeted services
-- Attack signatures
+    Determine:
 
-Determine:
+    - Filtering opportunities
+    - Rate limiting opportunities
+    - Potential business impact of mitigation actions
 
-- Filtering opportunities
-- Rate limiting opportunities
-- Potential business impact of mitigation actions
+    Document findings.
 
-Document findings.
+2. **Identify Filtering Locations**
 
----
+    Determine where controls can be applied:
 
-### Step 2 – Identify Filtering Locations
+    - CDN
+    - WAF
+    - Load balancer
+    - Reverse proxy
+    - Firewall
+    - Router
+    - Cloud-native protection services
+    - ISP mitigation services
 
-Determine where controls can be applied:
+    Document available enforcement points.
 
-- CDN
-- WAF
-- Load balancer
-- Reverse proxy
-- Firewall
-- Router
-- Cloud-native protection services
-- ISP mitigation services
+3. **Implement Source-Based Filtering**
 
-Document available enforcement points.
+    Where appropriate:
 
----
+    - Block malicious source IPs
+    - Block malicious IP ranges
+    - Block known botnet infrastructure
+    - Block malicious ASNs
+    - Apply geolocation restrictions
 
-### Step 3 – Implement Source-Based Filtering
+    Validate that legitimate traffic is not significantly impacted.
 
-Where appropriate:
+    Document actions taken.
 
-- Block malicious source IPs
-- Block malicious IP ranges
-- Block known botnet infrastructure
-- Block malicious ASNs
-- Apply geolocation restrictions
+4. **Implement Protocol Filtering**
 
-Validate that legitimate traffic is not significantly impacted.
+    Review and restrict malicious traffic patterns such as:
 
-Document actions taken.
+    - UDP floods
+    - SYN floods
+    - ICMP floods
+    - DNS abuse
+    - Reflection traffic
+    - Amplification traffic
 
----
+    Apply protocol-specific protections where appropriate.
 
-### Step 4 – Implement Protocol Filtering
+    Document changes.
 
-Review and restrict malicious traffic patterns such as:
+5. **Implement Application-Layer Filtering**
 
-- UDP floods
-- SYN floods
-- ICMP floods
-- DNS abuse
-- Reflection traffic
-- Amplification traffic
+    Where application-layer attacks are identified:
 
-Apply protocol-specific protections where appropriate.
+    - Block malicious user agents
+    - Block malicious request patterns
+    - Block known attack signatures
+    - Restrict abusive API usage
+    - Restrict excessive requests
 
-Document changes.
+    Validate application functionality after implementation.
 
----
+    Document actions.
 
-### Step 5 – Implement Application-Layer Filtering
+6. **Apply Rate Limiting Controls**
 
-Where application-layer attacks are identified:
+    Implement rate limiting where appropriate:
 
-- Block malicious user agents
-- Block malicious request patterns
-- Block known attack signatures
-- Restrict abusive API usage
-- Restrict excessive requests
+    - Requests per second
+    - Connections per second
+    - Authentication requests
+    - API requests
+    - Session creation
+    - Resource-intensive operations
 
-Validate application functionality after implementation.
+    Apply limits that minimise business impact.
 
-Document actions.
+    Document configuration changes.
 
----
+7. **Validate Effectiveness**
 
-### Step 6 – Apply Rate Limiting Controls
+    Review:
 
-Implement rate limiting where appropriate:
+    - Traffic reduction
+    - Service availability
+    - Error rates
+    - Application response times
+    - Customer impact
 
-- Requests per second
-- Connections per second
-- Authentication requests
-- API requests
-- Session creation
-- Resource-intensive operations
+    Determine whether mitigation actions are reducing attack effectiveness.
 
-Apply limits that minimise business impact.
+    Document findings.
 
-Document configuration changes.
+8. **Monitor for Evasion**
 
----
+    Review for:
 
-### Step 7 – Validate Effectiveness
+    - Source rotation
+    - Protocol switching
+    - Attack pattern changes
+    - New infrastructure
+    - Multi-vector attacks
 
-Review:
+    Adjust filtering controls where required.
 
-- Traffic reduction
-- Service availability
-- Error rates
-- Application response times
-- Customer impact
+    Document observations.
 
-Determine whether mitigation actions are reducing attack effectiveness.
+9. **Coordinate Operational Communications**
 
-Document findings.
+    Notify:
 
----
+    - Incident Commander
+    - Network Operations
+    - Infrastructure teams
+    - Service owners
+    - Security leadership
 
-### Step 8 – Monitor for Evasion
+    Communicate:
 
-Review for:
+    - Controls implemented
+    - Expected impact
+    - Current effectiveness
+    - Remaining risks
 
-- Source rotation
-- Protocol switching
-- Attack pattern changes
-- New infrastructure
-- Multi-vector attacks
+    Document communications.
 
-Adjust filtering controls where required.
+10. **Update Incident Record**
 
-Document observations.
+    Record:
 
----
+    - Filtering controls implemented
+    - Rate limits applied
+    - Affected services
+    - Validation results
+    - Evasion attempts observed
+    - Communications performed
 
-### Step 9 – Coordinate Operational Communications
+    Attach supporting evidence.
 
-Notify:
-
-- Incident Commander
-- Network Operations
-- Infrastructure teams
-- Service owners
-- Security leadership
-
-Communicate:
-
-- Controls implemented
-- Expected impact
-- Current effectiveness
-- Remaining risks
-
-Document communications.
-
----
-
-### Step 10 – Update Incident Record
-
-Record:
-
-- Filtering controls implemented
-- Rate limits applied
-- Affected services
-- Validation results
-- Evasion attempts observed
-- Communications performed
-
-Attach supporting evidence.
-
----
-
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -214,11 +190,9 @@ Upon completion:
 - Ensure supporting evidence is attached
 - Ensure incident ticket is updated
 
----
-
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

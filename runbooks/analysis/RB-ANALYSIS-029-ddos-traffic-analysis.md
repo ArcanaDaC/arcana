@@ -1,4 +1,4 @@
-# RB-ANALYSIS-029 DDoS Traffic Analysis
+# RB-ANALYSIS-029: DDoS Traffic Analysis
 
 ## Document Control
 
@@ -12,9 +12,7 @@
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
 
----
-
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -27,198 +25,176 @@ Before starting this runbook, ensure the following:
 - Cloud provider telemetry is available where applicable
 - NetFlow or equivalent telemetry is available where applicable
 
----
+## 2. Step-by-Step Instructions
 
-# 2. Step-by-Step Instructions
+1. **Establish Attack Timeline**
 
-### Step 1 – Establish Attack Timeline
+    Determine:
 
-Determine:
+    - Attack start time
+    - Detection time
+    - Peak activity period
+    - Current attack status
+    - Attack duration
 
-- Attack start time
-- Detection time
-- Peak activity period
-- Current attack status
-- Attack duration
+    Build a timeline of observed activity.
 
-Build a timeline of observed activity.
+    Document findings.
 
-Document findings.
+2. **Identify Targeted Assets**
 
----
+    Determine:
 
-### Step 2 – Identify Targeted Assets
+    - Targeted IP addresses
+    - Targeted domains
+    - Targeted applications
+    - Targeted APIs
+    - Targeted services
+    - Targeted network infrastructure
 
-Determine:
+    Identify primary and secondary targets.
 
-- Targeted IP addresses
-- Targeted domains
-- Targeted applications
-- Targeted APIs
-- Targeted services
-- Targeted network infrastructure
+    Document findings.
 
-Identify primary and secondary targets.
+3. **Analyse Traffic Volume**
 
-Document findings.
+    Review:
 
----
+    - Total bandwidth utilisation
+    - Packets per second (PPS)
+    - Requests per second (RPS)
+    - Concurrent connections
+    - Peak traffic volume
+    - Historical baselines
 
-### Step 3 – Analyse Traffic Volume
+    Determine the scale of the attack.
 
-Review:
+    Document findings.
 
-- Total bandwidth utilisation
-- Packets per second (PPS)
-- Requests per second (RPS)
-- Concurrent connections
-- Peak traffic volume
-- Historical baselines
+4. **Identify Attack Type**
 
-Determine the scale of the attack.
+    Determine whether the activity represents:
 
-Document findings.
+    - Volumetric DDoS
+    - Protocol DDoS
+    - Application-layer DDoS
+    - HTTP flood
+    - HTTPS flood
+    - DNS flood
+    - SYN flood
+    - UDP flood
+    - Amplification attack
+    - Reflection attack
+    - Multi-vector attack
 
----
+    Document attack classification.
 
-### Step 4 – Identify Attack Type
+5. **Analyse Source Distribution**
 
-Determine whether the activity represents:
+    Review:
 
-- Volumetric DDoS
-- Protocol DDoS
-- Application-layer DDoS
-- HTTP flood
-- HTTPS flood
-- DNS flood
-- SYN flood
-- UDP flood
-- Amplification attack
-- Reflection attack
-- Multi-vector attack
+    - Source IP addresses
+    - Autonomous System Numbers (ASNs)
+    - Geographic distribution
+    - Hosting providers
+    - Cloud providers
+    - Botnet indicators
 
-Document attack classification.
+    Determine:
 
----
+    - Concentrated attack sources
+    - Distributed attack sources
+    - Spoofing indicators
 
-### Step 5 – Analyse Source Distribution
+    Document findings.
 
-Review:
+6. **Identify Amplification or Reflection Activity**
 
-- Source IP addresses
-- Autonomous System Numbers (ASNs)
-- Geographic distribution
-- Hosting providers
-- Cloud providers
-- Botnet indicators
+    Review for:
 
-Determine:
+    - DNS amplification
+    - NTP amplification
+    - SSDP amplification
+    - CLDAP amplification
+    - Memcached amplification
+    - Reflection behaviour
 
-- Concentrated attack sources
-- Distributed attack sources
-- Spoofing indicators
+    Identify:
 
-Document findings.
+    - Amplifiers involved
+    - Reflection infrastructure
+    - Potential abuse vectors
 
----
+    Document findings.
 
-### Step 6 – Identify Amplification or Reflection Activity
+7. **Analyse Traffic Characteristics**
 
-Review for:
+    Review:
 
-- DNS amplification
-- NTP amplification
-- SSDP amplification
-- CLDAP amplification
-- Memcached amplification
-- Reflection behaviour
+    - Request methods
+    - User agents
+    - Headers
+    - Protocols
+    - URI patterns
+    - Connection behaviour
+    - Session behaviour
 
-Identify:
+    Identify:
 
-- Amplifiers involved
-- Reflection infrastructure
-- Potential abuse vectors
+    - Repetitive requests
+    - Automated behaviour
+    - Bot activity
+    - Attack signatures
 
-Document findings.
+    Document findings.
 
----
+8. **Assess Mitigation Effectiveness**
 
-### Step 7 – Analyse Traffic Characteristics
+    Review:
 
-Review:
+    - CDN performance
+    - WAF effectiveness
+    - Rate limiting effectiveness
+    - Filtering effectiveness
+    - Upstream mitigation effectiveness
 
-- Request methods
-- User agents
-- Headers
-- Protocols
-- URI patterns
-- Connection behaviour
-- Session behaviour
+    Determine:
 
-Identify:
+    - Current mitigation status
+    - Remaining attack impact
+    - Additional controls required
 
-- Repetitive requests
-- Automated behaviour
-- Bot activity
-- Attack signatures
+    Document findings.
 
-Document findings.
+9. **Assess Secondary Indicators**
 
----
+    Review for:
 
-### Step 8 – Assess Mitigation Effectiveness
+    - Concurrent authentication anomalies
+    - Privilege escalation attempts
+    - Cloud activity anomalies
+    - Data access anomalies
+    - Suspicious administrative activity
 
-Review:
+    Determine whether DDoS activity may be supporting another attack objective.
 
-- CDN performance
-- WAF effectiveness
-- Rate limiting effectiveness
-- Filtering effectiveness
-- Upstream mitigation effectiveness
+    Escalate where appropriate.
 
-Determine:
+10. **Update Incident Record**
 
-- Current mitigation status
-- Remaining attack impact
-- Additional controls required
+    Record:
 
-Document findings.
+    - Attack timeline
+    - Targeted assets
+    - Traffic volumes
+    - Attack classification
+    - Source analysis
+    - Mitigation effectiveness
+    - Secondary observations
 
----
+    Attach supporting evidence.
 
-### Step 9 – Assess Secondary Indicators
-
-Review for:
-
-- Concurrent authentication anomalies
-- Privilege escalation attempts
-- Cloud activity anomalies
-- Data access anomalies
-- Suspicious administrative activity
-
-Determine whether DDoS activity may be supporting another attack objective.
-
-Escalate where appropriate.
-
----
-
-### Step 10 – Update Incident Record
-
-Record:
-
-- Attack timeline
-- Targeted assets
-- Traffic volumes
-- Attack classification
-- Source analysis
-- Mitigation effectiveness
-- Secondary observations
-
-Attach supporting evidence.
-
----
-
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -230,11 +206,9 @@ Upon completion:
 - Ensure supporting evidence is attached
 - Ensure incident ticket is updated
 
----
-
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

@@ -1,4 +1,4 @@
-# RB-RECOVERY-006 Service Availability Restoration
+# RB-RECOVERY-006: Service Availability Restoration
 
 ## Document Control
 
@@ -12,9 +12,7 @@
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
 
----
-
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -26,194 +24,172 @@ Before starting this runbook, ensure the following:
 - Cloud providers have been engaged where applicable
 - Incident ticket remains active
 
----
+## 2. Step-by-Step Instructions
 
-# 2. Step-by-Step Instructions
+1. **Validate Attack Status**
 
-### Step 1 – Validate Attack Status
+    Review:
 
-Review:
+    - Current traffic volumes
+    - Active mitigation status
+    - Service health metrics
+    - Error rates
+    - Availability metrics
+    - Infrastructure utilisation
 
-- Current traffic volumes
-- Active mitigation status
-- Service health metrics
-- Error rates
-- Availability metrics
-- Infrastructure utilisation
+    Determine:
 
-Determine:
+    - Whether the attack is ongoing
+    - Whether attack activity has significantly reduced
+    - Whether restoration activities can safely begin
 
-- Whether the attack is ongoing
-- Whether attack activity has significantly reduced
-- Whether restoration activities can safely begin
+    Document findings.
 
-Document findings.
+2. **Assess Service Health**
 
----
+    Review:
 
-### Step 2 – Assess Service Health
+    - Application health
+    - API health
+    - Website availability
+    - Infrastructure health
+    - Network health
+    - Database health
+    - Cloud resource health
 
-Review:
+    Identify:
 
-- Application health
-- API health
-- Website availability
-- Infrastructure health
-- Network health
-- Database health
-- Cloud resource health
+    - Remaining service degradation
+    - Failed components
+    - Resource exhaustion issues
 
-Identify:
+    Document findings.
 
-- Remaining service degradation
-- Failed components
-- Resource exhaustion issues
+3. **Verify Mitigation Effectiveness**
 
-Document findings.
+    Confirm:
 
----
+    - DDoS controls are functioning
+    - Traffic filtering remains effective
+    - Rate limiting remains effective
+    - CDN protections remain active
+    - Cloud mitigation services remain active
 
-### Step 3 – Verify Mitigation Effectiveness
+    Determine whether additional protections should remain enabled during recovery.
 
-Confirm:
+    Document decisions.
 
-- DDoS controls are functioning
-- Traffic filtering remains effective
-- Rate limiting remains effective
-- CDN protections remain active
-- Cloud mitigation services remain active
+4. **Restore Critical Services**
 
-Determine whether additional protections should remain enabled during recovery.
+    Prioritise restoration of:
 
-Document decisions.
+    - Customer-facing services
+    - Authentication services
+    - Revenue-generating services
+    - Regulatory-sensitive services
+    - Executive communication platforms
+    - Business-critical infrastructure
 
----
+    Validate functionality after restoration.
 
-### Step 4 – Restore Critical Services
+    Document actions performed.
 
-Prioritise restoration of:
+5. **Remove Temporary Controls**
 
-- Customer-facing services
-- Authentication services
-- Revenue-generating services
-- Regulatory-sensitive services
-- Executive communication platforms
-- Business-critical infrastructure
+    Review temporary controls implemented during containment.
 
-Validate functionality after restoration.
+    Examples include:
 
-Document actions performed.
+    - Emergency filtering rules
+    - Temporary rate limits
+    - Temporary routing changes
+    - Temporary service restrictions
+    - Temporary traffic controls
 
----
+    Remove controls only when:
 
-### Step 5 – Remove Temporary Controls
+    - Risk is acceptable
+    - Services remain stable
+    - Business owners approve
 
-Review temporary controls implemented during containment.
+    Document all changes.
 
-Examples include:
+6. **Validate End-to-End Functionality**
 
-- Emergency filtering rules
-- Temporary rate limits
-- Temporary routing changes
-- Temporary service restrictions
-- Temporary traffic controls
+    Test:
 
-Remove controls only when:
+    - User authentication
+    - Customer transactions
+    - API functionality
+    - Service integrations
+    - Third-party connectivity
+    - Administrative functions
 
-- Risk is acceptable
-- Services remain stable
-- Business owners approve
+    Verify expected functionality.
 
-Document all changes.
+    Document test results.
 
----
+7. **Monitor Service Stability**
 
-### Step 6 – Validate End-to-End Functionality
+    Monitor:
 
-Test:
+    - Availability metrics
+    - Response times
+    - Error rates
+    - Infrastructure utilisation
+    - Customer support reports
+    - Business telemetry
 
-- User authentication
-- Customer transactions
-- API functionality
-- Service integrations
-- Third-party connectivity
-- Administrative functions
+    Determine whether services remain stable under normal operating conditions.
 
-Verify expected functionality.
+    Document observations.
 
-Document test results.
+8. **Confirm Customer Impact Resolution**
 
----
+    Review:
 
-### Step 7 – Monitor Service Stability
+    - Customer complaints
+    - Support ticket volume
+    - Service desk reports
+    - Business owner feedback
+    - Service level indicators
 
-Monitor:
+    Determine whether customer impact has been resolved.
 
-- Availability metrics
-- Response times
-- Error rates
-- Infrastructure utilisation
-- Customer support reports
-- Business telemetry
+    Document findings.
 
-Determine whether services remain stable under normal operating conditions.
+9. **Obtain Restoration Approval**
 
-Document observations.
+    Obtain confirmation from:
 
----
+    - Service owners
+    - Infrastructure teams
+    - Network Operations
+    - Security leadership
+    - Incident Commander
 
-### Step 8 – Confirm Customer Impact Resolution
+    Confirm:
 
-Review:
+    - Recovery objectives achieved
+    - Services operating normally
+    - Monitoring remains active
 
-- Customer complaints
-- Support ticket volume
-- Service desk reports
-- Business owner feedback
-- Service level indicators
+    Document approvals.
 
-Determine whether customer impact has been resolved.
+10. **Update Incident Record**
 
-Document findings.
+    Record:
 
----
+    - Restoration activities performed
+    - Services restored
+    - Temporary controls removed
+    - Validation results
+    - Monitoring outcomes
+    - Stakeholder approvals
 
-### Step 9 – Obtain Restoration Approval
+    Attach supporting evidence.
 
-Obtain confirmation from:
-
-- Service owners
-- Infrastructure teams
-- Network Operations
-- Security leadership
-- Incident Commander
-
-Confirm:
-
-- Recovery objectives achieved
-- Services operating normally
-- Monitoring remains active
-
-Document approvals.
-
----
-
-### Step 10 – Update Incident Record
-
-Record:
-
-- Restoration activities performed
-- Services restored
-- Temporary controls removed
-- Validation results
-- Monitoring outcomes
-- Stakeholder approvals
-
-Attach supporting evidence.
-
----
-
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -224,11 +200,9 @@ Upon completion:
 - Ensure supporting evidence is attached
 - Ensure incident ticket is updated
 
----
-
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

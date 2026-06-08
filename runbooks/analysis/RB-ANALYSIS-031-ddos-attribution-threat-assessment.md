@@ -1,4 +1,4 @@
-# RB-ANALYSIS-031 DDoS Attribution & Threat Assessment
+# RB-ANALYSIS-031: DDoS Attribution & Threat Assessment
 
 ## Document Control
 
@@ -12,9 +12,7 @@
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
 
----
-
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -26,202 +24,180 @@ Before starting this runbook, ensure the following:
 - Threat intelligence sources are available
 - Relevant logs and evidence have been preserved
 
----
+## 2. Step-by-Step Instructions
 
-# 2. Step-by-Step Instructions
+1. **Review Attack Characteristics**
 
-### Step 1 – Review Attack Characteristics
+    Review:
 
-Review:
+    - Attack type
+    - Attack duration
+    - Attack volume
+    - Targeted assets
+    - Traffic patterns
+    - Protocols involved
+    - Mitigation effectiveness
 
-- Attack type
-- Attack duration
-- Attack volume
-- Targeted assets
-- Traffic patterns
-- Protocols involved
-- Mitigation effectiveness
+    Identify characteristics that may assist attribution.
 
-Identify characteristics that may assist attribution.
+    Document findings.
 
-Document findings.
+2. **Analyse Source Infrastructure**
 
----
+    Review:
 
-### Step 2 – Analyse Source Infrastructure
+    - Source IP addresses
+    - Autonomous System Numbers (ASNs)
+    - Hosting providers
+    - Cloud providers
+    - Geographic distribution
+    - Botnet indicators
 
-Review:
+    Determine:
 
-- Source IP addresses
-- Autonomous System Numbers (ASNs)
-- Hosting providers
-- Cloud providers
-- Geographic distribution
-- Botnet indicators
+    - Concentrated infrastructure
+    - Distributed infrastructure
+    - Recurring infrastructure
 
-Determine:
+    Document findings.
 
-- Concentrated infrastructure
-- Distributed infrastructure
-- Recurring infrastructure
+3. **Review Historical Activity**
 
-Document findings.
+    Determine whether:
 
----
+    - Similar attacks have occurred previously
+    - Similar infrastructure has been observed previously
+    - Similar targeting has been observed previously
+    - Similar attack patterns have been identified previously
 
-### Step 3 – Review Historical Activity
+    Review:
 
-Determine whether:
+    - Historical incidents
+    - Threat intelligence reports
+    - Industry reporting
 
-- Similar attacks have occurred previously
-- Similar infrastructure has been observed previously
-- Similar targeting has been observed previously
-- Similar attack patterns have been identified previously
+    Document findings.
 
-Review:
+4. **Assess Threat Intelligence**
 
-- Historical incidents
-- Threat intelligence reports
-- Industry reporting
+    Review:
 
-Document findings.
+    - Internal threat intelligence
+    - Commercial intelligence feeds
+    - Industry sharing communities
+    - Government advisories
+    - Open-source intelligence
 
----
+    Identify:
 
-### Step 4 – Assess Threat Intelligence
+    - Known threat actors
+    - Known botnets
+    - Known campaigns
+    - Relevant indicators
 
-Review:
+    Document findings.
 
-- Internal threat intelligence
-- Commercial intelligence feeds
-- Industry sharing communities
-- Government advisories
-- Open-source intelligence
+5. **Assess Potential Motivation**
 
-Identify:
+    Evaluate whether the attack is consistent with:
 
-- Known threat actors
-- Known botnets
-- Known campaigns
-- Relevant indicators
+    - Financial extortion
+    - Competitive disruption
+    - Hacktivism
+    - Opportunistic activity
+    - Criminal activity
+    - Geopolitical activity
+    - Distraction operations
 
-Document findings.
+    Document assessment.
 
----
+6. **Review Extortion Indicators**
 
-### Step 5 – Assess Potential Motivation
+    Review for:
 
-Evaluate whether the attack is consistent with:
+    - Extortion emails
+    - Threat communications
+    - Ransom demands
+    - Anonymous messages
+    - Customer-facing threats
+    - Social media threats
 
-- Financial extortion
-- Competitive disruption
-- Hacktivism
-- Opportunistic activity
-- Criminal activity
-- Geopolitical activity
-- Distraction operations
+    Determine whether financial demands are associated with the attack.
 
-Document assessment.
+    Document findings.
 
----
+7. **Assess Secondary Attack Objectives**
 
-### Step 6 – Review Extortion Indicators
+    Review for evidence of:
 
-Review for:
+    - Account compromise
+    - Privilege escalation
+    - Lateral movement
+    - Cloud compromise
+    - Data access
+    - Data exfiltration
+    - Suspicious administrative activity
 
-- Extortion emails
-- Threat communications
-- Ransom demands
-- Anonymous messages
-- Customer-facing threats
-- Social media threats
+    Determine whether the DDoS attack may be intended to:
 
-Determine whether financial demands are associated with the attack.
+    - Distract defenders
+    - Conceal malicious activity
+    - Support a larger attack campaign
 
-Document findings.
+    Document findings.
 
----
+8. **Assess Targeting Significance**
 
-### Step 7 – Assess Secondary Attack Objectives
+    Determine whether targeting appears focused on:
 
-Review for evidence of:
+    - Specific applications
+    - Specific business units
+    - Specific customer groups
+    - Specific geographies
+    - Critical infrastructure
+    - Executive services
+    - Revenue-generating systems
 
-- Account compromise
-- Privilege escalation
-- Lateral movement
-- Cloud compromise
-- Data access
-- Data exfiltration
-- Suspicious administrative activity
+    Identify possible attacker objectives.
 
-Determine whether the DDoS attack may be intended to:
+    Document findings.
 
-- Distract defenders
-- Conceal malicious activity
-- Support a larger attack campaign
+9. **Determine Escalation Requirements**
 
-Document findings.
+    If evidence supports additional attacker activity:
 
----
+    Activate:
 
-### Step 8 – Assess Targeting Significance
+    - PB-004 Account Takeover
+    - PB-005 Data Exfiltration
+    - PB-007 Cloud Compromise
+    - PB-009 Privilege Escalation
+    - PB-010 Lateral Movement
 
-Determine whether targeting appears focused on:
+    Escalate findings to:
 
-- Specific applications
-- Specific business units
-- Specific customer groups
-- Specific geographies
-- Critical infrastructure
-- Executive services
-- Revenue-generating systems
+    - Incident Commander
+    - Security leadership
+    - Threat Intelligence team
+    - Executive leadership where appropriate
 
-Identify possible attacker objectives.
+    Document escalation decisions.
 
-Document findings.
+10. **Update Incident Record**
 
----
+    Record:
 
-### Step 9 – Determine Escalation Requirements
+    - Attribution assessment
+    - Threat intelligence findings
+    - Potential motivations
+    - Extortion indicators
+    - Secondary attack indicators
+    - Escalation decisions
+    - Confidence assessment
 
-If evidence supports additional attacker activity:
+    Attach supporting evidence.
 
-Activate:
-
-- PB-004 Account Takeover
-- PB-005 Data Exfiltration
-- PB-007 Cloud Compromise
-- PB-009 Privilege Escalation
-- PB-010 Lateral Movement
-
-Escalate findings to:
-
-- Incident Commander
-- Security leadership
-- Threat Intelligence team
-- Executive leadership where appropriate
-
-Document escalation decisions.
-
----
-
-### Step 10 – Update Incident Record
-
-Record:
-
-- Attribution assessment
-- Threat intelligence findings
-- Potential motivations
-- Extortion indicators
-- Secondary attack indicators
-- Escalation decisions
-- Confidence assessment
-
-Attach supporting evidence.
-
----
-
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -233,11 +209,9 @@ Upon completion:
 - Ensure supporting evidence is attached
 - Ensure incident ticket is updated
 
----
-
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

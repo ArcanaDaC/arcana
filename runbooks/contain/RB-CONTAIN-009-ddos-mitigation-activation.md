@@ -1,4 +1,4 @@
-# RB-CONTAIN-009 DDoS Mitigation Activation
+# RB-CONTAIN-009: DDoS Mitigation Activation
 
 ## Document Control
 
@@ -12,9 +12,7 @@
 | Approvals | [Enter approver(s)] | [Enter date] |
 | Change Summary | Initial creation | [Enter date] |
 
----
-
-# 1. Prerequisites
+## 1. Prerequisites
 
 Before starting this runbook, ensure the following:
 
@@ -26,193 +24,171 @@ Before starting this runbook, ensure the following:
 - Infrastructure teams have been engaged
 - Cloud providers and third-party mitigation providers are identified
 
----
+## 2. Step-by-Step Instructions
 
-# 2. Step-by-Step Instructions
+1. **Assess Current Impact**
 
-### Step 1 – Assess Current Impact
+    Review:
 
-Review:
+    - Service availability
+    - Traffic volumes
+    - Network utilisation
+    - Application health
+    - Customer impact
+    - Business impact
 
-- Service availability
-- Traffic volumes
-- Network utilisation
-- Application health
-- Customer impact
-- Business impact
+    Determine:
 
-Determine:
+    - Current attack severity
+    - Immediate operational risk
+    - Mitigation urgency
 
-- Current attack severity
-- Immediate operational risk
-- Mitigation urgency
+    Document findings.
 
-Document findings.
+2. **Identify Available Mitigation Capabilities**
 
----
+    Review available controls:
 
-### Step 2 – Identify Available Mitigation Capabilities
+    - CDN protection
+    - DDoS protection platforms
+    - WAF protections
+    - Cloud-native DDoS controls
+    - ISP mitigation services
+    - Traffic scrubbing services
+    - Load balancing capabilities
+    - Auto-scaling capabilities
 
-Review available controls:
+    Document available mitigation options.
 
-- CDN protection
-- DDoS protection platforms
-- WAF protections
-- Cloud-native DDoS controls
-- ISP mitigation services
-- Traffic scrubbing services
-- Load balancing capabilities
-- Auto-scaling capabilities
+3. **Engage Mitigation Providers**
 
-Document available mitigation options.
+    Notify and engage:
 
----
+    - CDN providers
+    - Cloud providers
+    - ISP providers
+    - Managed DDoS mitigation providers
+    - Third-party network providers
 
-### Step 3 – Engage Mitigation Providers
+    Provide:
 
-Notify and engage:
+    - Incident details
+    - Affected assets
+    - Traffic characteristics
+    - Current impact assessment
 
-- CDN providers
-- Cloud providers
-- ISP providers
-- Managed DDoS mitigation providers
-- Third-party network providers
+    Document engagement activities.
 
-Provide:
+4. **Activate DDoS Protection Controls**
 
-- Incident details
-- Affected assets
-- Traffic characteristics
-- Current impact assessment
+    Enable approved mitigation capabilities.
 
-Document engagement activities.
+    Examples include:
 
----
+    - CDN DDoS protection
+    - Cloud DDoS protection
+    - Traffic scrubbing
+    - Advanced WAF protections
+    - Bot mitigation controls
+    - Network-level filtering
 
-### Step 4 – Activate DDoS Protection Controls
+    Validate successful activation.
 
-Enable approved mitigation capabilities.
+    Document actions performed.
 
-Examples include:
+5. **Protect Critical Services**
 
-- CDN DDoS protection
-- Cloud DDoS protection
-- Traffic scrubbing
-- Advanced WAF protections
-- Bot mitigation controls
-- Network-level filtering
+    Prioritise protection of:
 
-Validate successful activation.
+    - Customer-facing services
+    - Authentication services
+    - Revenue-generating services
+    - Regulatory-sensitive services
+    - Executive communication systems
+    - Core infrastructure
 
-Document actions performed.
+    Implement service-specific protections where required.
 
----
+    Document priorities.
 
-### Step 5 – Protect Critical Services
+6. **Coordinate Infrastructure Scaling**
 
-Prioritise protection of:
+    Review:
 
-- Customer-facing services
-- Authentication services
-- Revenue-generating services
-- Regulatory-sensitive services
-- Executive communication systems
-- Core infrastructure
+    - Auto-scaling status
+    - Load balancing capacity
+    - CDN capacity
+    - Cloud resource availability
+    - Application resource utilisation
 
-Implement service-specific protections where required.
+    Increase capacity where approved and appropriate.
 
-Document priorities.
+    Document scaling activities.
 
----
+7. **Monitor Mitigation Effectiveness**
 
-### Step 6 – Coordinate Infrastructure Scaling
+    Review:
 
-Review:
+    - Traffic volumes
+    - Error rates
+    - Response times
+    - Availability metrics
+    - Customer impact metrics
 
-- Auto-scaling status
-- Load balancing capacity
-- CDN capacity
-- Cloud resource availability
-- Application resource utilisation
+    Determine:
 
-Increase capacity where approved and appropriate.
+    - Whether mitigation is effective
+    - Whether additional controls are required
 
-Document scaling activities.
+    Document findings.
 
----
+8. **Escalate Additional Mitigation Requirements**
 
-### Step 7 – Monitor Mitigation Effectiveness
+    If attack impact persists:
 
-Review:
+    - Escalate to network leadership
+    - Escalate to infrastructure leadership
+    - Escalate to cloud providers
+    - Escalate to executive leadership where required
 
-- Traffic volumes
-- Error rates
-- Response times
-- Availability metrics
-- Customer impact metrics
+    Request additional mitigation resources.
 
-Determine:
+    Document escalation actions.
 
-- Whether mitigation is effective
-- Whether additional controls are required
+9. **Coordinate Stakeholder Communications**
 
-Document findings.
+    Notify:
 
----
+    - Incident Commander
+    - Security leadership
+    - Infrastructure teams
+    - Business owners
+    - Customer communications teams
 
-### Step 8 – Escalate Additional Mitigation Requirements
+    Provide:
 
-If attack impact persists:
+    - Current impact
+    - Mitigation status
+    - Recovery expectations
+    - Ongoing risks
 
-- Escalate to network leadership
-- Escalate to infrastructure leadership
-- Escalate to cloud providers
-- Escalate to executive leadership where required
+    Document communications.
 
-Request additional mitigation resources.
+10. **Update Incident Record**
 
-Document escalation actions.
+    Record:
 
----
+    - Mitigation controls activated
+    - Provider engagements
+    - Infrastructure changes
+    - Scaling activities
+    - Mitigation effectiveness
+    - Escalation actions
+    - Stakeholder communications
 
-### Step 9 – Coordinate Stakeholder Communications
+    Attach supporting evidence.
 
-Notify:
-
-- Incident Commander
-- Security leadership
-- Infrastructure teams
-- Business owners
-- Customer communications teams
-
-Provide:
-
-- Current impact
-- Mitigation status
-- Recovery expectations
-- Ongoing risks
-
-Document communications.
-
----
-
-### Step 10 – Update Incident Record
-
-Record:
-
-- Mitigation controls activated
-- Provider engagements
-- Infrastructure changes
-- Scaling activities
-- Mitigation effectiveness
-- Escalation actions
-- Stakeholder communications
-
-Attach supporting evidence.
-
----
-
-# 3. Post-Action
+## 3. Post-Action
 
 Upon completion:
 
@@ -224,11 +200,9 @@ Upon completion:
 - Ensure supporting evidence is attached
 - Ensure incident ticket is updated
 
----
-
 ## Contributor
 
-**Vishal Thakur**  
+**Vishal Thakur**
 GitHub: https://github.com/malienist
 
 Contributed to the Arcana Incident Response Documentation Framework.

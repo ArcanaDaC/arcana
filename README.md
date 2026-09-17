@@ -1,5 +1,6 @@
 ## What is Arcana
 > 🌐 **Interactive Web Viewer**: Browse and search all published playbooks online at [**https://arcana.csirt.bj**](https://arcana.csirt.bj/).
+
 Arcana is a documentation methodology purpose-built for security incident response teams. It standardises the core building blocks of IR documentation - Incident Response Plans (IRPs), Playbooks, Runbooks, Standard Operation Procedures (SOPs) & Knowledge Base (KB) Articles - along with a consistent naming convention for each document type. Arcana also defines how these documents fit together: what each one is for, and how they link to each other. The result is IR documentation that's consistent, easy to maintain, and easy to navigate.
 
 Because every team using Arcana follows the same structure, Playbooks, Runbooks, SOPs and KB articles can be shared across organisations as a starting point, saving teams from designing the response flow from scratch. The goal is a stronger IR community where teams build on each other's work instead of solving the same problems in isolation.
